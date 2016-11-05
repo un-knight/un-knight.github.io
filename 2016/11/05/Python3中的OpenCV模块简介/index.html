@@ -84,15 +84,64 @@
 
 
 
-<meta name="description" content="Keep thinking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="un-knight's blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Python 3 中的 OpenCV 模块操作简介OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。
+目录：
+[TOC]
+导入模块1import cv2
+图像的读写模块名 cv2
+
+imread(image_path, mode) 读取图片函数，返回一个 numpy.ndarray 对象。第一个参数指定图像路径，第二个参数（可选）指定打开模式，可选值有：
+
+
+
+
+mode
+作用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3中的OpenCV模块简介">
+<meta property="og:url" content="http://yoursite.com/2016/11/05/Python3中的OpenCV模块简介/index.html">
 <meta property="og:site_name" content="un-knight's blog">
-<meta property="og:description" content="Keep thinking">
+<meta property="og:description" content="Python 3 中的 OpenCV 模块操作简介OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。
+目录：
+[TOC]
+导入模块1import cv2
+图像的读写模块名 cv2
+
+imread(image_path, mode) 读取图片函数，返回一个 numpy.ndarray 对象。第一个参数指定图像路径，第二个参数（可选）指定打开模式，可选值有：
+
+
+
+
+mode
+作用">
+<meta property="og:image" content="http://yoursite.com/./1474795142397.png">
+<meta property="og:image" content="http://yoursite.com/./figure_1.png">
+<meta property="og:image" content="http://yoursite.com/./1476289799213.png">
+<meta property="og:image" content="http://yoursite.com/./1474989339375.png">
+<meta property="og:image" content="http://yoursite.com/./图像 5.png">
+<meta property="og:image" content="http://yoursite.com/./图像 2.png">
+<meta property="og:image" content="http://yoursite.com/./图像 3.png">
+<meta property="og:image" content="http://yoursite.com/./1475667551655.png">
+<meta property="og:image" content="http://yoursite.com/./图像 5.png">
+<meta property="og:image" content="http://yoursite.com/./图像 3.png">
+<meta property="og:image" content="http://yoursite.com/./1476289799213.png">
+<meta property="og:updated_time" content="2016-11-05T06:33:52.098Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="un-knight's blog">
-<meta name="twitter:description" content="Keep thinking">
+<meta name="twitter:title" content="Python3中的OpenCV模块简介">
+<meta name="twitter:description" content="Python 3 中的 OpenCV 模块操作简介OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。
+目录：
+[TOC]
+导入模块1import cv2
+图像的读写模块名 cv2
+
+imread(image_path, mode) 读取图片函数，返回一个 numpy.ndarray 对象。第一个参数指定图像路径，第二个参数（可选）指定打开模式，可选值有：
+
+
+
+
+mode
+作用">
+<meta name="twitter:image" content="http://yoursite.com/./1474795142397.png">
 
 
 
@@ -113,10 +162,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/05/Python3中的OpenCV模块简介/"/>
 
 
-  <title> un-knight's blog </title>
+  <title> Python3中的OpenCV模块简介 | un-knight's blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +186,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -218,9 +265,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -240,10 +287,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/05/Python3中的OpenCV模块简介/" itemprop="url">
-                  Python3中的OpenCV模块简介
-                </a>
+                Python3中的OpenCV模块简介
               
             
           </h1>
@@ -283,9 +327,7 @@
       
 
       
-        
-          
-            <h1 id="Python-3-中的-OpenCV-模块操作简介"><a href="#Python-3-中的-OpenCV-模块操作简介" class="headerlink" title="Python 3 中的 OpenCV 模块操作简介"></a>Python 3 中的 OpenCV 模块操作简介</h1><p>OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。</p>
+        <h1 id="Python-3-中的-OpenCV-模块操作简介"><a href="#Python-3-中的-OpenCV-模块操作简介" class="headerlink" title="Python 3 中的 OpenCV 模块操作简介"></a>Python 3 中的 OpenCV 模块操作简介</h1><p>OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。</p>
 <p>目录：</p>
 <p>[TOC]</p>
 <h2 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
@@ -510,16 +552,20 @@
 </ol>
 <p>在不使用视频对象之后要释放该资源。<br>5. </p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -527,296 +573,32 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/30/搭梯上墙搬瓦工/" rel="next" title="搭梯上墙搬瓦工">
+                <i class="fa fa-chevron-left"></i> 搭梯上墙搬瓦工
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/10/30/搭梯上墙搬瓦工/" itemprop="url">
-                  搭梯上墙搬瓦工
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-30T23:57:38+08:00" content="2016-10-30">
-              2016-10-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="搭梯上墙搬瓦工"><a href="#搭梯上墙搬瓦工" class="headerlink" title="搭梯上墙搬瓦工"></a>搭梯上墙搬瓦工</h1><p>在使用搬瓦工之前我一直都是用的免费的 <a href="https://github.com/XX-net/XX-Net" target="_blank" rel="external">XX-Net</a> 进行墙外访问，平时也就用用 google 搜索和邮箱，因此对带宽需求不大。但是最近发现 XX-Net 的访问速度变得越来越慢了，同时又有人推荐了搬瓦工这个相对廉价的 VPS （我先购买了试用了一个月，不到 30 RMB ，事实上还有更加廉价的，但是我买的那会已经没了），因此也就有了后来我弃 XX-Net 转搬瓦工之举。这篇博客记录了我通过搬瓦工搭建 SS （Shadowsocks 简称）的过程，希望能对后来的读者能有所帮助。</p>
-<h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><ul>
-<li>购买 VPS</li>
-<li>安装 Shadowsocks</li>
-<li>通过 FinalSpeed 加速</li>
-<li>实现过滤</li>
-</ul>
-<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>Centos6 x86</p>
-<h2 id="一、购买-VPS"><a href="#一、购买-VPS" class="headerlink" title="一、购买 VPS"></a>一、购买 VPS</h2><p>注册购买 VPS （注意这里可能需要先翻墙才能访问）。</p>
-<p><a href="https://bandwagonhost.com/" target="_blank" rel="external">https://bandwagonhost.com/</a></p>
-<p>关于如何购买以及购买之后如何对 VPS 进行管理，在<a href="http://banwagong.cn/" target="_blank" rel="external">搬瓦工中文站</a>新手教程中有详细的介绍，这里不再赘述。</p>
-<p>需要注意的一点是，由于之后需要使用 FinalSpeed 进行加速，所以在购买 VPS 的时候要求内存至少得是 128MB 的，否则 FinalSpeed 跑不起来，科学上网的网速也会很尴尬。</p>
-<h2 id="二、安装-Shadowsocks"><a href="#二、安装-Shadowsocks" class="headerlink" title="二、安装 Shadowsocks"></a>二、安装 Shadowsocks</h2><h3 id="VPS-端的-Shadowsocks-安装"><a href="#VPS-端的-Shadowsocks-安装" class="headerlink" title="VPS 端的 Shadowsocks 安装"></a>VPS 端的 Shadowsocks 安装</h3><p>首先通过 SSH 远程登录 VPS 安装 ShadowsockR 。</p>
-<p>ShadowsocksR 是 Shadowsocks 的一个分支，据说比较不错，通过 Shell 脚本来进行安装。ShadowsocksR 默认采用 aes-256-cfb 加密方式，如果想要在手机端也使用 SS 科学上网的话，建议改为 chacha20 加密算法，该算法针对手机以及路由器有特殊的优化。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh</div><div class="line">$ chmod +x shadowsocksR.sh</div><div class="line">$ ./shadowsocksR.sh 2&gt;&amp;1 | tee shadowsocksR.log</div></pre></td></tr></table></figure>
-<p><img src="./1477817608783.png" alt="Alt text"></p>
-<p>安装过程会提示配置<strong>密码（默认 teddysun.com）</strong>与<strong>端口号（默认 8989）</strong>，可以使用默认也可以按个人需求进行配置。这里的端口号与密码就是用于客户端连接使用的。</p>
-<p>当然还有种更加简单的方法，就是进入搬瓦工 VPS 后台使用官方提供的 SS ，但是这一做法并不推荐。</p>
-<h3 id="客户端-Shadowsocks-安装"><a href="#客户端-Shadowsocks-安装" class="headerlink" title="客户端 Shadowsocks 安装"></a>客户端 Shadowsocks 安装</h3><p>这里提供两个下载地址供下载：</p>
-<ol>
-<li>官方原版：<br><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-windows/releases</a></li>
-<li>ShadowsocksR 版本：<br><a href="https://github.com/breakwa11/shadowsocks-csharp/releases" target="_blank" rel="external">https://github.com/breakwa11/shadowsocks-csharp/releases</a></li>
-</ol>
-<p>随便选择哪个版本都可以。</p>
-<p>直接解压缩之后就可以使用。</p>
-<p><img src="./1477817911806.png" alt="Alt text"></p>
-<p>这里只需要填写自己的服务器 IP ， Shadowsocks 端口号，Shadowsocks 密码以及选择对应的加密方式即可。</p>
-<p>到这一步操作之后，只要之前的配置没有问题就可以科学上网了。但是比较遗憾的一点是目前这样科学上网网速比较慢，因此我们还要使用 FinalSpeed 进行加速。</p>
-<h2 id="三、通过-FinalSpeed-加速"><a href="#三、通过-FinalSpeed-加速" class="headerlink" title="三、通过 FinalSpeed 加速"></a>三、通过 FinalSpeed 加速</h2><p>FinalSpeed 是一个高速双边加速软件，可加速所有基于 TCP 协议和 UDP 协议的网络服务。但是有个缺点就是占内存相对较高，不过通过来说有个 128 MB 的内存就已经足够了。</p>
-<p><img src="./1477819037111.png" alt="Alt text"></p>
-<h3 id="VPS-端的-FinalSpeed-安装"><a href="#VPS-端的-FinalSpeed-安装" class="headerlink" title="VPS 端的 FinalSpeed 安装"></a>VPS 端的 FinalSpeed 安装</h3><p>首先修改 iptables ，开放 VPS 的 SSH 端口号，以避免安装 FinalSpeed 之后导致 SSH 连接失败的问题。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># service iptables start</span></div><div class="line"><span class="comment"># iptables -I INPUT -p tcp --dport ssh端口号 -j ACCEPT</span></div><div class="line"><span class="comment"># iptables -I OUTPUT -p tcp --sport ssh端口号 -j ACCEPT</span></div><div class="line"><span class="comment"># service iptables save</span></div></pre></td></tr></table></figure>
-<p>通过 Shell 脚本安装 FinalSpeed 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># wget  http://fs.d1sm.net/finalspeed/install_fs.sh</span></div><div class="line"><span class="comment"># chmod +x install_fs.sh</span></div><div class="line"><span class="comment"># ./install_fs.sh 2&gt;&amp;1 | tee install.log</span></div></pre></td></tr></table></figure>
-<p>如果地址 <code>http://fs.d1sm.net/finalspeed/install_fs.sh</code> 失效了则使用以下地址。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://soft.kuoruan.com/finalspeed/install_fs.sh</div></pre></td></tr></table></figure>
-<p>安装完成之后会有如下提示：</p>
-<p><img src="./1477820304799.png" alt="Alt text"></p>
-<h3 id="客户端安装与配置"><a href="#客户端安装与配置" class="headerlink" title="客户端安装与配置"></a>客户端安装与配置</h3><p>Windows 下载地址：<br><a href="https://soft.kuoruan.com/finalspeed/finalspeed_install1.2.exe" target="_blank" rel="external">finalspeed_install1.2.exe</a></p>
-<p><img src="./1477819787724.png" alt="Alt text"></p>
-<ol>
-<li>运行客户端，填写服务器地址，选择 UPD 作为传输协议，因为搬瓦工采用 openvz 架构，只支持 UPD 传输。</li>
-<li><p>点击“加速列表”之下的“添加”按钮。名称随意，加速端口为 Shadowsocks 的监听端口，本地端口可以为任一未被占用的端口，通常使用 2000 。<br><img src="./1477821039499.png" alt="Alt text"></p>
-</li>
-<li><p>然后再根据你当前的网络环境设置相应带宽。<br><img src="./1477821191604.png" alt="Alt text"></p>
-</li>
-</ol>
-<p>如果一切正确的话，待会在状态那应该就会提示连接成功。</p>
-<h2 id="四、实现过滤"><a href="#四、实现过滤" class="headerlink" title="四、实现过滤"></a>四、实现过滤</h2><p>到目前为止似乎一切都已经很完美了，但事实上还差一步。就是目前我们本地主机任何的 HTTP 请求都会通过代理服务器进行转发，这对于访问国外网站不成问题，然而一旦我们要访问国内网站的时候就会变得出奇的慢。</p>
-<p>所以为了解决这一问题，我们还需要设置过滤规则来判断哪些请求地址需要通过代理转发哪些又不需要。由于设置的方式比较多，这里我只简单介绍几样。</p>
-<h3 id="使用-Shadowsocks-自带的在线-PAC-智能代理"><a href="#使用-Shadowsocks-自带的在线-PAC-智能代理" class="headerlink" title="使用 Shadowsocks 自带的在线 PAC 智能代理"></a>使用 Shadowsocks 自带的在线 PAC 智能代理</h3><p>Shadowsocks 的系统代理模型有两种：</p>
-<ul>
-<li>PAC 模式</li>
-<li>全局模式</li>
-</ul>
-<p>通常我们并不使用全局模式，所以可以使用 Shadowsocks 自带的<strong>在线 PAC</strong>。</p>
-<h3 id="使用-GFWList-设置本地-PAC-代理文件"><a href="#使用-GFWList-设置本地-PAC-代理文件" class="headerlink" title="使用 GFWList 设置本地 PAC 代理文件"></a>使用 GFWList 设置本地 PAC 代理文件</h3><p>Shadowsocks 的在线 PAC 模式毕竟还不够智能，而且覆盖的也不够全，另外也不能结合自己实际情况进行定制，所以我们还可以使用<strong>本地 PAC</strong>。</p>
-<p><img src="./1477833445247.png" alt="Alt text"></p>
-<p>该模式下 Shadowsocks 会从目录中的 pac.txt 文件中读取过滤规则，因此我们只要把过滤规则写入该文件就能实现智能代理了。可是这个规则不是人人都懂得怎么写，而且也不是人人都想这么折腾去学习怎么写，所以我推荐一个更加人性化方法，我们将通过 GFWList 来更新本地 PAC 。</p>
-<p>步骤为： PAC -&gt; 更新本地 PAC 为 GFWList 。这样一来本地的 PAC 文件将自动根据 GFWList.txt 生成过滤规则。</p>
-<h3 id="使用-Chrome-SwitchyOmega-实现过滤"><a href="#使用-Chrome-SwitchyOmega-实现过滤" class="headerlink" title="使用 Chrome + SwitchyOmega 实现过滤"></a>使用 Chrome + SwitchyOmega 实现过滤</h3><p>使用 Chrome 浏览器的用户还可以安装 SwitchyOmega 插件来实现智能过滤是我最推荐的一种的方式，也是我目前在使用的方案，使用该方案不仅可以使用现成的 GFWList 还能在平时浏览中手动添加过滤规则，极为方便。</p>
-<p>下载并安装 SwitchyOmega 。</p>
-<p><a href="http://pan.baidu.com/s/1bpp98Nd" target="_blank" rel="external">http://pan.baidu.com/s/1bpp98Nd</a></p>
-<p>该文件解压缩之后内容如下：</p>
-<p><img src="./1477835557472.png" alt="Alt text"></p>
-<p>另外两个压缩包没啥用，重要的是后缀为 .bak 与后缀为 .crx 的文件。后缀为 .crx 的文件是 SwitchyOmega 插件主体。它的安装非常简单，进入 Chrome 扩展程序页面，将该文件拖入 Chrome 浏览器，便能实现自动安装了。</p>
-<p><img src="./1477835714813.png" alt="Alt text"></p>
-<p>安装好之后，进入 SwitchyOmega 的选项页。</p>
-<p><img src="./1477835834351.png" alt="Alt text"></p>
-<p>在导入导出页面导入 OmegaOptions.bak 文件。</p>
-<p>再进入 X-Tunnel 自动切换页面配置如下图，其中的链接地址为 <code>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</code>。</p>
-<p><img src="./1477836287455.png" alt="Alt text"></p>
-<p>设置好之后点击左侧“应用选项”保存设置。</p>
-<p>同时还需要将 SwitchyOmega 的情景模式设置为 X-Tunnel 自动切换模式。</p>
-<p><img src="./1477836212989.png" alt="Alt text"></p>
-<p>至此我们的科学上网神器完整版终于算是搭建好了。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
-<li><a href="https://blog.kuoruan.com/48.html" target="_blank" rel="external">https://blog.kuoruan.com/48.html</a></li>
-<li><a href="https://blog.kuoruan.com/82.html" target="_blank" rel="external">https://blog.kuoruan.com/82.html</a>、</li>
-<li><a href="https://ii-i.org/archives/289" target="_blank" rel="external">https://ii-i.org/archives/289</a></li>
-<li><a href="https://github.com/gfwlist/gfwlist" target="_blank" rel="external">https://github.com/gfwlist/gfwlist</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/23/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-23T15:55:07+08:00" content="2016-10-23">
-              2016-10-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -824,6 +606,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -843,8 +629,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -880,6 +675,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-3-中的-OpenCV-模块操作简介"><span class="nav-number">1.</span> <span class="nav-text">Python 3 中的 OpenCV 模块操作简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入模块"><span class="nav-number">1.1.</span> <span class="nav-text">导入模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的读写"><span class="nav-number">1.2.</span> <span class="nav-text">图像的读写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制形状"><span class="nav-number">1.3.</span> <span class="nav-text">绘制形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像操作"><span class="nav-number">1.4.</span> <span class="nav-text">图像操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边界检测"><span class="nav-number">1.5.</span> <span class="nav-text">边界检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滤波器（Filter）"><span class="nav-number">1.6.</span> <span class="nav-text">滤波器（Filter）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#术语"><span class="nav-number">1.6.1.</span> <span class="nav-text">术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.6.2.</span> <span class="nav-text">函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频操作"><span class="nav-number">1.7.</span> <span class="nav-text">视频操作</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -976,6 +782,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
