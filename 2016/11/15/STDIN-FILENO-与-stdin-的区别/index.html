@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="Keep thinking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="All categories">
-<meta property="og:url" content="http://un-knight.github.io/categories/index.html">
+<meta name="description" content="文件描述符文件描述符 STDIN_FILENO、STDOUT_FILENO 和 STDERR_FILENO 是 POSIX 定义的三个整型常量，用来代替 0、1、2，分别代表了标准输入、标准输出和标准错误。位于头文件 unistd.h 。
+区别
+数据类型不一致：stdin 类型为FILE* ，STDIN_FILENO 类型为 int 。使用 stdin 的函数主要有：fread、fwrite、fc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STDIN_FILENO 与 stdin 的区别">
+<meta property="og:url" content="http://un-knight.github.io/2016/11/15/STDIN-FILENO-与-stdin-的区别/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="Keep thinking">
-<meta property="og:updated_time" content="2016-11-06T06:33:58.655Z">
+<meta property="og:description" content="文件描述符文件描述符 STDIN_FILENO、STDOUT_FILENO 和 STDERR_FILENO 是 POSIX 定义的三个整型常量，用来代替 0、1、2，分别代表了标准输入、标准输出和标准错误。位于头文件 unistd.h 。
+区别
+数据类型不一致：stdin 类型为FILE* ，STDIN_FILENO 类型为 int 。使用 stdin 的函数主要有：fread、fwrite、fc">
+<meta property="og:updated_time" content="2016-11-15T13:16:23.190Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="All categories">
-<meta name="twitter:description" content="Keep thinking">
+<meta name="twitter:title" content="STDIN_FILENO 与 stdin 的区别">
+<meta name="twitter:description" content="文件描述符文件描述符 STDIN_FILENO、STDOUT_FILENO 和 STDERR_FILENO 是 POSIX 定义的三个整型常量，用来代替 0、1、2，分别代表了标准输入、标准输出和标准错误。位于头文件 unistd.h 。
+区别
+数据类型不一致：stdin 类型为FILE* ，STDIN_FILENO 类型为 int 。使用 stdin 的函数主要有：fread、fwrite、fc">
 
 
 
@@ -114,16 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/categories/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2016/11/15/STDIN-FILENO-与-stdin-的区别/"/>
 
 
-  <title>
-  
-
-  
-    分类 | 小鸡遛狗的博客
-  
-</title>
+  <title> STDIN_FILENO 与 stdin 的区别 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -154,7 +154,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -244,16 +244,181 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
     
-      <div class="category-all-page">
-        <div class="category-all-title">
-            目前共计 4 个分类
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                STDIN_FILENO 与 stdin 的区别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T21:13:49+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/15/STDIN-FILENO-与-stdin-的区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/15/STDIN-FILENO-与-stdin-的区别/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/11/15/STDIN-FILENO-与-stdin-的区别/" class="leancloud_visitors" data-flag-title="STDIN_FILENO 与 stdin 的区别">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
         </div>
-        <div class="category-all">
-          <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Machine-Learning/">Machine Learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenCV学习记录/">OpenCV学习记录</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">5</span></li></ul>
-        </div>
-      </div>
+      </header>
     
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><p>文件描述符 STDIN_FILENO、STDOUT_FILENO 和 STDERR_FILENO 是 POSIX 定义的三个整型常量，用来代替 0、1、2，分别代表了标准输入、标准输出和标准错误。位于头文件 <code>unistd.h</code> 。</p>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
+<li><p>数据类型不一致：<br><code>stdin</code> 类型为<code>FILE*</code> ，<code>STDIN_FILENO</code> 类型为 <code>int</code> 。<br>使用 <code>stdin</code> 的函数主要有：<code>fread</code>、<code>fwrite</code>、<code>fclose</code> 等，基本上都以f开头；使用 <code>STDIN_FILENO</code> 的函数有：<code>read</code>、<code>write</code>、<code>close</code> 等。</p>
+</li>
+<li><p><code>stdin</code> 属于标准 I/O ，高级的输入输出函数。在<stdio.h>。<code>STDIN_FILENO</code>是文件描述符，是非负整数，一般定义为 0、1、 2，属于没有缓冲的 I/O ，直接调用系统调用。</stdio.h></p>
+<a id="more"></a></li>
+<li><p><code>STDIN_FILENO</code> 是标准输入的文件描述符，定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// --pathname '/usr/include/unistd.h'</span></div><div class="line"><span class="comment">/* Standard file descriptors. */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STDIN_FILENO 0 <span class="comment">/* Standard input. */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STDOUT_FILENO 1 <span class="comment">/* Standard output. */</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> STDERR_FILENO 2 <span class="comment">/* Standard error output. */</span></span></div></pre></td></tr></table></figure>
+</li>
+<li><p>层次不一样。<code>stdin</code> 属于标准库处理的输入流，其声明为 FILE 型的指针，对应的函数前面都有 f 开头，如 <code>fopen/fread/fwrite/fclose</code> 标准库调用等 。<code>STDIN_FILENO</code> 属于系统 API 接口库，其声明为 <code>int</code> 型，是一个打开文件句柄，对应的函数主要包括 <code>open/read/write/close</code> 等系统级调用。</p>
+</li>
+<li><p>操作系统一级提供的文件 API 都是以文件描述符来表示打开的文件。<code>STDIN_FILENO</code> 就是标准输入设备（一般是键盘）的文件描述符。</p>
+</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://blog.csdn.net/yeyuangen/article/details/6781999" target="_blank" rel="external">http://blog.csdn.net/yeyuangen/article/details/6781999</a></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/14/用户CPU、系统CPU和时钟时间/" rel="next" title="用户CPU、系统CPU和时钟时间">
+                <i class="fa fa-chevron-left"></i> 用户CPU、系统CPU和时钟时间
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -262,6 +427,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/15/STDIN-FILENO-与-stdin-的区别/"
+           data-title="STDIN_FILENO 与 stdin 的区别" data-url="http://un-knight.github.io/2016/11/15/STDIN-FILENO-与-stdin-的区别/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -281,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
@@ -361,6 +543,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件描述符"><span class="nav-number">1.</span> <span class="nav-text">文件描述符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -465,6 +658,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
