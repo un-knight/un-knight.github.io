@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Unix 高级环境编程," />
 
 
 
@@ -84,15 +84,33 @@
 
 
 
-<meta name="description" content="Keep thinking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小鸡遛狗的博客">
-<meta property="og:url" content="http://un-knight.github.io/index.html">
+<meta name="description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四章：文件和目录">
+<meta property="og:url" content="http://un-knight.github.io/2016/11/24/第四章：文件和目录/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="Keep thinking">
+<meta property="og:description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta property="og:image" content="http://un-knight.github.io/./http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
+<meta property="og:updated_time" content="2016-11-24T15:28:54.172Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小鸡遛狗的博客">
-<meta name="twitter:description" content="Keep thinking">
+<meta name="twitter:title" content="第四章：文件和目录">
+<meta name="twitter:description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta name="twitter:image" content="http://un-knight.github.io/./http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
 
 
 
@@ -113,10 +131,10 @@
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2016/11/24/第四章：文件和目录/"/>
 
 
-  <title> 小鸡遛狗的博客 </title>
+  <title> 第四章：文件和目录 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -147,9 +165,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -236,9 +252,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -258,10 +274,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/24/第四章：文件和目录/" itemprop="url">
-                  第四章：文件和目录
-                </a>
+                第四章：文件和目录
               
             
           </h1>
@@ -337,9 +350,7 @@
       
 
       
-        
-          
-            <h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>UNIX 系统的文件类型包括以下几种：</p>
+        <h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>UNIX 系统的文件类型包括以下几种：</p>
 <ol>
 <li><strong>普通文件 (regular file) </strong>。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。</li>
 </ol>
@@ -535,602 +546,75 @@
 </li>
 </ol>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
     </div>
+  </div>
 
-    <div>
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/23/第三章：文件-I-O/" itemprop="url">
-                  第三章：文件 I/O
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T23:08:54+08:00" content="2016-11-23">
-              2016-11-23
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/23/第三章：文件-I-O/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/23/第三章：文件-I-O/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/23/第三章：文件-I-O/" class="leancloud_visitors" data-flag-title="第三章：文件 I/O">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
+            <a href="/tags/Unix-高级环境编程/" rel="tag">#Unix 高级环境编程</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ol>
-<li><p><strong>不带缓冲</strong>：指的是每个 <code>read</code> 和 <code>write</code> 都调用内核中的一个系统调用。<br>PS：这里的“不带缓冲”并不说 read 与 write 函数就不带缓冲机制。事实上，所有的磁盘 I/O 都要经过内核的块缓存器，唯一例外的是对原始磁盘设备的 I/O ，但是我们不考虑。既然 read 或 write 的数据都要被内核缓存，那么术语“不带缓存的 I/O”指的是在用户的进程中对这两个函数不会自动缓存，每次 read 或者 write 就要进行一次系统调用。</p>
-</li>
-<li><p><strong>文件描述符</strong>：文件描述符是一个<strong>非负整数</strong>，当使用 <code>create</code> 或者 <code>open</code> 函数创建或者打开一个文件的时候，内核向进程返回一个文件描述符。对内核而言，所有对打开的文件都通过文件描述符进行引用操作。</p>
-</li>
-<li><strong>延迟写</strong>：当要将数据写入文件时，内核通常先将该数据复制到其中一个缓冲区块中，等待该缓冲区块写满或者当内核需要重用该缓冲区以便存放其他磁盘块数据时，再将该缓冲排入输入队列，然后待其到达队首时，才进行实际的 I/O 操作。<br>优缺点：延迟写虽然减少了磁盘读写次数，但是却降低了文件内容的更新速度，可能导致磁盘上实际文件内容与缓冲区中内容不一致的问题。</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/23/第三章：文件-I-O/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/23/第三章：文件-I-O/" rel="next" title="第三章：文件 I/O">
+                <i class="fa fa-chevron-left"></i> 第三章：文件 I/O
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/STDIN-FILENO-与-stdin-的区别/" itemprop="url">
-                  STDIN_FILENO 与 stdin 的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T21:13:49+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/15/STDIN-FILENO-与-stdin-的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/15/STDIN-FILENO-与-stdin-的区别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/15/STDIN-FILENO-与-stdin-的区别/" class="leancloud_visitors" data-flag-title="STDIN_FILENO 与 stdin 的区别">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h2><p>文件描述符 STDIN_FILENO、STDOUT_FILENO 和 STDERR_FILENO 是 POSIX 定义的三个整型常量，用来代替 0、1、2，分别代表了标准输入、标准输出和标准错误。位于头文件 <code>unistd.h</code> 。</p>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
-<li><p>数据类型不一致：<br><code>stdin</code> 类型为<code>FILE*</code> ，<code>STDIN_FILENO</code> 类型为 <code>int</code> 。<br>使用 <code>stdin</code> 的函数主要有：<code>fread</code>、<code>fwrite</code>、<code>fclose</code> 等，基本上都以f开头；使用 <code>STDIN_FILENO</code> 的函数有：<code>read</code>、<code>write</code>、<code>close</code> 等。</p>
-</li>
-<li><p><code>stdin</code> 属于标准 I/O ，高级的输入输出函数。在<stdio.h>。<code>STDIN_FILENO</code>是文件描述符，是非负整数，一般定义为 0、1、 2，属于没有缓冲的 I/O ，直接调用系统调用。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/15/STDIN-FILENO-与-stdin-的区别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/14/用户CPU、系统CPU和时钟时间/" itemprop="url">
-                  用户CPU、系统CPU和时钟时间
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-14T19:25:41+08:00" content="2016-11-14">
-              2016-11-14
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/14/用户CPU、系统CPU和时钟时间/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/14/用户CPU、系统CPU和时钟时间/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/14/用户CPU、系统CPU和时钟时间/" class="leancloud_visitors" data-flag-title="用户CPU、系统CPU和时钟时间">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>时钟时间（wall clock time）</strong>：从进程进入就绪队列开始，直到进程结束运行的时间。包括阻塞时间、就绪时间和运行时间。</p>
-<p><strong>用户 CPU</strong>：用户进程在获得 CPU 资源之后，在用户态执行的时间。</p>
-<p><strong>系统 CPU</strong>：用户进程获得 CPU 资源之后，在内核态的执行时间。</p>
-<p><strong>CPU 时间</strong>：指的是用户 CPU 时间与系统 CPU 时间之和。</p>
-<p>通常，实际时间要大于 CPU 时间，因为 Linux 是多任务操作系统，往往在执行一条命令时系统还有其他任务需要完成。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/14/用户CPU、系统CPU和时钟时间/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/13/第一章：简介/" itemprop="url">
-                  第一章：简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T22:39:34+08:00" content="2016-11-13">
-              2016-11-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/13/第一章：简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/第一章：简介/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/13/第一章：简介/" class="leancloud_visitors" data-flag-title="第一章：简介">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>说明：这是我在学习机器学习过程中所做的总结与思考，毕竟才刚开始学习 ML 而且能力也有限，所以笔记中难免有错，欢迎交流指正。</p>
-</blockquote>
-<p>首先奉上两位 ML 的大牛对于 <em>Machine Learning</em> 的定义来镇楼。</p>
-<blockquote>
-<ul>
-<li>“Field of study that gives computers the ability to learn without being explicitly programmed” – Arthur Samuel</li>
-<li>“A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.” – Tom Michel</li>
-</ul>
-</blockquote>
-<p>机器学习主要分为三大类算法：</p>
-<ul>
-<li>监督学习<ul>
-<li>使用带标签数据进行训练，解决回归与分类问题。</li>
-</ul>
-</li>
-<li>无监督学习<ul>
-<li>通过不带标签的数据训练模型，让算法自动从数据中发现某种特定模式。</li>
-</ul>
-</li>
-<li>增强学习
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/13/第一章：简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -1138,6 +622,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/第四章：文件和目录/"
+           data-title="第四章：文件和目录" data-url="http://un-knight.github.io/2016/11/24/第四章：文件和目录/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1157,8 +649,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
@@ -1237,6 +738,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重要概念"><span class="nav-number">1.</span> <span class="nav-text">重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件类型"><span class="nav-number">1.1.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-节点"><span class="nav-number">1.2.</span> <span class="nav-text">i 节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件时间"><span class="nav-number">1.3.</span> <span class="nav-text">文件时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接"><span class="nav-number">1.4.</span> <span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-文件内容删除"><span class="nav-number">1.5.</span> <span class="nav-text">Linux 文件内容删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要函数"><span class="nav-number">2.</span> <span class="nav-text">重要函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stat-fstat-lstat"><span class="nav-number">2.1.</span> <span class="nav-text">stat, fstat, lstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#access-函数是按实际用户-ID-和实际组-ID-进行访问权限测试。"><span class="nav-number">2.2.</span> <span class="nav-text">access 函数是按实际用户 ID 和实际组 ID 进行访问权限测试。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umask-函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）"><span class="nav-number">2.3.</span> <span class="nav-text">umask 函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod-fchmod-更改文件访问权限"><span class="nav-number">2.4.</span> <span class="nav-text">chmod, fchmod  更改文件访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chown-fchown-lchown-用于更改文件的用户-ID-和组-ID"><span class="nav-number">2.5.</span> <span class="nav-text">chown, fchown, lchown 用于更改文件的用户 ID 和组 ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#truncate-ftruncate-进行文件截短"><span class="nav-number">2.6.</span> <span class="nav-text">truncate, ftruncate 进行文件截短</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link-unlink-remove-rename"><span class="nav-number">2.7.</span> <span class="nav-text">link, unlink, remove, rename</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symlink-readlink-函数"><span class="nav-number">2.8.</span> <span class="nav-text">symlink, readlink 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#utime-更改文件的访问和修改时间"><span class="nav-number">2.9.</span> <span class="nav-text">utime 更改文件的访问和修改时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-rmdir-目录操作"><span class="nav-number">2.10.</span> <span class="nav-text">mkdir, rmdir 目录操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读目录"><span class="nav-number">2.11.</span> <span class="nav-text">读目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chdir-fchdir-getcwd-文件目录操作"><span class="nav-number">2.12.</span> <span class="nav-text">chdir, fchdir, getcwd 文件目录操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#major-minor-宏"><span class="nav-number">2.13.</span> <span class="nav-text">major, minor 宏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1341,6 +853,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
