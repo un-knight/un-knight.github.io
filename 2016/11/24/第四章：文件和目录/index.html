@@ -100,8 +100,8 @@
 
 
 补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
-<meta property="og:image" content="http://un-knight.github.io/./http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
-<meta property="og:updated_time" content="2016-11-24T15:28:54.172Z">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
+<meta property="og:updated_time" content="2016-11-27T15:20:50.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四章：文件和目录">
 <meta name="twitter:description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
@@ -110,7 +110,7 @@
 
 
 补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
-<meta name="twitter:image" content="http://un-knight.github.io/./http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
 
 
 
@@ -365,6 +365,7 @@
 <li><strong>套接字 (socket)</strong> 。这种文件类型用于进程间的网络通信。套接字也可用于在一台宿主机上进程之间的非网络通信。</li>
 <li><strong>符号链接 (symbolic link)</strong> 。这种文件类型指向另一个文件。</li>
 </ol>
+<a id="more"></a>
 <p>文件类型信息包含在 <code>stat</code> 结构的 <code>st_mode</code> 成员中。可以通过下表的宏确定文件类型。这些宏的参数都是 <code>stat</code> 结构中的 <code>st_mode</code> 成员。</p>
 <table>
 <thead>
@@ -408,7 +409,7 @@
 <p>补充：<code>S_ISXXX</code> 宏的实现<br>早期的 UNIX 系统版本并不提供 <code>S_ISXXX</code> 宏，于是就需要将 <code>st_mode</code> 与屏蔽字 <code>S_IFMT</code> 进行逻辑与运算，然后再与相应的 <code>S_IFXXX</code> 常量进行比较。这些常量与屏蔽字大多定义在文件 <code>&lt;sys/stat.h&gt;</code> 中。事实上，<code>S_ISXXX</code> 宏的定义就是对上述过程的一个封装，例如 <code>S_ISDIR</code> 宏定义为：<br><code>#define S_ISDIR(mode) (((mode) &amp; S_IFMT) == S_IFDIR)</code></p>
 </blockquote>
 <h3 id="i-节点"><a href="#i-节点" class="headerlink" title="i 节点"></a>i 节点</h3><p><strong>i 节点</strong>是固定长度的记录项，它包含文件的大部分信息。</p>
-<p><img src="./http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png" alt="Alt text"></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png" alt="Alt text"></p>
 <p>i 节点包含了大多数与文件有关的信息：文件类型、文件访问权限位、文件长度和指向该文件所占用的数据块的指针数等等。<code>stat</code> 结构中的大多数信息都取自 i 节点。只有两项数据存放在目录项中：文件名和 i 节点编号。i 节点编号的数据类型是 <code>ino_t</code> 。</p>
 <h3 id="文件时间"><a href="#文件时间" class="headerlink" title="文件时间"></a>文件时间</h3><p>Linux 对每个文件保持有三个时间字段。</p>
 <table>
@@ -600,6 +601,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/11/27/第五章：标准-I-O-库/" rel="prev" title="第五章：标准 I/O 库">
+                第五章：标准 I/O 库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -670,7 +675,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -687,7 +692,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

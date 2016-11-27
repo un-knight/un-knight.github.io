@@ -1,0 +1,987 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unix 高级环境编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="在第三章中，所有 I/O 函数都是针对文件描述符的。当打开一个文件的时候就返回一个文件描述符，所有的后续操作都围绕文件描述符进行。而对于标准 I/O 库，他们的操作则是围绕流（stream）进行的。当用标准 I/O 库打开或创建一个文件时，我们已使一个流与一个文件相关联。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五章：标准 I/O 库">
+<meta property="og:url" content="http://un-knight.github.io/2016/11/27/第五章：标准-I-O-库/index.html">
+<meta property="og:site_name" content="小鸡遛狗的博客">
+<meta property="og:description" content="在第三章中，所有 I/O 函数都是针对文件描述符的。当打开一个文件的时候就返回一个文件描述符，所有的后续操作都围绕文件描述符进行。而对于标准 I/O 库，他们的操作则是围绕流（stream）进行的。当用标准 I/O 库打开或创建一个文件时，我们已使一个流与一个文件相关联。">
+<meta property="og:updated_time" content="2016-11-27T15:27:19.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第五章：标准 I/O 库">
+<meta name="twitter:description" content="在第三章中，所有 I/O 函数都是针对文件描述符的。当打开一个文件的时候就返回一个文件描述符，所有的后续操作都围绕文件描述符进行。而对于标准 I/O 库，他们的操作则是围绕流（stream）进行的。当用标准 I/O 库打开或创建一个文件时，我们已使一个流与一个文件相关联。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6349524465411442000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://un-knight.github.io/2016/11/27/第五章：标准-I-O-库/"/>
+
+
+  <title> 第五章：标准 I/O 库 | 小鸡遛狗的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cabfbd8184720db4b07c0416369c5d0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小鸡遛狗的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第五章：标准 I/O 库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-27T23:25:53+08:00" content="2016-11-27">
+              2016-11-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/27/第五章：标准-I-O-库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/27/第五章：标准-I-O-库/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/11/27/第五章：标准-I-O-库/" class="leancloud_visitors" data-flag-title="第五章：标准 I/O 库">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在第三章中，所有 I/O 函数都是针对文件描述符的。当打开一个文件的时候就返回一个文件描述符，所有的后续操作都围绕文件描述符进行。而对于标准 I/O 库，他们的操作则是围绕<strong>流（stream）</strong>进行的。当用标准 I/O 库打开或创建一个文件时，我们已使一个流与一个文件相关联。</p>
+<a id="more"></a>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
+<li><strong>标准输入、标准输出和标准出错</strong>：Linux 对一个进程预定义了三个流，并且这三个流可以自动地被进程使用，它们是：标准输入、标准输出和标准出错。这些流引用的文件和文件描述符 <code>STDIN_FILENO, STDOUT_FILENO, STDERR_FILENO</code> 所引用的文件相同。<br>这三个标准 I/O 流通过预定义文件指针 <code>stdin, stdout, stderr</code> 加以引用。且都位于头文件 <code>&lt;stdio.h&gt;</code> 中。</li>
+<li><strong>缓冲</strong><ul>
+<li><strong>全缓冲</strong>：在填满标准 I/O 缓冲区后才进行实际 I/O 操作。对于驻留在磁盘上的文件通常是由标准 I/O 库实施全缓冲的。在一个流上执行一次 I/O 操作时，相关标准 I/O 函数通常调用 <code>malloc</code> 获得所需使用的缓冲区。</li>
+<li><strong>行缓冲</strong>：在这种情况下，当输入和输出中遇到换行符时，标准 I/O 库执行 I/O 操作。这允许我们一次输出一个字符（用标准 I/O <code>fputc</code> 函数），但只有在写了一行之后才进行实际 I/O 操作。当流涉及一个终端时（例如标准输入和标准输出），通常使用行缓冲。</li>
+<li><strong>不带缓冲</strong>：标准 I/O 库不对字符进行缓冲存储。标准出错流 <code>stderr</code> 通常是不带缓冲的，这就使得出错信息可以尽快显示出来，而不管它是否含有换行符。<br>通常标准 I/O 的惯例是，标准出错是不带缓冲的，打开至中断设备的流是行缓冲的，而其他所有流则是全缓冲的。</li>
+</ul>
+</li>
+<li><strong>冲洗</strong>：说明标准 I/O 缓冲区的写操作。缓冲区可由标准 I/O 历程自动冲洗，或者可以调用函数 <code>fflush</code> 冲洗一个流。</li>
+<li><strong>读和写</strong>：对于打开的流有三种不同类型的非格式化 I/O。<ul>
+<li>每次一个字符的 I/O</li>
+<li>每次一行的 I/O。如果想要一次读或写 一行，则使用 <code>fgets</code> 和 <code>fputs</code> 。每行都以换行符终止</li>
+<li>直接 I/O。 <code>fread</code> 和 <code>fwrite</code> 函数支持这种类型的 I/O 。每次 I/O 操作读或写某种数量的对象，而每个对象具有指定的长度。这两个函数常用于从二进制文件中每次读或写一个结构。</li>
+</ul>
+</li>
+</ul>
+<h2 id="重要函数"><a href="#重要函数" class="headerlink" title="重要函数"></a>重要函数</h2><h3 id="fwide-设置流的定向"><a href="#fwide-设置流的定向" class="headerlink" title="fwide 设置流的定向"></a><code>fwide</code> 设置流的定向</h3><p><strong>流的定向</strong>决定了所读、写的字符是单字节还是多字节的。当一个流最初被创建时，它并没有定向。若是在未定向的流上使用一个多字节 I/O 函数，则将该流的定向设置为宽定向；若在未定向流上使用一个单字节 I/O 函数，则将该流的定向设置为字节定向。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;wchar.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fwide</span><span class="params">(FILE *fp, <span class="keyword">int</span> mode)</span></span>;</div><div class="line"><span class="comment">//return：若是流是宽定向的则返回正值，若流是字节定向的则返回负值，或者若是流为定向则返回 0</span></div></pre></td></tr></table></figure></p>
+<p>根据 <code>mode</code> 参数不同， <code>fwide</code> 函数执行不同的工作：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">负值</td>
+<td style="text-align:left"><code>fwide</code> 将试图使指定的流是字节定向</td>
+</tr>
+<tr>
+<td style="text-align:left">正值</td>
+<td style="text-align:left"><code>fwide</code> 将试图使指定的流是宽定向的</td>
+</tr>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left"><code>fwide</code> 将不试图设置流的定向，但返回标识该流定向的值</td>
+</tr>
+</tbody>
+</table>
+<p>值得注意的是， <code>fwide</code> 并不改变已定向流的定向。还应注意的是， <code>fwide</code> 无出错返回。所以我们唯一可以依靠的是在调用 <code>fwide</code> 前先清除 <code>errno</code> ，从 <code>fwide</code> 返回时检查 <code>errno</code> 的值。</p>
+<h3 id="setbuf-setvbuf-更改缓冲类型"><a href="#setbuf-setvbuf-更改缓冲类型" class="headerlink" title="setbuf, setvbuf 更改缓冲类型"></a><code>setbuf, setvbuf</code> 更改缓冲类型</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setbuf</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">char</span> *<span class="keyword">restrict</span> buf)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setvbuf</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">int</span> mode, <span class="keyword">size_t</span> size)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回非 0 值</span></div></pre></td></tr></table></figure>
+<p>这些函数一定要在流已被打开后调用（这是十分明显的，因为每个函数都要求一个有效的文件指针作为它的第一个参数），而且也应该在对该流执行任何一个其他操作之前调用。</p>
+<p>可以使用 <code>setbuf</code> 函数打开或关闭缓冲机制。为了带缓冲进行 I/O ，参数 <code>buf</code> 必须指向一个长度为 <code>BUFSIZ</code> (定义在 <code>&lt;stdio.h&gt;</code>) 的缓冲区。通常在此之后该流就是全缓冲，但是如果该流与一个终端设备相关，那么某些系统也可以将其设置为行缓冲。为了关闭缓冲，将 <code>buf</code> 设置为 <code>NULL</code>。</p>
+<p>使用 <code>setvbuf</code> ，通过 <code>mode</code> 参数我们可以更加精确地指定所需的缓冲类型。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">_IOFBF</td>
+<td style="text-align:left">全缓冲</td>
+</tr>
+<tr>
+<td style="text-align:left">_IOLBF</td>
+<td style="text-align:left">行缓冲</td>
+</tr>
+<tr>
+<td style="text-align:left">_IONBF</td>
+<td style="text-align:left">不带缓冲</td>
+</tr>
+</tbody>
+</table>
+<p>如果指定一个不带缓冲的流，则忽略 <code>buf</code> 和 <code>size</code> 参数。如果指定全缓冲或行缓冲，则 <code>buf</code> 和 <code>size</code> 可选择地指定一个缓冲区及其长度。如果该流是带缓冲的，而 <code>buf</code> 是 <code>NULL</code> ，则标准 I/O 库将自动地为该流分配适当长度的缓冲区。适当长度指的是由常量 <code>BUFSIZ</code> 所指定的值。</p>
+<h3 id="fflush-强制冲洗一个流"><a href="#fflush-强制冲洗一个流" class="headerlink" title="fflush 强制冲洗一个流"></a><code>fflush</code> 强制冲洗一个流</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fflush</span><span class="params">(FILE *fp)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，出错返回 EOF</span></div></pre></td></tr></table></figure>
+<p>此函数使所有未写的数据被传送至内核。但是当 fp 为 NULL 的时候，这个函数的作用是将所有输出流被冲洗。</p>
+<h3 id="fopen-freopen-fdopen-打开流"><a href="#fopen-freopen-fdopen-打开流" class="headerlink" title="fopen, freopen, fdopen 打开流"></a><code>fopen, freopen, fdopen</code> 打开流</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function">FILE *<span class="title">fopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> pathname, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> type)</span></span>;</div><div class="line"><span class="function">FILE *<span class="title">freopen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> pathname, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> type, FILE *<span class="keyword">restrict</span> fp)</span></span>;</div><div class="line"><span class="function">FILE *<span class="title">fdopen</span><span class="params">(<span class="keyword">int</span> filedes, <span class="keyword">const</span> <span class="keyword">char</span> *type)</span></span>;</div><div class="line"><span class="comment">//return：三个函数都是成功返回文件指针，失败返回 NULL</span></div></pre></td></tr></table></figure>
+<p><code>fopen</code> 打开一个指定的文件。</p>
+<p><code>freopen</code> 在一个指定的流上打开一个指定的文件，如若该流已经打开，则先关闭该流。若该流已经定向，则 <code>freopen</code> 清除该定向。此函数一般用于将一个指定的文件打开为一个预定义的流：标准输入、标准输出或标准错误。</p>
+<p><code>fdopen</code> 获取一个现有的文件描述符，并使一个标准的 I/O 流与该描述符相结合。此函数常用于由创建管道和网络通信函数返回的描述符。因为这些特殊类型的文件不能用标准 I/O <code>open</code> 函数打开，所以我们必须先调用设备专用函数以获得一个文件描述符，然后用 <code>fdopen</code> 使一个标准 I/O 流与该描述符相关联。</p>
+<p>type 参数指定对该 I/O 流的读、写方式。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">type</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">r 或 rb</td>
+<td style="text-align:left">为读而打开</td>
+</tr>
+<tr>
+<td style="text-align:left">w 或 wb</td>
+<td style="text-align:left">把文件截短至 0 长，或为写而创建</td>
+</tr>
+<tr>
+<td style="text-align:left">a 或 ab</td>
+<td style="text-align:left">添加，为在文件尾写而打开，或为写而创建</td>
+</tr>
+<tr>
+<td style="text-align:left">r+ 或 r+b 或 rb+</td>
+<td style="text-align:left">为读和写而打开</td>
+</tr>
+<tr>
+<td style="text-align:left">w+ 或 w+b 或 wb+</td>
+<td style="text-align:left">把文件截短至 0 长，或为读和写而打开</td>
+</tr>
+<tr>
+<td style="text-align:left">a+ 或 a+b 或 ab+</td>
+<td style="text-align:left">为在文件尾读和写而打开或创建</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fclose-关闭流"><a href="#fclose-关闭流" class="headerlink" title="fclose 关闭流"></a><code>fclose</code> 关闭流</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include &lt;stdio.h&gt;</span></div><div class="line">int fclose(FILE *fp);</div><div class="line">//<span class="keyword">return</span>：成功返回 <span class="number">0</span>，失败返回 EOF</div></pre></td></tr></table></figure>
+<p>在该文件被关闭之前，冲洗缓冲区中的输出数据。丢弃缓冲区中的任何输入数据。如果标准 I/O 库已经为流自动分配了一个缓冲区，则释放此缓冲区。</p>
+<h3 id="getc-fgetc-getchar-读入一个字符"><a href="#getc-fgetc-getchar-读入一个字符" class="headerlink" title="getc, fgetc, getchar 读入一个字符"></a><code>getc, fgetc, getchar</code> 读入一个字符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getc</span><span class="params">(FILE *fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetc</span><span class="params">(FILE *fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getchar</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：三个函数都是成功返回下一个字符，若已经到达文件结尾或出错则返回 EOF</span></div></pre></td></tr></table></figure>
+<p>其中 <code>getc</code> 可被实现为宏， <code>getchar</code> 等效于 <code>getc(stdin)</code> 。而 <code>fgetc</code> 不可实现为宏。这就意味着：</p>
+<pre><code>- `getc` 的参数不应当是具有副作用的表达式。
+- 因为 `fgetc` 一定是一个函数所以可以得到它的地址。这就允许将 `fgetc` 作为回调函数使用。
+- 调用 `fgetc` 所需时间很可能长于调用 `getc` ，因为调用函数需要进行保存 CPU 现场，记录返回地址，申请函数运行空间等工作。
+</code></pre><h3 id="putc-fputc-putchar-输出一个字符"><a href="#putc-fputc-putchar-输出一个字符" class="headerlink" title="putc, fputc, putchar 输出一个字符"></a><code>putc, fputc, putchar</code> 输出一个字符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">putc</span><span class="params">(<span class="keyword">int</span> c, FILE *fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">(<span class="keyword">int</span> c, FILE *fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">putchar</span><span class="params">(<span class="keyword">int</span> c)</span></span>;</div><div class="line"><span class="comment">//return：三个返回值都是成功返回 c ，失败返回 EOF</span></div></pre></td></tr></table></figure>
+<p>与上方三个输入函数相对应， <code>putchar</code> 等效于 <code>putc(c, stdout)</code> ，<code>putc</code> 可实现为宏。</p>
+<h3 id="ungetc-将一个字符压送回流中"><a href="#ungetc-将一个字符压送回流中" class="headerlink" title="ungetc 将一个字符压送回流中"></a><code>ungetc</code> 将一个字符压送回流中</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">ungetc</span><span class="params">(<span class="keyword">int</span> c, FILE *fp)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 c ，失败返回 EOF</span></div></pre></td></tr></table></figure>
+<p>回送的字符不必是上一次读取的字符。不能回送 EOF 。</p>
+<p>用 <code>ungetc</code> 压送回字符时，并没有将它们写到文件中或设备上，只是将它们写会标准 I/O 库的流缓冲区中。</p>
+<h3 id="fgets-gets-每次一行的-I-O"><a href="#fgets-gets-每次一行的-I-O" class="headerlink" title="fgets, gets 每次一行的 I/O"></a><code>fgets, gets</code> 每次一行的 I/O</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fgets</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">int</span> n, FILE *<span class="keyword">restrict</span> fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">gets</span><span class="params">(<span class="keyword">char</span> *buf)</span></span>;</div><div class="line"><span class="comment">//return：两个函数都成功是返回 buf ,失败或者到达文件尾时返回 NULL</span></div></pre></td></tr></table></figure>
+<p>两个函数都指定了缓冲区的地址，读入的行将送入其中。 <code>gets</code> 从标准输入读，而 <code>fgets</code> 则从指定的流读。</p>
+<p><code>fgets</code> 需要指定缓冲区长度 n ，每次读取一行，所以当读取到换行符时停止当前阶段的读取。同时该缓冲区总以 null 结尾，因此每次只能读取 n-1 个字符（如果读取到行尾，则还包括换行符）。如果读取一行的长度大于 n-1 个字符（包括换行符），则返回一个不完整的行（但任然以 null 结尾）。下次调用时候继续从上次结束位置开始读取。</p>
+<p>另外 <code>gets</code> 是一个不推荐使用的函数，原因是 <code>gets</code> 函数不能指定缓冲区大小，容易造成溢出。</p>
+<h3 id="fputs-puts-输出一行"><a href="#fputs-puts-输出一行" class="headerlink" title="fputs, puts 输出一行"></a><code>fputs, puts</code> 输出一行</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputs</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> str, FILE *<span class="keyword">restrict</span> fp)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">puts</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span></span>;</div><div class="line"><span class="comment">//return：两个函数返回都是成功返回非负值，失败返回 EOF</span></div></pre></td></tr></table></figure>
+<p><code>fputs</code> 将一个以 null 符终止的字符串写到指定的流，尾端的终止符 null 不写出。这意味着在 null 之前并不一定有换行符。</p>
+<p><code>puts</code> 将一个以 null 终止的字符串写到标准输出，终止符不写出。但是 <code>puts</code> 函数会自动在末尾添加一个换行符。</p>
+<p>但是经验告诉我们，仍然要避免使用 <code>puts</code> 函数。如果总是使用 <code>fgets</code> 和 <code>fputs</code> 那么就会熟知我们必须自己处理换行符。</p>
+<h3 id="fread-fwrite-二进制-I-O"><a href="#fread-fwrite-二进制-I-O" class="headerlink" title="fread, fwrite 二进制 I/O"></a><code>fread, fwrite</code> 二进制 I/O</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="keyword">size_t</span> fread(<span class="keyword">void</span> *<span class="keyword">restrict</span> ptr, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> nobj, FILE *restric t fp);</div><div class="line"></div><div class="line"><span class="keyword">size_t</span> fwrite(<span class="keyword">const</span> <span class="keyword">void</span> *<span class="keyword">restrict</span> ptr, <span class="keyword">size_t</span> size, <span class="keyword">size_t</span> nobj, FILE *<span class="keyword">restrict</span> fp);</div><div class="line"><span class="comment">//param ptr：指向处理对象的指针</span></div><div class="line"><span class="comment">//param size：对象的大小</span></div><div class="line"><span class="comment">//param nobj：欲写或读取对象的个数</span></div><div class="line"><span class="comment">//param fp：输出流指针</span></div><div class="line"><span class="comment">//return：两个函都返回读或者写的对象数</span></div></pre></td></tr></table></figure>
+<p>二进制 I/O 操作适合用于一次读或写整个结构。常见用法有<br>(1) 读或写一个二进制数组。例如，为了将一个浮点数组的2~5索引的元素写至一个文件上。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> data[<span class="number">10</span>];</div><div class="line"></div><div class="line"><span class="keyword">if</span>(fwrite(&amp;data[<span class="number">2</span>], <span class="keyword">sizeof</span>(<span class="keyword">float</span>), <span class="number">4</span>, fp) != <span class="number">4</span>)</div><div class="line">	err_sys(<span class="string">"fwrite error."</span>);</div></pre></td></tr></table></figure></p>
+<p>其中 <code>size</code> 为每个数组元素的长度， <code>nobj</code> 为欲写的元素。<br>(2) 读或写一个结构。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span>&#123;</div><div class="line">	<span class="keyword">short</span> count;</div><div class="line">	<span class="keyword">long</span> total;</div><div class="line">	<span class="keyword">char</span> name[NAMESIZE];</div><div class="line">&#125;item;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(fwrite(&amp;item, <span class="keyword">sizeof</span>(item), <span class="number">1</span>, fp) != <span class="number">1</span>)</div><div class="line">	err_sys(<span class="string">"fwrite error"</span>);</div></pre></td></tr></table></figure></p>
+<p>其中 <code>size</code> 为结构的长度， <code>nobj</code> 为 1</p>
+<p>对于读，如果出错或到达文件尾端，则此数字可以少于 <code>nobj</code> 。在这种情况下，应调用 <code>ferror</code> 或 <code>feof</code> 确定属于哪种情况出错。</p>
+<p>对于写，如果返回值少于 <code>nobj</code> 则出错。</p>
+<h3 id="定位标准-I-O-流"><a href="#定位标准-I-O-流" class="headerlink" title="定位标准 I/O 流"></a>定位标准 I/O 流</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">ftell</span><span class="params">(FILE *fp)</span></span>;</div><div class="line"><span class="comment">//return：成功则返回当前文件位置指示，若出错则返回 -1L</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseek</span><span class="params">(FILE *fp, <span class="keyword">long</span> offset, <span class="keyword">int</span> whence)</span></span>;</div><div class="line"><span class="comment">//return：成功则返回 0 ，若出错则返回非 0 值</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewind</span><span class="params">(FILE *fp)</span></span>;</div></pre></td></tr></table></figure>
+<p>对于二进制文件，其文件位置指示器是从文件起始位置开始度量，并以字节为计量单位。<code>ftell</code> 和 <code>fseek</code> 函数都假定文件的位置可以存放在一个长整型中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="keyword">off_t</span> ftello(FILE *fp);</div><div class="line"><span class="comment">//return：成功返回当前文件位置指示，失败返回 -1</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fseeko</span><span class="params">(FILE *fp, <span class="keyword">off_t</span> offset, <span class="keyword">int</span> whence)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0 ，失败返回非 0 值</span></div></pre></td></tr></table></figure>
+<p><code>fello</code> 和 <code>fseeko</code> 函数使用了 <code>off_t</code> 数据类型代替了长整型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fgetpos</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">fpos_t</span> *<span class="keyword">restrict</span> pos)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fsetpos</span><span class="params">(FILE *fp, <span class="keyword">const</span> <span class="keyword">fpos_t</span> *pos)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0 ，失败返回非 0 值</span></div></pre></td></tr></table></figure>
+<p><code>fgetpos</code> 和 <code>fsetpos</code> 使用一个抽象数据类型 <code>fpos_t</code> 记录文件的位置。</p>
+<p><code>fgetpos</code> 将文件位置指示器的当前值存入由 <code>pos</code> 指向的对象中。在以后调用 <code>fsetpos</code> 时可以使用此值将流重新定位至该位置。</p>
+<h3 id="格式化-I-O"><a href="#格式化-I-O" class="headerlink" title="格式化 I/O"></a>格式化 I/O</h3><p><strong>a. 格式化输出</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">printf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fprintf</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="comment">//return：两个函数成功返回输出字符数，若输出出错返回负值。</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sprintf</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">snprintf</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">size_t</span> n, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="comment">//return：两个函数成功返回存入数组的字符数，若编码出错则返回负值。</span></div></pre></td></tr></table></figure></p>
+<p><code>printf</code> 将格式化字符写到标准输出， <code>fprintf</code> 写至指定的流，<code>sprintf</code> 将格式化字符送入数组 <code>buf</code> 中。 <code>sprintf</code> 在该数组的尾端自动加一个 <code>null</code> 字节，但该字节不包括在返回值中。</p>
+<p><strong>b. 格式化输入</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">scanf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fscanf</span><span class="params">(FILE *<span class="keyword">restrict</span> fp, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">sscanf</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> format, ...)</span></span>;</div><div class="line"><span class="comment">//return：三个函数都返回输入项数，如果输入出错或在任意变换前已经达到文件结尾则返回 EOF</span></div></pre></td></tr></table></figure></p>
+<p><code>scanf</code> 族用于分析输入字符串，并将字符序列转换成指定类型的变量。格式之后的各参数包含了变量地址，以用转换结果初始化这些变量。</p>
+<h3 id="fileno-函数获取与流相关联的文件描述符"><a href="#fileno-函数获取与流相关联的文件描述符" class="headerlink" title="fileno 函数获取与流相关联的文件描述符"></a><code>fileno</code> 函数获取与流相关联的文件描述符</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fileno</span><span class="params">(FILE *fp)</span></span>;</div><div class="line"><span class="comment">//return：与该流相关联的文件描述符</span></div></pre></td></tr></table></figure>
+<h3 id="临时文件"><a href="#临时文件" class="headerlink" title="临时文件"></a>临时文件</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tmpnam</span><span class="params">(<span class="keyword">char</span> *ptr)</span></span>;</div><div class="line"><span class="comment">//return：指向唯一路径名的指针</span></div><div class="line"><span class="function">FILE *<span class="title">tmpfile</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：成功返回文件指针，若出错返回 NULL</span></div></pre></td></tr></table></figure>
+<p><code>tmpnam</code> 函数产生一个与现有文件名不同的一个有效路径名字符串。每次调用它时，它都产生不同的路径名，最多调用次数是 <code>TMP_MAX</code> 。 <code>TMP_MAX</code> 定义在 <code>&lt;stdio.h&gt;</code> 中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">tempnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *directory, <span class="keyword">const</span> <span class="keyword">char</span> *prefix)</span></span>;</div><div class="line"><span class="comment">//return：指向唯一路径名的指针</span></div></pre></td></tr></table></figure>
+<p><code>tempnam</code> 是 <code>tmpnam</code> 一个变体，它允许调用者为所产生的路径名指定目录和前缀。</p>
+<p>如果 <code>prefix</code> 非 NULL ，则它应该是最多包含 5 个字符的字符串，用其作为文件名的前缀。</p>
+<p>该函数调用 <code>malloc</code> 函数动态分配存储区，用其存放所构造的路径名。当不再使用时就可释放。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#inlcude <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkstemp</span><span class="params">(<span class="keyword">char</span> *<span class="keyword">template</span>)</span></span>;</div><div class="line"><span class="comment">//return：成功返回文件描述符，失败返回 -1</span></div></pre></td></tr></table></figure>
+<p><code>mkstemp</code> 类似于 <code>tmpfile</code> ，但是该函数返回临时文件的文件描述符，可用于读、写该文件。</p>
+<p>与 <code>tempfile</code> 不同的是， <code>mkstemp</code> 创建的临时文件不会被自动删除。如若想从文件系统名字空间中删除该文件，则我们需要自行 <code>unlink</code> 它。</p>
+<h2 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><ol>
+<li>下面的代码在一些机器上运行正确，而在另外一些机器运行时出错，解释问题所在。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">char</span> c;</div><div class="line">	<span class="keyword">while</span>((c = getchar()) != EOF)</div><div class="line">		<span class="built_in">putchar</span>(c);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>由于 <code>getchar</code> 返回的是整型的类型，而由于 EOF 通常定义为 -1 ，那么如果系统采用有符号的字符类型，程序还可以正常工作。但是如果使用的是无符号字符类型，那么返回的 EOF 被保存到字符 c 后将不再是 -1 ，这将导致程序进入死循环。</p>
+<ol>
+<li>为什么 <code>tempnam</code> 限制前缀为 5 个字符？<br>5 个字符长的前缀、4个字符长的进程内唯一标识再加 5 个字符长的系统内唯一标识（进程 ID）刚好组成 14 位的 UNIX 传统文件长度限制。</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-高级环境编程/" rel="tag">#Unix 高级环境编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/24/第四章：文件和目录/" rel="next" title="第四章：文件和目录">
+                <i class="fa fa-chevron-left"></i> 第四章：文件和目录
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/27/第五章：标准-I-O-库/"
+           data-title="第五章：标准 I/O 库" data-url="http://un-knight.github.io/2016/11/27/第五章：标准-I-O-库/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
+               alt="小鸡遛狗" />
+          <p class="site-author-name" itemprop="name">小鸡遛狗</p>
+          <p class="site-description motion-element" itemprop="description">Keep thinking</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/un-knight" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/UnderworldYjx" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3639801160" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要函数"><span class="nav-number">2.</span> <span class="nav-text">重要函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fwide-设置流的定向"><span class="nav-number">2.1.</span> <span class="nav-text">fwide 设置流的定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setbuf-setvbuf-更改缓冲类型"><span class="nav-number">2.2.</span> <span class="nav-text">setbuf, setvbuf 更改缓冲类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fflush-强制冲洗一个流"><span class="nav-number">2.3.</span> <span class="nav-text">fflush 强制冲洗一个流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fopen-freopen-fdopen-打开流"><span class="nav-number">2.4.</span> <span class="nav-text">fopen, freopen, fdopen 打开流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fclose-关闭流"><span class="nav-number">2.5.</span> <span class="nav-text">fclose 关闭流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getc-fgetc-getchar-读入一个字符"><span class="nav-number">2.6.</span> <span class="nav-text">getc, fgetc, getchar 读入一个字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putc-fputc-putchar-输出一个字符"><span class="nav-number">2.7.</span> <span class="nav-text">putc, fputc, putchar 输出一个字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ungetc-将一个字符压送回流中"><span class="nav-number">2.8.</span> <span class="nav-text">ungetc 将一个字符压送回流中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fgets-gets-每次一行的-I-O"><span class="nav-number">2.9.</span> <span class="nav-text">fgets, gets 每次一行的 I/O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fputs-puts-输出一行"><span class="nav-number">2.10.</span> <span class="nav-text">fputs, puts 输出一行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fread-fwrite-二进制-I-O"><span class="nav-number">2.11.</span> <span class="nav-text">fread, fwrite 二进制 I/O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定位标准-I-O-流"><span class="nav-number">2.12.</span> <span class="nav-text">定位标准 I/O 流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化-I-O"><span class="nav-number">2.13.</span> <span class="nav-text">格式化 I/O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fileno-函数获取与流相关联的文件描述符"><span class="nav-number">2.14.</span> <span class="nav-text">fileno 函数获取与流相关联的文件描述符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#临时文件"><span class="nav-number">2.15.</span> <span class="nav-text">临时文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-amp-A"><span class="nav-number">3.</span> <span class="nav-text">Q&A</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小鸡遛狗</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"un-knight"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gSjcGtpxrvPtKFfRAmiFMmAg-gzGzoHsz", "jGg92JiNdsjYFY5hWDyRkJOU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
