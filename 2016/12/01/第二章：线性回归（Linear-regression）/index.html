@@ -84,31 +84,58 @@
 
 
 
-<meta name="description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
+<meta name="description" content="说明：这是我在学习机器学习过程中所做的总结与思考，毕竟才刚开始学习 ML 而且能力也有限，所以笔记中难免有错，欢迎交流指正。
 
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（learning rate）
+
+一、引入首">
 <meta property="og:type" content="article">
-<meta property="og:title" content="signal 模块">
-<meta property="og:url" content="http://un-knight.github.io/2016/11/13/signal-模块/index.html">
+<meta property="og:title" content="第二章：线性回归（Linear regression）">
+<meta property="og:url" content="http://un-knight.github.io/2016/12/01/第二章：线性回归（Linear-regression）/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
+<meta property="og:description" content="说明：这是我在学习机器学习过程中所做的总结与思考，毕竟才刚开始学习 ML 而且能力也有限，所以笔记中难免有错，欢迎交流指正。
 
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
-<meta property="og:updated_time" content="2016-11-13T04:36:04.957Z">
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（learning rate）
+
+一、引入首">
+<meta property="og:image" content="http://un-knight.github.io/./1479023546165.png">
+<meta property="og:image" content="http://un-knight.github.io/./1479035744631.png">
+<meta property="og:image" content="http://un-knight.github.io/./1479039060155.png">
+<meta property="og:image" content="http://un-knight.github.io/./1479043980668.png">
+<meta property="og:image" content="http://un-knight.github.io/./result.png">
+<meta property="og:image" content="http://un-knight.github.io/./3d_and_contour.png">
+<meta property="og:image" content="http://un-knight.github.io/./regression_of_ex1data2.png">
+<meta property="og:image" content="http://un-knight.github.io/./1479577087977.png">
+<meta property="og:updated_time" content="2016-12-01T07:00:46.532Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="signal 模块">
-<meta name="twitter:description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
+<meta name="twitter:title" content="第二章：线性回归（Linear regression）">
+<meta name="twitter:description" content="说明：这是我在学习机器学习过程中所做的总结与思考，毕竟才刚开始学习 ML 而且能力也有限，所以笔记中难免有错，欢迎交流指正。
 
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（learning rate）
+
+一、引入首">
+<meta name="twitter:image" content="http://un-knight.github.io/./1479023546165.png">
 
 
 
@@ -129,10 +156,10 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/2016/11/13/signal-模块/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2016/12/01/第二章：线性回归（Linear-regression）/"/>
 
 
-  <title> signal 模块 | 小鸡遛狗的博客 </title>
+  <title> 第二章：线性回归（Linear regression） | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +299,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
             
             
               
-                signal 模块
+                第二章：线性回归（Linear regression）
               
             
           </h1>
@@ -284,8 +311,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T12:34:26+08:00" content="2016-11-13">
-              2016-11-13
+            <time itemprop="dateCreated" datetime="2016-12-01T14:45:42+08:00" content="2016-12-01">
+              2016-12-01
             </time>
           </span>
 
@@ -298,8 +325,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -314,8 +341,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/13/signal-模块/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/signal-模块/" itemprop="commentsCount"></span>
+                <a href="/2016/12/01/第二章：线性回归（Linear-regression）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/01/第二章：线性回归（Linear-regression）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,7 +353,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
 
           
           
-             <span id="/2016/11/13/signal-模块/" class="leancloud_visitors" data-flag-title="signal 模块">
+             <span id="/2016/12/01/第二章：线性回归（Linear-regression）/" class="leancloud_visitors" data-flag-title="第二章：线性回归（Linear regression）">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -348,20 +375,118 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
       
 
       
-        <p>signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。</p>
-<h3 id="常见信号名"><a href="#常见信号名" class="headerlink" title="常见信号名"></a>常见信号名</h3><ul>
-<li><code>signal.SIGINT</code> ：<code>Ctrl-C</code> 键盘事件</li>
-<li><code>signal.SIGTSTP</code> ：<code>Ctrl-Z</code> 键盘事件，Unix 平台独有</li>
+        <blockquote>
+<p>说明：这是我在学习机器学习过程中所做的总结与思考，毕竟才刚开始学习 ML 而且能力也有限，所以笔记中难免有错，欢迎交流指正。</p>
+</blockquote>
+<h2 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h2><ul>
+<li>$m$ ——训练集的大小</li>
+<li>$x$ ——输入变量</li>
+<li>$y$ ——输出变量</li>
+<li>$(x, y)$ ——单一训练样例</li>
+<li>$(x^{i}, y^{i})$ ——第 i 个训练样例</li>
+<li>$:=$ ——赋值符号</li>
+<li>$\alpha$ ——学习率（learning rate）</li>
 </ul>
-<h3 id="预设信号处理函数"><a href="#预设信号处理函数" class="headerlink" title="预设信号处理函数"></a>预设信号处理函数</h3><p>signal 包的核心是使用 signal.signal() 函数来预设 (register) 信号处理函数，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">signal.signal(signalnum, handler)</div></pre></td></tr></table></figure>
+<h2 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h2><p>首先来考虑一个例子，如下图给出了部分数据展示了房屋面积与价格。</p>
+<p><img src="./1479023546165.png" alt="Alt text"></p>
+<p>现在给出一个数据中不存在的房屋面积 $X$ ，要求预测出它对应的价格 $Y$ 应该怎么做呢？</p>
+<p>线性回归的做法是将这些数据作为训练数据输入学习算法，然后算法输出一个假设函数 $h$ 。通过将新的房屋面积 $x$  输入函数 $h$ 获得的结果作为真实价格 $y$ 的估计。</p>
+<p>那么该如何来定义假设函数 $h$ 呢？</p>
 <a id="more"></a>
-<p>signalnum 为某个信号，handler 为该信号的处理函数。当接收到某一特定信号的时候，进程可以无视信号，可以采取默认操作，还可以自定义操作。当 handler 为 <code>signal.SIG_IGN</code> 时，信号被无视(ignore)。当 handler为 <code>singal.SIG_DFL</code>，进程采取默认操作(default)。当handler为一个自定义函数名时，进程采取函数中定义的操作。</p>
-<p>以下给出了一个自定义信号的例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> signal</div><div class="line"></div><div class="line"><span class="comment"># 定义自定义信号处理函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">myHandler</span><span class="params">(signum, frame)</span>:</span></div><div class="line">    print(<span class="string">'received: '</span>, signum)</div><div class="line"></div><div class="line"><span class="comment"># 注册信号处理函数，指定触发信号为 'Ctrl-Z'</span></div><div class="line">signal.signal(signal.SIGTSTP, myHandler)</div><div class="line"></div><div class="line"><span class="comment"># 让进程暂停等待信号触发</span></div><div class="line">signal.pause()</div><div class="line">print(<span class="string">'End of Signal Demo.\n'</span>)</div></pre></td></tr></table></figure></p>
-<p>我们首先使用 <code>signal.signal()</code> 函数来注册信号处理函数。然后执行 <code>signal.pause()</code> 来让该进程暂停以等待信号。当信号 <code>SIGTSTP</code> 被传递给该进程时，进程从暂停中恢复，并根据预设，执行 <code>SIGTSTP</code> 的信号处理函数 <code>myHandler()</code>。</p>
-<p>自定义信号处理函数有两个参数，一个用来识别信号 <code>signum</code>，另一个用来获得信号发生时，进程栈的状况 <code>stack frame</code>。这两个参数都是由<code>signal.singnal()</code> 函数来传递的。</p>
+<p>在本例中将假设函数（hypothesis） $h$ 定义如下。</p>
+<p>$$h_{\theta }(x)=\theta_{0}+\theta_{1}x$$</p>
+<p>其中，$\theta$ 是参数。</p>
+<ul>
+<li>$\theta_{0}$ 是零状态（zero condition）</li>
+<li>$\theta_{1}$ 是梯度（gradient）</li>
+</ul>
+<p>类似于这样的函数称为<strong>单变量线性回归（univariate linear regression）</strong>。</p>
+<p>显然，如果我们想要获得面积 $x$ 的估计 $h(x)$ 就需要知道 $\theta_{0}$ 与 $\theta_{1}$ 。</p>
+<h2 id="二、损失函数（Cost-function）"><a href="#二、损失函数（Cost-function）" class="headerlink" title="二、损失函数（Cost function）"></a>二、损失函数（Cost function）</h2><p>损失函数可以帮助我们弄明白如何让假设函数的曲线与训练数据得到最好的拟合。</p>
+<p>基于上述的例子，我们需要找出合适的参数 $\theta_{i}$ 以使得对于 $x$ 获得估计 $h(x)$ 要与真实值 $y$ 之间的差最小化。因此这就转化成了求最小化的问题。</p>
+<p>使用公式来描述就是：</p>
+<p>$$min((h_{\theta}(x)-y)^{2})$$</p>
+<p>对训练数据集中每个样本都需要进行计算，公式修改如下：</p>
+<p>$$min(\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{i})-y^{i})^{2})$$</p>
+<p>其中 $\frac{1}{m}$ 表示求平均值，而 $\frac{1}{2m}$ 中的 $\frac{1}{2}$ 是为了让公式在之后便于求解，毕竟在一个这个式子前面乘以个常数并不会改变该式子的最终结果。</p>
+<p>于是我们可以这样定义该例的损失函数：</p>
+<p>$$J(\theta_{0}, \theta_{1})=\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{i})-y^{i})^{2}$$</p>
+<p>$J$ 是一个关于 $\theta$ 的函数。并且为了求得合适的 $\theta$ 我们需要最小化 $J$ 。</p>
+<h2 id="三、梯度下降法（Gradient-descent）"><a href="#三、梯度下降法（Gradient-descent）" class="headerlink" title="三、梯度下降法（Gradient descent）"></a>三、梯度下降法（Gradient descent）</h2><p>可以通过梯度下降法来最小化损失函数 $J$ 。</p>
+<p>直观来说，梯度下降法的计算过程如下：</p>
+<ul>
+<li>从一个初始值开始计算<ul>
+<li>初始值任意可以是点 (0, 0) 或者其它任何值</li>
+<li>不断更新 $\theta_{0}$ 和 $\theta_{1}$ 的值来减少 $J(\theta_{0}, \theta_{1})$</li>
+</ul>
+</li>
+<li>每次更新 $\theta$ 的时候都选择能最大程度上减少 $J(\theta_{0}, \theta_{1})$ 的梯度</li>
+<li>重复尝试更新参数，直到损失函数收敛（covergence）（此时获得了局部或全局的最小值）</li>
+</ul>
+<p><img src="./1479035744631.png" alt="Alt text"></p>
+<p>并且对于梯度下降法有个很有趣的特性，就是初始值的选择不同可能导致最终损失函数最小值的不同。</p>
 <blockquote>
-<p>参考：  <a href="http://www.cnblogs.com/vamei/archive/2012/10/06/2712683.html" target="_blank" rel="external">http://www.cnblogs.com/vamei/archive/2012/10/06/2712683.html</a></p>
+<p>Q1：如何寻找全局最优解？<br>Q2：局部最优解是否有意义？如果有，在什么情况下有意义？</p>
+</blockquote>
+<p>用公式化的方式来描述梯度下降法中参数更新的方式是：</p>
+<p>$$\theta_{j}:=\theta_{j}-\alpha\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1})\ \ \ \ \ (for\ j=0\ and\ j=1)$$</p>
+<p>其中 $\alpha$ 称为学习率，控制着每次参数更新的改变量。而 $\alpha\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1})$ 称为偏导项。 </p>
+<p>$\alpha$ 需要选取合适的值，并且它总是正值，否则</p>
+<ul>
+<li>如果偏大，有可能在最后一个更新的时候参数改变过大，使得损失函数错过最小值点从而无法收敛</li>
+<li>如果偏小，会导致收敛速度太慢增加计算次数</li>
+</ul>
+<p>$\alpha\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1})$ 偏导项的意义在于计算出曲线（曲面）在当前点上切线（切面）的斜率。</p>
+<blockquote>
+<p>Q3：为什么偏导项 $\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1})$ 可以保证更新后的参数总是使得损失函数朝变化最大的方向前进？</p>
+</blockquote>
+<p>在实际计算中，梯度下降需要同时不断对每个参数 $\theta_{i}$ 单独更新直至损失函数收敛。</p>
+<p>举个例子，在某次循环中对 $\theta_{0}$ 和 $\theta_{1}$ 的更新过程如下：</p>
+<p><img src="./1479039060155.png" alt="Alt text"></p>
+<p>并且根据以上公式容易知道当损失函数达成收敛的时候有以下特征：</p>
+<ul>
+<li>梯度下降法中的偏导项为 0</li>
+<li>$\theta_{i}$ 在更新之后保持不变</li>
+</ul>
+<h2 id="四、梯度下降法求解线性回归"><a href="#四、梯度下降法求解线性回归" class="headerlink" title="四、梯度下降法求解线性回归"></a>四、梯度下降法求解线性回归</h2><p>在有了梯度下降法的概念之后，就可以应用梯度下降法来求解最小化 $J(\theta_{0},\theta_{1})$ 。</p>
+<p>首先展开求解 $\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1})$ 。</p>
+<p>$$\frac{\partial}{\partial\theta_{j}}J(\theta_{0}, \theta_{1}) = \frac{\partial}{\partial\theta_{j}}\frac{1}{2m}\sum_{i=1}^{m}(h_{\theta}(x^{i})-y^{i})^{2}\\ = \frac{1}{2m}\sum_{i=1}^{m}\frac{\partial}{\partial\theta_{j}}(\theta_{0}+\theta_{1}x^{i}-y^{i})^{2}$$</p>
+<p>当 $j=0$ 和 $j=1$ 的时候，偏导之后的式子为：</p>
+<p>$$when\ \ j=0:\ \frac{\partial}{\partial\theta_{0}}J(\theta_{0}, \theta_{1})=\frac{1}{m}\sum_{i=1}^{m}(\theta_{0}+\theta_{1}x^{i}-y^{i});\\<br>when\ \  j=1:\ \ \frac{\partial}{\partial\theta_{1}}J(\theta_{0}, \theta_{1})=\frac{1}{m}\sum_{i=1}^{m}(\theta_{0}+\theta_{1}x^{i}-y^{i})x^{i};$$</p>
+<p>之前说过梯度下降法的一个缺陷就是可能会找到局部最优值，但是<strong>线性回归的损失函数总是凸函数</strong>， 这意味着它总是只有一个全局最优值，所以梯度下降法总是能成功收敛到全局最优值。</p>
+<p><img src="./1479043980668.png" alt="Alt text"></p>
+<blockquote>
+<p>补充：（凸函数。。。。）</p>
+</blockquote>
+<p>在之前介绍的梯度下降法中，每次更新参数和计算的过程中都会使用到所有的训练数据，这种方式称为<strong>批量梯度下降法（Batch Gradient Descent）</strong>。而事实上还存在其它的非批量梯度下降法，很容易猜到它在每次更新计算的时候只用到了训练数据的一部分子集。</p>
+<p>另外还存在数值解析方法（numerical solution）来求解函数的最小值问题，它就是<strong>正规方程（Normal equation）</strong>。</p>
+<p>正规方程比起梯度下降法而言没有了繁琐的迭代过程并且也不再需要提供<strong>学习率</strong>，但是它的缺点也很明显，就是要来得更加复杂并且梯度下降对大规模数据的适应性更好。</p>
+<h2 id="五、算法流程"><a href="#五、算法流程" class="headerlink" title="五、算法流程"></a>五、算法流程</h2><p>所以完整的算法流程就是：</p>
+<ol>
+<li>获取数据，设定学习率 $\alpha$ 与迭代次数</li>
+<li>初始化参数 $\theta$</li>
+<li>迭代梯度下降法更新参数 $\theta$ 直至满足所给迭代次数</li>
+<li>获得线性回归方程</li>
+</ol>
+<h2 id="六、多变量线性回归（Linear-regression-with-multiple-features）"><a href="#六、多变量线性回归（Linear-regression-with-multiple-features）" class="headerlink" title="六、多变量线性回归（Linear regression with multiple features）"></a>六、多变量线性回归（Linear regression with multiple features）</h2><p>以上通过研究单变量线性回归了解了线性回归，但是在处理实际问题的时候往往需要考虑多个特征（多特征即指多变量），因此。。。</p>
+<h2 id="七、一些注意事项"><a href="#七、一些注意事项" class="headerlink" title="七、一些注意事项"></a>七、一些注意事项</h2><ul>
+<li>当在处理多变量线性回归的时候，如果变量之间的数量级差别特别大则需要先将数据进行归一化处理，但是如果采用正规方程则不需要进行归一化处理。（这条应该放到多变量线性回归一章中。）</li>
+</ul>
+<h2 id="八、Coding-time"><a href="#八、Coding-time" class="headerlink" title="八、Coding time"></a>八、Coding time</h2><p>本代码是基于吴恩达老师在 coursera 中 《Machine Learning》<a href="https://www.coursera.org/learn/machine-learning/home/week/2" target="_blank" rel="external">第二周课程</a>提供的练习题数据实现的。</p>
+<p>以下链接附有完整的代码（Python 实现）以及题目和数据。</p>
+<p><a href="https://github.com/un-knight/machine-learning-algorithm" target="_blank" rel="external">ex1_linear_regression</a></p>
+<h3 id="8-1-Project-1"><a href="#8-1-Project-1" class="headerlink" title="8.1 Project 1"></a>8.1 Project 1</h3><p>这是题目一《Linear regression with one variable》的实验结果。</p>
+<p>在学习率为 0.01 的情况下经过 1500 此迭代后回归的效果：</p>
+<p><img src="./result.png" alt="Alt text"></p>
+<p>最终计算得到的 $\theta_{0} \approx -3.63\ \ and\ \  \theta_{1} \approx 1.166$</p>
+<p><img src="./3d_and_contour.png" alt="Alt text"></p>
+<h3 id="8-2-Project-2"><a href="#8-2-Project-2" class="headerlink" title="8.2 Project 2"></a>8.2 Project 2</h3><p>这是题目二《Linear regression with multiple variable》的实验结果。</p>
+<p>由于题目二所解决线性回归问题涉及到一个以上的变量，因此不好通过直角坐标图表示所以没有绘制，但是下方的图展示了随着梯度下降迭代的进行，损失函数的值越来越小，这也意味着当前的参数拟合得越好。</p>
+<p><img src="./regression_of_ex1data2.png" alt="Alt text"></p>
+<p>针对实验《Linear regression with multiple variable》我通过分别使用梯度下降法与正规方程求出参数 $\theta$ ，并使用数据 <code>1650 square feet and 3 bedrooms</code> 分别在两个方法所求的参数下进行运算，下图展示了这两种方法获得了较为近似的结果，这从侧面在一定程度上佐证了梯度下降法的正确。</p>
+<p><img src="./1479577087977.png" alt="Alt text"></p>
+<blockquote>
+<p>备注：笔记中的例子与数据来自吴恩达老师在 coursera 中 《Machine Learning》课程。</p>
 </blockquote>
 
       
@@ -404,17 +529,13 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/12/使用-docopt-快速构建命令行解析器/" rel="next" title="使用 docopt 快速构建命令行解析器">
-                <i class="fa fa-chevron-left"></i> 使用 docopt 快速构建命令行解析器
+              <a href="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/" rel="next" title="利用 Github Page 搭建 Hexo 静态博客">
+                <i class="fa fa-chevron-left"></i> 利用 Github Page 搭建 Hexo 静态博客
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/13/第一章：简介/" rel="prev" title="第一章：简介">
-                第一章：简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -440,8 +561,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/13/signal-模块/"
-           data-title="signal 模块" data-url="http://un-knight.github.io/2016/11/13/signal-模块/">
+      <div class="ds-thread" data-thread-key="2016/12/01/第二章：线性回归（Linear-regression）/"
+           data-title="第二章：线性回归（Linear regression）" data-url="http://un-knight.github.io/2016/12/01/第二章：线性回归（Linear-regression）/">
       </div>
     
   </div>
@@ -486,7 +607,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -575,7 +696,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见信号名"><span class="nav-number">1.</span> <span class="nav-text">常见信号名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预设信号处理函数"><span class="nav-number">2.</span> <span class="nav-text">预设信号处理函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号说明"><span class="nav-number">1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引入"><span class="nav-number">2.</span> <span class="nav-text">一、引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、损失函数（Cost-function）"><span class="nav-number">3.</span> <span class="nav-text">二、损失函数（Cost function）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、梯度下降法（Gradient-descent）"><span class="nav-number">4.</span> <span class="nav-text">三、梯度下降法（Gradient descent）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、梯度下降法求解线性回归"><span class="nav-number">5.</span> <span class="nav-text">四、梯度下降法求解线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、算法流程"><span class="nav-number">6.</span> <span class="nav-text">五、算法流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、多变量线性回归（Linear-regression-with-multiple-features）"><span class="nav-number">7.</span> <span class="nav-text">六、多变量线性回归（Linear regression with multiple features）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、一些注意事项"><span class="nav-number">8.</span> <span class="nav-text">七、一些注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、Coding-time"><span class="nav-number">9.</span> <span class="nav-text">八、Coding time</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-Project-1"><span class="nav-number">9.1.</span> <span class="nav-text">8.1 Project 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-Project-2"><span class="nav-number">9.2.</span> <span class="nav-text">8.2 Project 2</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
