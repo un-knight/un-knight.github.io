@@ -94,7 +94,7 @@
 <meta property="og:description" content="在机器学习或者数据挖掘的学习过程中会发现很多数据都会存储在 CVS 文件中，但是这些数据也可以存储在 txt 文件中。
 想要使用 python 对这些数据进行处理的时候却不知道如何快捷地从 txt 文件中读取数据怎么行，这里我将分享我的处理方法。
 1234567891011121314151617181920import numpy as npdef read_from_txt(filename=">
-<meta property="og:updated_time" content="2016-12-02T12:02:01.126Z">
+<meta property="og:updated_time" content="2016-12-02T12:03:40.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 读取 txt 数据并转化为 numpy.array">
 <meta name="twitter:description" content="在机器学习或者数据挖掘的学习过程中会发现很多数据都会存储在 CVS 文件中，但是这些数据也可以存储在 txt 文件中。
@@ -343,8 +343,7 @@
 <p>想要使用 python 对这些数据进行处理的时候却不知道如何快捷地从 txt 文件中读取数据怎么行，这里我将分享我的处理方法。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_from_txt</span><span class="params">(filename=None)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    read dataset from txt and return np.array</div><div class="line">    :param filename: filename</div><div class="line">    :return: data (type of np.array)</div><div class="line">    """</div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> file_to_read:</div><div class="line">        data = []</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            lines = file_to_read.readline()</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> lines:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="comment"># txt 文档中每列数据之间通过 “,” 符号分隔开 </span></div><div class="line">            data_line = [float(i) <span class="keyword">for</span> i <span class="keyword">in</span> lines.split(<span class="string">','</span>)]</div><div class="line">            data.append(data_line)</div><div class="line">        data = np.array(data)</div><div class="line">        <span class="keyword">return</span> data</div></pre></td></tr></table></figure>
 <p>到了后来才发现 numpy 也提供了一个强大的格式化读取 txt 文件的接口 <code>numpy.loadtxt</code> 。</p>
-<1--more-->
-
+<a id="more"></a>
 <p>默认情况下是以空格为分隔符，读取为浮点型数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> io <span class="keyword">import</span> StringIO</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>cdata = StringIO(<span class="string">"6 6 6\n 2 3 3"</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data = np.loadtxt(cdata)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data</div><div class="line">array([[ <span class="number">6.</span>,  <span class="number">6.</span>,  <span class="number">6.</span>],</div><div class="line">       [ <span class="number">2.</span>,  <span class="number">3.</span>,  <span class="number">3.</span>]])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>data.dtype</div><div class="line">dtype(<span class="string">'float64'</span>)</div></pre></td></tr></table></figure>
 <p>当然也可以通过参数 <code>delimiter</code> 自定义分隔符，参数 <code>usecols</code> 指定读取的列（索引从 0 开始）以及执行 <code>unpack</code> 操作。</p>
@@ -355,7 +354,7 @@
 <li><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html" target="_blank" rel="external">https://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html</a></li>
 </ul>
 </blockquote>
-</1--more-->
+
       
     </div>
 
