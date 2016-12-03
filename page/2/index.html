@@ -259,6 +259,152 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/24/第四章：文件和目录/" itemprop="url">
+                  第四章：文件和目录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-24T23:17:32+08:00" content="2016-11-24">
+              2016-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/24/第四章：文件和目录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/第四章：文件和目录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/11/24/第四章：文件和目录/" class="leancloud_visitors" data-flag-title="第四章：文件和目录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>UNIX 系统的文件类型包括以下几种：</p>
+<ol>
+<li><strong>普通文件 (regular file) </strong>。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。</li>
+</ol>
+<blockquote>
+<p>补充：<strong>二进制可执行文件</strong>是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加载位置。</p>
+</blockquote>
+<ol>
+<li><strong>目录文件 (directory file)</strong> 。这种文件包含了其他文件的名字以及指向与这些文件有关信息的指针。对一个目录文件具有读权限的任一进程都可以读该目录的内容，但<strong>只有内核可以直接写目录文件</strong>。进程必须使用特定的函数才能更改目录。</li>
+<li><strong>块特殊文件 (block special file)</strong> 。这种文件类型提供对设备（例如磁盘）带缓冲的访问，每次访问以固定长度为单位进行。</li>
+<li><strong>字符特殊文件 (character special file)</strong> 。这种文件类型提供对设备不带缓冲的访问，每次访问长度可变。系统中的所有设备要么是字符特殊文件，要么是块特殊文件。</li>
+<li><strong>FIFO</strong> 。这种类型文件用于<strong>进程间通信</strong>，有时也将其称为<strong>命令管道 (named pipe)</strong> 。</li>
+<li><strong>套接字 (socket)</strong> 。这种文件类型用于进程间的网络通信。套接字也可用于在一台宿主机上进程之间的非网络通信。</li>
+<li><strong>符号链接 (symbolic link)</strong> 。这种文件类型指向另一个文件。</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/24/第四章：文件和目录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/23/第三章：文件-I-O/" itemprop="url">
                   第三章：文件 I/O
                 </a>
@@ -800,149 +946,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/13/signal-模块/" itemprop="url">
-                  signal 模块
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T12:34:26+08:00" content="2016-11-13">
-              2016-11-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/13/signal-模块/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/signal-模块/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/13/signal-模块/" class="leancloud_visitors" data-flag-title="signal 模块">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。</p>
-<h3 id="常见信号名"><a href="#常见信号名" class="headerlink" title="常见信号名"></a>常见信号名</h3><ul>
-<li><code>signal.SIGINT</code> ：<code>Ctrl-C</code> 键盘事件</li>
-<li><code>signal.SIGTSTP</code> ：<code>Ctrl-Z</code> 键盘事件，Unix 平台独有</li>
-</ul>
-<h3 id="预设信号处理函数"><a href="#预设信号处理函数" class="headerlink" title="预设信号处理函数"></a>预设信号处理函数</h3><p>signal 包的核心是使用 signal.signal() 函数来预设 (register) 信号处理函数，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">signal.signal(signalnum, handler)</div></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/13/signal-模块/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -983,7 +991,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
