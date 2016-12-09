@@ -1,0 +1,1031 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="OpenCV,Python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="注意：OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。另外在学习过程中编写了一些实践代码，代码仓库地址为 
+
+https://github.com/un-knight/code-for-opencv-learning-in-Python3
+
+
+导入模块1import cv2
+图像的读写模块名 cv2
+imread(image_path, mode)读取图片函数，返回一个 numpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3 中的 OpenCV 模块操作简介">
+<meta property="og:url" content="http://un-knight.github.io/2016/12/09/Python3-中的-OpenCV-模块操作简介/index.html">
+<meta property="og:site_name" content="小鸡遛狗的博客">
+<meta property="og:description" content="注意：OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。另外在学习过程中编写了一些实践代码，代码仓库地址为 
+
+https://github.com/un-knight/code-for-opencv-learning-in-Python3
+
+
+导入模块1import cv2
+图像的读写模块名 cv2
+imread(image_path, mode)读取图片函数，返回一个 numpy">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1474795142397.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/figure_1.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1476289799213.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1474989339375.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%205.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%202.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%203.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/QQ%E5%9B%BE%E7%89%8720161209144230.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%205.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%203.png">
+<meta property="og:updated_time" content="2016-12-09T06:45:28.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python3 中的 OpenCV 模块操作简介">
+<meta name="twitter:description" content="注意：OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。另外在学习过程中编写了一些实践代码，代码仓库地址为 
+
+https://github.com/un-knight/code-for-opencv-learning-in-Python3
+
+
+导入模块1import cv2
+图像的读写模块名 cv2
+imread(image_path, mode)读取图片函数，返回一个 numpy">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1474795142397.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6349524465411442000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://un-knight.github.io/2016/12/09/Python3-中的-OpenCV-模块操作简介/"/>
+
+
+  <title> Python3 中的 OpenCV 模块操作简介 | 小鸡遛狗的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cabfbd8184720db4b07c0416369c5d0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小鸡遛狗的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python3 中的 OpenCV 模块操作简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-09T14:25:30+08:00" content="2016-12-09">
+              2016-12-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OpenCV-学习记录/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV 学习记录</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/Python3-中的-OpenCV-模块操作简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/09/Python3-中的-OpenCV-模块操作简介/" class="leancloud_visitors" data-flag-title="Python3 中的 OpenCV 模块操作简介">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>注意：OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。<br>另外在学习过程中编写了一些实践代码，代码仓库地址为 </p>
+<ul>
+<li><a href="https://github.com/un-knight/code-for-opencv-learning-in-Python3" target="_blank" rel="external">https://github.com/un-knight/code-for-opencv-learning-in-Python3</a></li>
+</ul>
+</blockquote>
+<h2 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<h2 id="图像的读写"><a href="#图像的读写" class="headerlink" title="图像的读写"></a>图像的读写</h2><p>模块名 <code>cv2</code></p>
+<h3 id="imread-image-path-mode"><a href="#imread-image-path-mode" class="headerlink" title="imread(image_path, mode)"></a><code>imread(image_path, mode)</code></h3><p>读取图片函数，返回一个 <code>numpy.ndarray</code> 对象。第一个参数指定图像路径，第二个参数（可选）指定打开模式，可选值有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>IMREAD_COLOR</code></td>
+<td style="text-align:left">默认值，以彩色图像方式加载忽略透明通道</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IMREAD_GRAYSCALE</code></td>
+<td style="text-align:left">以灰度图像方式加载</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IMREAD_UNCHANGED</code></td>
+<td style="text-align:left">完整加载，包含透明通道</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imshow-str-image"><a href="#imshow-str-image" class="headerlink" title="imshow(str, image)"></a><code>imshow(str, image)</code></h3><p> 在窗口中显示图片，<code>str</code> 是一个字符串类型参数指定了窗口名，<code>image</code> 为所需展示的图像的矩阵。</p>
+<a id="more"></a>
+<h3 id="waitKey-0"><a href="#waitKey-0" class="headerlink" title="waitKey(0)"></a><code>waitKey(0)</code></h3><p>暂停脚本的运行，直到从键盘上获取到输入。一般传入 0 作为参数，表示任意按键输入都可以继续脚本运行。</p>
+<h3 id="imwrite-str-image"><a href="#imwrite-str-image" class="headerlink" title="imwrite(str, image)"></a><code>imwrite(str, image)</code></h3><p>将 <code>image</code> 保存为图片，其中 <code>str</code> 指定了图像名。</p>
+<blockquote>
+<p>注意：OpenCV 中所有打开的图像均是 <code>numpy.ndarray</code> 对象，以下的内容中我常以形参 <code>img</code> 来表示图像类型。</p>
+</blockquote>
+<h2 id="绘制形状"><a href="#绘制形状" class="headerlink" title="绘制形状"></a>绘制形状</h2><p>模块名 <code>cv2</code></p>
+<h3 id="line-："><a href="#line-：" class="headerlink" title="line() ："></a><code>line()</code> ：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cv2.line(img, pt1, pt2, color, thickness=<span class="keyword">None</span>, ...)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：画布，可通过 Numpy 模块进行创建画布矩阵</div><div class="line">@param pt1：起点</div><div class="line">@param pt2：终点</div><div class="line">@param color：颜色</div><div class="line">@param thickness：指定线条大小</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="rectangle-："><a href="#rectangle-：" class="headerlink" title="rectangle() ："></a><code>rectangle()</code> ：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cv2.rectangle(img, pt1, pt2, color, thickness)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：画布，可通过 Numpy 模块进行创建画布矩阵</div><div class="line">e.g  </div><div class="line">import numpy as np</div><div class="line">canvas = np.zeros((height, width, channels), dtype='uint8')</div><div class="line"></div><div class="line">@param pt1：左上角点 (x, y)</div><div class="line">@param pt2：右下角点 (x, y)</div><div class="line">@param color：颜色 (b, g, r)</div><div class="line">@param thickness：边框粗细，如果是负数，表示绘制实心的矩形</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="circle-："><a href="#circle-：" class="headerlink" title="circle() ："></a><code>circle()</code> ：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cv2.circle(img, point, r, color, thickness=<span class="keyword">None</span>)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：画布，可通过 Numpy 模块进行创建画布矩阵</div><div class="line">@param point：圆心，(x, y)</div><div class="line">@param r：半径</div><div class="line">@param color：颜色，(b, g, r)</div><div class="line">@param thickness：边框粗细，负值表示采用填充方式绘制</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="putText-绘制指定字符串"><a href="#putText-绘制指定字符串" class="headerlink" title="putText()绘制指定字符串"></a><code>putText()</code>绘制指定字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cv2.putText(img, str, pos, fontFace, fontScale, color)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：绘制对象</div><div class="line">@param str：绘制字符串</div><div class="line">@param pos：绘制坐标，(x, y)</div><div class="line">@param fontFace：字体样式，一般为 cv2.FONT_HERSHEY_SIMPLEX</div><div class="line">@param fontScale：字体大小</div><div class="line">@param color：字体颜色，(b, g, r)</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h2 id="图像操作"><a href="#图像操作" class="headerlink" title="图像操作"></a>图像操作</h2><p>模块名 <code>cv2</code> 。</p>
+<h3 id="warpAffine-执行旋转或者平移"><a href="#warpAffine-执行旋转或者平移" class="headerlink" title="warpAffine 执行旋转或者平移"></a><code>warpAffine</code> 执行旋转或者平移</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">cv2.warpAffine(img, M, size)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：图像</div><div class="line">@param M：转移矩阵，</div><div class="line">矩阵元素要求： float 类型</div><div class="line">矩阵格式：2*3</div><div class="line">第一行为 [1, 0, x] ，其中 x 表示了水平移动的像素，正数为右移，负数为左移；第二行为 [0, 1, y] ，其中 y 表示了垂直移动的像素，正数为向下，负数为向上。</div><div class="line"></div><div class="line">@param size：图像的大小，(width, height)</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="getRotationMatrix2D-旋转函数"><a href="#getRotationMatrix2D-旋转函数" class="headerlink" title="getRotationMatrix2D 旋转函数"></a><code>getRotationMatrix2D</code> 旋转函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cv2.getRotationMatrix2D(center, angle, scale)</div><div class="line"><span class="string">"""</span></div><div class="line">@param center：旋转中心，(x, y)</div><div class="line">@param angle：旋转角度</div><div class="line">@param scale：变换尺度，默认为 1.0</div><div class="line">@return：返回旋转矩阵</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="resize-缩放"><a href="#resize-缩放" class="headerlink" title="resize 缩放"></a><code>resize</code> 缩放</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.resize(img, dim, interpolation)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：图片</div><div class="line">@param dim：新图片的大小，(width, height)</div><div class="line">@param interpolation：指定放缩的算法，常见算法参数有 cv2.INTER_AREA, cv2.INTER_LINEAR, cv2.INTER_CUBIC, cv2.INTER_NEAREST</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p>###<code>flip</code> 翻转<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.flip(img, code)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：图片</div><div class="line">@param code：决定翻转方式。0 代表水平翻转，1 代表垂直翻转，-1 代表同时进行水平和垂直翻转。</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p>###位运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cv2.bitwise_and(img1, img2)</div><div class="line">cv2.bitwise_or(img1, img2)</div><div class="line">cv2.bitwise_xor(img1, img2)</div><div class="line">cv2.bitwise_not(img1)</div></pre></td></tr></table></figure></p>
+<p>掩码的使用，以 <code>and</code> 操作举例。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cv2.bitwise_and(img1, img1, mask=mask)</div></pre></td></tr></table></figure></p>
+<h3 id="split-划分颜色通道"><a href="#split-划分颜色通道" class="headerlink" title="split 划分颜色通道"></a><code>split</code> 划分颜色通道</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cv2.split(img1)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img1：三通道图片</div><div class="line">@return：三个通道的图像元组，注意顺序为 B, G, R</div><div class="line">e.g.</div><div class="line">(B, G, R) = cv2.split(img)</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="merge-融合通道"><a href="#merge-融合通道" class="headerlink" title="merge 融合通道"></a><code>merge</code> 融合通道</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cv2.merge([B, G, R])</div><div class="line"><span class="string">"""</span></div><div class="line">@param [B, G, R]：由 B, G, R 三个通道图像矩阵组成的列表</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="cvtColor-颜色空间转换"><a href="#cvtColor-颜色空间转换" class="headerlink" title="cvtColor 颜色空间转换"></a><code>cvtColor</code> 颜色空间转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.cvtColor(img, colorspcae)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：输入图像</div><div class="line">@param colorspcae：指定颜色空间，常见的有 cv2.COLOR_BGR2GRAY, cv2.COLOR_BGR2HSV, cv2.COLOR_BGR2LAB</div><div class="line">@return：颜色转换后的图像矩阵</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="calcHist-计算直方图"><a href="#calcHist-计算直方图" class="headerlink" title="calcHist 计算直方图"></a><code>calcHist</code> 计算直方图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cv2.calcHist(images, channels, mask, histSize, ranges)</div><div class="line"><span class="string">"""</span></div><div class="line">@param images：输入图像。通过列表形式传入，如 [image]</div><div class="line"></div><div class="line">@param channels：指定参与直方图统计计算的通道索引列表，比如要统计单通道灰度图这个传入参数为 [0]，要统计三通道RGB图像传入参数为 [0,1,2]</div><div class="line"></div><div class="line">@param mask：掩码。如果提供掩码，则直方图只会计算掩码部分；如果不需要使用掩码，传入参数 None。</div><div class="line"></div><div class="line">@param histSize：This is the number of bins we want to use when computing a histogram. And this is also a list, one for each channel we are computing a histogram for.（个人理解，就是直方图所要统计颜色值的范围，比如[256]，表示统计0-255范围内的颜色值，以此作为横坐标）</div><div class="line"></div><div class="line">@param ranges：像素颜色值的范围，通常情况下（RGB空间）为 [0, 256]，但是如果采用其它颜色空间，像素值范围可能发生变化。</div><div class="line"></div><div class="line">@return：返回统计计算结果的列表。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="equalizeHist-均衡灰阶图的直方图"><a href="#equalizeHist-均衡灰阶图的直方图" class="headerlink" title="equalizeHist 均衡灰阶图的直方图"></a><code>equalizeHist</code> 均衡灰阶图的直方图</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.equalizeHist(img)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：输入图像，必须是灰阶图</div><div class="line">@return：处理后图像</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p>作用：可增加灰度图像的对比度，常用于医疗、遥感图像处理上。<br><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1474795142397.png" alt="Alt text"><br>左侧图像是灰阶图，右侧是使用 <code>equalizeHist</code> 函数进行处理之后的图像。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/figure_1.png" alt="Alt text"><br>蓝色曲线表示原始图像灰阶图的直方图，而绿色曲线表示经 <code>equalizeHist</code> 处理之后的直方图。</p>
+<h3 id="滤波器"><a href="#滤波器" class="headerlink" title="滤波器"></a>滤波器</h3><p>滤波器通常分为<strong>低通滤波器（low-pass filters, LPF）</strong>和<strong>高通滤波器（high-pass filters, HPF）</strong>。</p>
+<p>两者各有用处，其中 LPF 有助于去除图像噪点，而 HPF 有助于寻找图像中的边界。</p>
+<p>滤波器的使用涉及到一个概念——卷积。</p>
+<p>谈卷积之前要先讲解一下卷积核。</p>
+<p>卷积核其实就是一个矩阵，这个矩阵的宽高必须都为奇数，因为只有这样才能保证这个矩阵具有唯一确定的中心。矩阵周围的数值相当于权值，中心像素的像素值等于周围像素的像素值乘以矩阵相应位置权值的加权运算结果。</p>
+<p>而卷积其实就是将卷积核作用于图像中每个像素点上的操作过程。</p>
+<p> OpenCV 中提供了一个卷积操作函数 <code>filter2D</code> 。使用这个函数就可以将自定义的卷积核作用于图像。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cv2.filter2D(img, ddepth, kernel)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像</div><div class="line">@param ddepth：输出图像的颜色深度，当 ddepth = -1 时，输出图像和输入图像拥有相同的深度</div><div class="line">@param kernel：卷积核</div><div class="line">@return：返回处理之后的图像</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1476289799213.png" alt="Alt text"></p>
+<p>当然如果一直都要自己提供卷积核来做卷积操作也比较繁琐， OpenCV 中更进一步的封装了常用的四个 LPF 函数。因为 LPF 的主要效果是去除高频内容（比如：噪点和图像边界）所以也称模糊操作。</p>
+<blockquote>
+<p>参考：<a href="http://docs.opencv.org/3.1.0/d4/d13/tutorial_py_filtering.html" target="_blank" rel="external">http://docs.opencv.org/3.1.0/d4/d13/tutorial_py_filtering.html</a></p>
+</blockquote>
+<p><strong>平均模糊（Average Blurring）</strong>，即核中心的值为周围像素值的平均值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.blur(img, ksize)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：处理的图像</div><div class="line">@param ksize：提供一个元组指定核的大小，比如(k, k)，要求 k 必须为奇数，且 k 值越大模糊效果越明显。</div><div class="line">@return：返回处理后的图像</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/1474989339375.png" alt="Alt text"></p>
+<p><strong>高斯模糊（Gaussian Blurring）</strong>，不同于平均模糊，越靠近核中心的对中心的贡献越大。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cv2.GaussianBlur(img, ksize, deviation)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：处理图像</div><div class="line">@param ksize：提供一个元组指定卷积核的大小，比如(k, k)，要求 k 必须为奇数，且 k 值越大模糊效果越明显。</div><div class="line">@param deviation：X轴线方向上的标准差，一般设置为 0 ，表示由 opencv 根据卷积核的大小自动进行计算。</div><div class="line">@return：返回处理后的图像</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p>对于去除符合高斯分布的噪点有奇效。</p>
+<p>另外可以使用 <code>cv2.getGaussianKernel()</code> 创建高斯核。</p>
+<p><strong>中位数模糊（Median Blurring）</strong>，对于去除椒盐噪声（salt-and-pepper noise）具有奇效。</p>
+<p>直观上来讲，中位数模糊是将周围像素的像素值的中位数作为中心像素点的像素值，因此中心像素点的像素值总能等于周围某个像素点。而椒盐噪声是随机分布的纯白色噪点，它对于中位数模糊的结果几乎不产生影响，反观高斯模糊或者平均值模糊，总会因为椒盐噪声的存在而对结果产生一定的影响。因此这使得中位数模糊对去除校验噪声具有奇效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.medianBlur(img, ksize)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像。</div><div class="line">@param ksize：指定核大小，注意这里不同于前两个需要传入元组，这里只需要传入一个整数就行。</div><div class="line">@return：返回处理后的图像。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p><strong>对称模糊（Bilateral Blurring）</strong>，前边提到的几种模糊方式的一致目标都是降低图像噪声，但是不可避免地同时也会降低图像的边界信息。如果想要同时降低噪声还要能较好保留边界信息，则可以采用对称模糊。</p>
+<p>对称模糊能做到既降低噪声又尽量保留边界信息，是通过引入两个高斯分布实现的。</p>
+<p>第一个高斯函数只负责找出图像中在(x, y)坐标空间中邻近的像素点，第二个高斯函数对这些邻近的像素点的像素值进行建模，以保证只有那些像素值相似的点才参与到实际的模糊计算中。</p>
+<p>而对称模糊的最大缺陷是运算效率远低于前三种模糊算法。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cv2.bilateralFilter(img, diameter, color_sigma, space_sigma)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理的图像。</div><div class="line">@param diameter：提供一个整数，指定邻近像素的直径。</div><div class="line">@param color_sigma：提供一个整数，指定颜色的 sigma ， sigma 值越大，越多的相似像素会被考虑进来。</div><div class="line">@param space_sigma：提供一个整数，指定空间的 sigma ， sigma 越大，则会将更多离中心越远的像素考虑进来。 </div><div class="line">@return：返回处理后的像素。</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%205.png" alt="Alt text"></p>
+<h3 id="二值化（Thresholding）"><a href="#二值化（Thresholding）" class="headerlink" title="二值化（Thresholding）"></a>二值化（Thresholding）</h3><p>二值化处理就是将灰阶图（grayscale image）处理成像素值只能为 0 或者 255 的二值图像（binary image）。</p>
+<p><code>OpenCV</code> 提供了简单的二值化函数 <code>threshold()</code> 。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">cv2.threshold(gray_img, T, maximum_value, method)</div><div class="line"><span class="string">"""</span></div><div class="line">@param gray_img：待处理的灰阶图</div><div class="line">@param T：阈值 T</div><div class="line">@param maximum_value：二值化最大值，二值化之后像素最大值为 maximum_value ，最小值为 0 。</div><div class="line">@param method：指定二值化的方法。通常为 cv2.THRESH_BINARY 表示像素值大于 T 的像素置为 maximum_value ，而小于 T 的像素置为 0 ，或者 cv2.THRESH_BINARY_INV 这个效果与 cv2.THRESH_BINARY 恰恰相反。</div><div class="line">@return：以元组的形式返回两个值，第一个值为我们设置的阈值 T ,第二个值为二值化之后的图像。</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%202.png" alt="@二值化图像"></p>
+<p>第四张图片是将第三张二值化图像作为掩码作用于第一张图片之后所得到的结果。</p>
+<p>但是以上的二值化方法有个缺陷，就是必须手工地提供阈值 T ，这就导致了对图像二值化处理很依赖人的经验和直觉，另外在遇到非常复杂的图像时，要手工选出合适的阈值是一件非常难的事，因此 <code>OpenCV</code> 还为我们提供了自适应二值化方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cv2.adaptiveThreshold(img, maximum_value, method1, method2, ksize, C)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理的图像，必须为灰阶图</div><div class="line">@param maximum_value：二值化最大值，二值化之后像素最大值为 maximum_value ，最小值为 0 。</div><div class="line">@param method1：声明了用来计算由 ksize 指定大小的邻近像素阈值的方法。</div><div class="line">有两个可供选择：</div><div class="line">cv2.ADAPTIVE_THRESH_MEAN_C ，采用均值进行计算临近像素阈值</div><div class="line">cv2.ADAPTIVE_THRESH_GAUSSIAN_C ，采用高斯函数进行计算临近像素阈值</div><div class="line">@param method2：指定二值化的方法。通常为 cv2.THRESH_BINARY 表示像素值大于 T 的像素置为 maximum_value ，而小于 T 的像素置为 0 ，或者 cv2.THRESH_BINARY_INV 这个效果与 cv2.THRESH_BINARY 恰恰相反。</div><div class="line">@param ksize：指定了临近像素的范围，必须为奇数，范围是一个(k*k)的矩阵</div><div class="line">@param C：一个整型参数，将被作为计算所得阈值的减数，用来优化阈值。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%203.png" alt="Alt text"></p>
+<p>通常而言，要选用均值方法还是高斯方法进行二值化需要不断的测试。其中最重要的参数是 <code>ksize</code> 和 <code>C</code> 参数的调整。</p>
+<p>另一个自适应二值化方法是 <code>Otsu&#39;s method</code> ，这种方法也可以帮助使用者自动计算合适的阈值 T 。这种方法假设灰阶图的直方图中存在两个峰值，它将寻找一个最佳的值来将这两个峰值划分开，并将这个值作为阈值 T 。</p>
+<p>虽然 <code>OpenCV</code> 提供对 <code>Otsu&#39;s method</code> 的支持，但是这里只介绍由 Luis Pedro Coelho 实现的另一模块—— <code>mahotas</code> 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mahotas</div><div class="line">mahotas.thresholding.otsu(img)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理的图像，必须为灰阶图</div><div class="line">@return：阈值 T</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p><code>mahotas</code> 模块提供的另一个用于计算阈值的方法是 <code>Riddler-Calvard</code> 方法。使用方法与 <code>Otsu&#39;s method</code> 类似。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> mahotas</div><div class="line">mahotas.thresholding.rc(img)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像，必须为灰阶图</div><div class="line">@return：阈值 T</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/QQ%E5%9B%BE%E7%89%8720161209144230.png" alt="Alt text"></p>
+<h2 id="边界检测"><a href="#边界检测" class="headerlink" title="边界检测"></a>边界检测</h2><p>边界检测通常包含用来寻找图片中像素值亮度改变显著的点的数学方法。这就涉及一个概念——梯度计算。</p>
+<h3 id="Laplacian-函数计算梯度量"><a href="#Laplacian-函数计算梯度量" class="headerlink" title="Laplacian 函数计算梯度量"></a><code>Laplacian</code> 函数计算梯度量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.Laplacian(img, dtype)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理的图像，由于一次只能处理一个通道，因此通常的做法是传入灰阶图作为 参数。</div><div class="line">@param dtype：输出图像的数据类型，为了提高计算的精度，通常设置为 CV_64F ，即 64 位的浮点数。</div><div class="line">@return：返回处理之后的图像矩阵。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p>注意，在获取 <code>Laplacian</code> 函数返回的图像之后还需将图像矩阵的数据格式进行转换，通过使用 <code>numpy</code> 的 <code>uint8</code> 和 <code>absolute</code> 方法将数据转换为 8 位无符号整型数据。如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">np.uint8(np.absolute(img))</div></pre></td></tr></table></figure></p>
+<h3 id="sobel-函数计算梯度量"><a href="#sobel-函数计算梯度量" class="headerlink" title="sobel 函数计算梯度量"></a><code>sobel</code> 函数计算梯度量</h3><p>Sobel 方法允许我们分别计算 Y 轴与 X 轴方向上的边界。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">cv2.Sobel(img, dtype, value1, value2)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像，为灰阶图</div><div class="line">@param dtype：输出图像的数据类型，为了提高计算的精度，通常设置为 CV_64F ，即 64 位的浮点数。</div><div class="line">@param value1, value2：分别指定了 x, y 方向上的导数顺序，例如 1, 0 指定了计算垂直方向上的边界区； 0, 1 指定了计算水平方向上的边界区域。</div><div class="line">"""</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%205.png" alt="Alt text"></p>
+<p>上图分别对图像的水平方向和垂直方向进行 Sobel 边界检测，然后右上角的图像是水平方向与垂直方向边界检测结果的或操作结果。但是我们发现图像中存在许多的噪点。接下来介绍的 Canny 检测器将能有效的避免这个问题。</p>
+<h3 id="Canny-边界检测器"><a href="#Canny-边界检测器" class="headerlink" title="Canny 边界检测器"></a>Canny 边界检测器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.Canny(img, threshold1, threshold2)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像，需要提供经过模糊处理的灰阶图</div><div class="line">@param threshold1, threshold2：需要提供两个阈值，任何梯度值小于threshold1的像素都会认为不是边界，而任何梯度值大于 threshold2 的像素都会认为是边界，至于那些梯度位于 threshold1 和 threshold2 的像素则根据某种特定条件进行判定。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/09/2016/%E5%9B%BE%E5%83%8F%203.png" alt="Alt text"></p>
+<h3 id="findContours-函数可以找到边界的轮廓"><a href="#findContours-函数可以找到边界的轮廓" class="headerlink" title="findContours 函数可以找到边界的轮廓"></a><code>findContours</code> 函数可以找到边界的轮廓</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cv2.findContours(edged_img, type, approximate)</div><div class="line"><span class="string">"""</span></div><div class="line">@param edged_img：输入图像经过边界检测处理所得的边界图像，值得注意的是这个函数会对输入图像产生影响，所以一般传递图像矩阵的副本进去，可以使用 numpy 对象的 copy() 方法（opencv 中的图像矩阵是一个 numpy 对象）。</div><div class="line">@param type：需要计算的轮廓的类型，可选值有（cv2.RETR_EXTERNAL, cv2.RETR_LIST, cv2.RETR_COMP, cv2.RETR_TREE）</div><div class="line">@param approximate：指定轮廓计算的近似方法，可选值有（cv2.CHAIN_APPROX_SIMPLE， cv2.CHAIN_APPROX_NONE），第一个方法有进行压缩以节省内存空间与运算，第二个则没有，通常情况下的使用都采用方法一。</div><div class="line">@return：带三个值的元组，分别是（contours, cnts, hierarchy），其中 cnts　是一个由轮廓组成的 list ，因此只要用 python 的內建函数 len() 便可求出轮廓的个数。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="drawContours-绘制轮廓"><a href="#drawContours-绘制轮廓" class="headerlink" title="drawContours 绘制轮廓"></a><code>drawContours</code> 绘制轮廓</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">cv2.drawContours(img, contours, index, color, thickness)</div><div class="line"><span class="string">"""</span></div><div class="line">@param img：待处理图像，该函数会直接在 img 图像上进行绘制轮廓</div><div class="line">@param contours：轮廓线组成的 list</div><div class="line">@param index：所要绘制的第二个参数中轮廓线的索引（从 0 开始），如果为 -1 的话表示绘制所有轮廓线</div><div class="line">@param color：绘制颜色</div><div class="line">@param thickness：绘制轮廓线的粗细</div><div class="line">@return：None</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="boundingRect-获得刚好能容纳轮廓的矩形"><a href="#boundingRect-获得刚好能容纳轮廓的矩形" class="headerlink" title="boundingRect 获得刚好能容纳轮廓的矩形"></a><code>boundingRect</code> 获得刚好能容纳轮廓的矩形</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.boundingRect(contour)</div><div class="line"><span class="string">"""</span></div><div class="line">@param contour：轮廓值</div><div class="line">@return：返回一组元组，(x, y, h, w)，指定了刚好能容纳轮廓的矩形在图像中的位置以及长宽。</div><div class="line">""</div></pre></td></tr></table></figure>
+<h3 id="minEnclosingCircle-获得刚好能容纳轮廓的圆形"><a href="#minEnclosingCircle-获得刚好能容纳轮廓的圆形" class="headerlink" title="minEnclosingCircle 获得刚好能容纳轮廓的圆形"></a><code>minEnclosingCircle</code> 获得刚好能容纳轮廓的圆形</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.minEnclosingCircle(contour)</div><div class="line"><span class="string">"""</span></div><div class="line">@param contour：轮廓值</div><div class="line">@return：返回一组元组，((x, y), r)，分别是圆心坐标与半径</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h2 id="视频操作"><a href="#视频操作" class="headerlink" title="视频操作"></a>视频操作</h2><h3 id="VideoCapture-读取视频文件"><a href="#VideoCapture-读取视频文件" class="headerlink" title="VideoCapture 读取视频文件"></a><code>VideoCapture</code> 读取视频文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cv2.VideoCapture(filepath)</div><div class="line"><span class="string">"""</span></div><div class="line">@param filepath：视频文件路径名</div><div class="line">@return：返回一个视频对象，之后关于视频的所有操作都由这个对象进行负责</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p>要读取视频每一帧，首先要使用函数 <code>VideoCapture</code> 打开视频，然后通过该函数返回的对象进行操作，这里假设这个对象名称为 <code>cap</code> 。即我们进行了操作：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cap = cv2.VideoCapture(filepath)</div></pre></td></tr></table></figure></p>
+<p>后续的视频操作都要用到 <code>cap</code> 这个对象进行管理。</p>
+<h3 id="cap-get-获取视频属性"><a href="#cap-get-获取视频属性" class="headerlink" title="cap.get 获取视频属性"></a><code>cap.get</code> 获取视频属性</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cap.get(number)</div><div class="line"><span class="string">"""</span></div><div class="line">@param number：整数</div><div class="line">"""</div></pre></td></tr></table></figure>
+<p>通过给该方法传入不同参数可以获得视频不同属性信息，部分参数与返回属性信息如下表。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">number</th>
+<th style="text-align:left">属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">获取视频宽度</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">获取视频高度</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">获取视频帧率</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">获取视频总的帧数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cap-read-读取视频下一帧"><a href="#cap-read-读取视频下一帧" class="headerlink" title="cap.read 读取视频下一帧"></a><code>cap.read</code> 读取视频下一帧</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cap.read()</div><div class="line"><span class="string">"""</span></div><div class="line">@return：返回一个元组，(bool, frame)，第一个值为布尔值，表示视频是否被正确读取，第二个值为当前帧的图像数据，类型为 numpy.ndarray 。</div><div class="line">"""</div></pre></td></tr></table></figure>
+<h3 id="cap-release-释放资源"><a href="#cap-release-释放资源" class="headerlink" title="cap.release 释放资源"></a><code>cap.release</code> 释放资源</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cap.release()</div></pre></td></tr></table></figure>
+<p>在不使用视频对象之后要释放该资源。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/OpenCV/" rel="tag">#OpenCV</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/07/第七章：进程环境/" rel="next" title="第七章：进程环境">
+                <i class="fa fa-chevron-left"></i> 第七章：进程环境
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/09/Python3-中的-OpenCV-模块操作简介/"
+           data-title="Python3 中的 OpenCV 模块操作简介" data-url="http://un-knight.github.io/2016/12/09/Python3-中的-OpenCV-模块操作简介/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
+               alt="小鸡遛狗" />
+          <p class="site-author-name" itemprop="name">小鸡遛狗</p>
+          <p class="site-description motion-element" itemprop="description">Keep thinking</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/un-knight" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/UnderworldYjx" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3639801160" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dlecheng.cn/" title="Dylan" target="_blank">Dylan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入模块"><span class="nav-number">1.</span> <span class="nav-text">导入模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像的读写"><span class="nav-number">2.</span> <span class="nav-text">图像的读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#imread-image-path-mode"><span class="nav-number">2.1.</span> <span class="nav-text">imread(image_path, mode)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#imshow-str-image"><span class="nav-number">2.2.</span> <span class="nav-text">imshow(str, image)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#waitKey-0"><span class="nav-number">2.3.</span> <span class="nav-text">waitKey(0)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#imwrite-str-image"><span class="nav-number">2.4.</span> <span class="nav-text">imwrite(str, image)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绘制形状"><span class="nav-number">3.</span> <span class="nav-text">绘制形状</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#line-："><span class="nav-number">3.1.</span> <span class="nav-text">line() ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rectangle-："><span class="nav-number">3.2.</span> <span class="nav-text">rectangle() ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#circle-："><span class="nav-number">3.3.</span> <span class="nav-text">circle() ：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#putText-绘制指定字符串"><span class="nav-number">3.4.</span> <span class="nav-text">putText()绘制指定字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像操作"><span class="nav-number">4.</span> <span class="nav-text">图像操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#warpAffine-执行旋转或者平移"><span class="nav-number">4.1.</span> <span class="nav-text">warpAffine 执行旋转或者平移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getRotationMatrix2D-旋转函数"><span class="nav-number">4.2.</span> <span class="nav-text">getRotationMatrix2D 旋转函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#resize-缩放"><span class="nav-number">4.3.</span> <span class="nav-text">resize 缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split-划分颜色通道"><span class="nav-number">4.4.</span> <span class="nav-text">split 划分颜色通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#merge-融合通道"><span class="nav-number">4.5.</span> <span class="nav-text">merge 融合通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cvtColor-颜色空间转换"><span class="nav-number">4.6.</span> <span class="nav-text">cvtColor 颜色空间转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#calcHist-计算直方图"><span class="nav-number">4.7.</span> <span class="nav-text">calcHist 计算直方图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#equalizeHist-均衡灰阶图的直方图"><span class="nav-number">4.8.</span> <span class="nav-text">equalizeHist 均衡灰阶图的直方图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#滤波器"><span class="nav-number">4.9.</span> <span class="nav-text">滤波器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二值化（Thresholding）"><span class="nav-number">4.10.</span> <span class="nav-text">二值化（Thresholding）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边界检测"><span class="nav-number">5.</span> <span class="nav-text">边界检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplacian-函数计算梯度量"><span class="nav-number">5.1.</span> <span class="nav-text">Laplacian 函数计算梯度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sobel-函数计算梯度量"><span class="nav-number">5.2.</span> <span class="nav-text">sobel 函数计算梯度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Canny-边界检测器"><span class="nav-number">5.3.</span> <span class="nav-text">Canny 边界检测器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#findContours-函数可以找到边界的轮廓"><span class="nav-number">5.4.</span> <span class="nav-text">findContours 函数可以找到边界的轮廓</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#drawContours-绘制轮廓"><span class="nav-number">5.5.</span> <span class="nav-text">drawContours 绘制轮廓</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boundingRect-获得刚好能容纳轮廓的矩形"><span class="nav-number">5.6.</span> <span class="nav-text">boundingRect 获得刚好能容纳轮廓的矩形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#minEnclosingCircle-获得刚好能容纳轮廓的圆形"><span class="nav-number">5.7.</span> <span class="nav-text">minEnclosingCircle 获得刚好能容纳轮廓的圆形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视频操作"><span class="nav-number">6.</span> <span class="nav-text">视频操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VideoCapture-读取视频文件"><span class="nav-number">6.1.</span> <span class="nav-text">VideoCapture 读取视频文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cap-get-获取视频属性"><span class="nav-number">6.2.</span> <span class="nav-text">cap.get 获取视频属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cap-read-读取视频下一帧"><span class="nav-number">6.3.</span> <span class="nav-text">cap.read 读取视频下一帧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cap-release-释放资源"><span class="nav-number">6.4.</span> <span class="nav-text">cap.release 释放资源</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小鸡遛狗</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"un-knight"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gSjcGtpxrvPtKFfRAmiFMmAg-gzGzoHsz", "jGg92JiNdsjYFY5hWDyRkJOU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
