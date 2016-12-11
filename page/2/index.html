@@ -259,6 +259,141 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/02/Python-读取-txt-数据并转化为-numpy-array/" itemprop="url">
+                  Python 读取 txt 数据并转化为 numpy.array
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T19:58:09+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/02/Python-读取-txt-数据并转化为-numpy-array/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/02/Python-读取-txt-数据并转化为-numpy-array/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/02/Python-读取-txt-数据并转化为-numpy-array/" class="leancloud_visitors" data-flag-title="Python 读取 txt 数据并转化为 numpy.array">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在机器学习或者数据挖掘的学习过程中会发现很多数据都会存储在 CVS 文件中，但是这些数据也可以存储在 txt 文件中。</p>
+<p>想要使用 python 对这些数据进行处理的时候却不知道如何快捷地从 txt 文件中读取数据怎么行，这里我将分享我的处理方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_from_txt</span><span class="params">(filename=None)</span>:</span></div><div class="line">    <span class="string">"""</div><div class="line">    read dataset from txt and return np.array</div><div class="line">    :param filename: filename</div><div class="line">    :return: data (type of np.array)</div><div class="line">    """</span></div><div class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> file_to_read:</div><div class="line">        data = []</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            lines = file_to_read.readline()</div><div class="line">            <span class="keyword">if</span> <span class="keyword">not</span> lines:</div><div class="line">                <span class="keyword">break</span></div><div class="line">            <span class="comment"># txt 文档中每列数据之间通过 “,” 符号分隔开 </span></div><div class="line">            data_line = [float(i) <span class="keyword">for</span> i <span class="keyword">in</span> lines.split(<span class="string">','</span>)]</div><div class="line">            data.append(data_line)</div><div class="line">        data = np.array(data)</div><div class="line">        <span class="keyword">return</span> data</div></pre></td></tr></table></figure>
+<p>到了后来才发现 numpy 也提供了一个强大的格式化读取 txt 文件的接口 <code>numpy.loadtxt</code> 。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/02/Python-读取-txt-数据并转化为-numpy-array/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/" itemprop="url">
                   利用 Github Page 搭建 Hexo 静态博客
                 </a>
@@ -787,144 +922,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/23/第三章：文件-I-O/" itemprop="url">
-                  第三章：文件 I/O
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-23T23:08:54+08:00" content="2016-11-23">
-              2016-11-23
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/23/第三章：文件-I-O/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/23/第三章：文件-I-O/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/23/第三章：文件-I-O/" class="leancloud_visitors" data-flag-title="第三章：文件 I/O">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ol>
-<li><p><strong>不带缓冲</strong>：指的是每个 <code>read</code> 和 <code>write</code> 都调用内核中的一个系统调用。<br>PS：这里的“不带缓冲”并不说 read 与 write 函数就不带缓冲机制。事实上，所有的磁盘 I/O 都要经过内核的块缓存器，唯一例外的是对原始磁盘设备的 I/O ，但是我们不考虑。既然 read 或 write 的数据都要被内核缓存，那么术语“不带缓存的 I/O”指的是在用户的进程中对这两个函数不会自动缓存，每次 read 或者 write 就要进行一次系统调用。</p>
-</li>
-<li><p><strong>文件描述符</strong>：文件描述符是一个<strong>非负整数</strong>，当使用 <code>create</code> 或者 <code>open</code> 函数创建或者打开一个文件的时候，内核向进程返回一个文件描述符。对内核而言，所有对打开的文件都通过文件描述符进行引用操作。</p>
-</li>
-<li><strong>延迟写</strong>：当要将数据写入文件时，内核通常先将该数据复制到其中一个缓冲区块中，等待该缓冲区块写满或者当内核需要重用该缓冲区以便存放其他磁盘块数据时，再将该缓冲排入输入队列，然后待其到达队首时，才进行实际的 I/O 操作。<br>优缺点：延迟写虽然减少了磁盘读写次数，但是却降低了文件内容的更新速度，可能导致磁盘上实际文件内容与缓冲区中内容不一致的问题。</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/23/第三章：文件-I-O/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -970,7 +967,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -987,7 +984,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
