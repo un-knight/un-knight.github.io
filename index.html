@@ -259,6 +259,172 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/19/Recall-vs-Precision/" itemprop="url">
+                  Recall vs. Precision
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-19T20:48:07+08:00" content="2016-12-19">
+              2016-12-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/19/Recall-vs-Precision/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/19/Recall-vs-Precision/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/19/Recall-vs-Precision/" class="leancloud_visitors" data-flag-title="Recall vs. Precision">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>在统计学或者是统计机器学习的领域中经常会遇到召回率（Recall）与准确率（Precision）两个指标用来评估分类模型的表现情况。</p>
+<ul>
+<li>精度（Precision）：就是用来评估模型对训练样本预测的正确率。</li>
+<li>召回率（Recall）：用来评估模型对训练样本的回忆能力，比如给模型输入所有的正训练样本看最后模型能将多少样本的判断为正，所以又形象地被称为“查全率”。</li>
+</ul>
+<p>以癌症预测为例，患癌标记为 1，没患癌标记为 0 （即以患癌为正样本，没患癌为负样本）。</p>
+<p>则对于任一样本的预测结果都可能出现以下四种情况之一：</p>
+<ol>
+<li>预测样本患癌，实际上样本确实患癌（即预测 1，实际 1）</li>
+<li>预测样本患癌，但实际上样本没有患癌（即预测 1，实际 0）</li>
+<li>预测样本没患癌，但实际上样本患癌（即预测 0， 实际 1）</li>
+<li>预测样本没患癌，实际上样本确实患癌（即预测 0，实际 0）</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">\</th>
+<th style="text-align:center">患癌</th>
+<th style="text-align:center">没患癌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>预测患癌</strong></td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>预测没患癌</strong></td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">d</td>
+</tr>
+</tbody>
+</table>
+<p>那么精度的计算公式是：</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/19/Recall-vs-Precision/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" itemprop="url">
                   Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决
                 </a>
@@ -803,147 +969,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/03/Python-中的枚举类型/" itemprop="url">
-                  Python 中的枚举类型
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-03T23:44:21+08:00" content="2016-12-03">
-              2016-12-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/03/Python-中的枚举类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/03/Python-中的枚举类型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/12/03/Python-中的枚举类型/" class="leancloud_visitors" data-flag-title="Python 中的枚举类型">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在 Python 中可以通过 enum 模块提供的 Enum 类来实现枚举类型。</p>
-<p>可以直接使用 Enum 类创建枚举类型实例或者也可以创建 Enum 的子类来更准确地定义枚举成员。</p>
-<p>通过 Enum 直接创建枚举：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>fruit = Enum(<span class="string">'fruits'</span>, (<span class="string">'apple'</span>, <span class="string">'banana'</span>, <span class="string">'orange'</span>, <span class="string">'peach'</span>))</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>fruit</div><div class="line">&lt;enum <span class="string">'fruits'</span>&gt;</div></pre></td></tr></table></figure>
-<p>通过子类定义枚举类型的方式如下：</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/03/Python-中的枚举类型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -984,7 +1014,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1001,7 +1031,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
