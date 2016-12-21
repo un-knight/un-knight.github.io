@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479645200565.png">
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479906723022.png">
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/ex2_logistic_regression_boundary.png">
-<meta property="og:updated_time" content="2016-12-21T15:19:08.882Z">
+<meta property="og:updated_time" content="2016-12-21T15:25:54.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章：Logistic regression">
 <meta name="twitter:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
@@ -428,21 +428,21 @@
 <li>当假设所有的特征都符合高斯分布的前提下，该损失函数可以通过最大似然估计原则推导出来。</li>
 <li>并且这个损失函数是一个凸函数，这一点方便进行梯度下降计算。</li>
 </ul>
-<h2 id="七、梯度下降"><a href="#七、梯度下降" class="headerlink" title="七、梯度下降"></a>七、梯度下降</h2><p>在定义好假设函数与损失函数之后便可以通过梯度下降法来最小化损失函数从而求出参数 $\theta$ 。</p>
+<h2 id="五、梯度下降"><a href="#五、梯度下降" class="headerlink" title="五、梯度下降"></a>五、梯度下降</h2><p>在定义好假设函数与损失函数之后便可以通过梯度下降法来最小化损失函数从而求出参数 $\theta$ 。</p>
 <p>和线性回归当中的梯度下降法一样，不断迭代更新 $\theta$ 直到满足条件。</p>
 <p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479643960277.png" alt="Alt text"></p>
 <p>在梯度下降之前，如果读取的数据含有多个特征，则需要先将特征归一化。</p>
-<h2 id="八、多分类问题（Multiclass-classification-problem）"><a href="#八、多分类问题（Multiclass-classification-problem）" class="headerlink" title="八、多分类问题（Multiclass classification problem）"></a>八、多分类问题（Multiclass classification problem）</h2><p>使用 Logistic regression 解决多分类问题的一个策略就是 <strong>one vs. all</strong> 。</p>
+<h2 id="六、多分类问题（Multiclass-classification-problem）"><a href="#六、多分类问题（Multiclass-classification-problem）" class="headerlink" title="六、多分类问题（Multiclass classification problem）"></a>六、多分类问题（Multiclass classification problem）</h2><p>使用 Logistic regression 解决多分类问题的一个策略就是 <strong>one vs. all</strong> 。</p>
 <p>one vs. all 的思想就是将一个多分类问题分解为多个二分类子问题，对这些二分类子问题分别训练参数 $\theta$ 。当获取一个全新的输入 x 的时候，将 x 输入到所有的二分类假设函数 $h_{\theta}(x)$ 中，取估计值最大的类别作为 x 的预测类别。</p>
 <p>例如，要使用 Logistic regression 解决下图的三分类问题。</p>
 <p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479645238771.png" alt="Alt text"></p>
 <p>可以将三分类问题分解为三个二分类问题进行分别训练。</p>
 <p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479645200565.png" alt="Alt text"></p>
 <p>（待完善：多分类的另一策略 softmax ）</p>
-<h2 id="九、Coding-time"><a href="#九、Coding-time" class="headerlink" title="九、Coding time"></a>九、Coding time</h2><p>本代码是基于吴恩达老师在 coursera 中 《Machine Learning》<a href="https://www.coursera.org/learn/machine-learning/home/week/2" target="_blank" rel="external">第三周课程</a>提供的练习题数据实现的。</p>
+<h2 id="七、Coding-time"><a href="#七、Coding-time" class="headerlink" title="七、Coding time"></a>七、Coding time</h2><p>本代码是基于吴恩达老师在 coursera 中 《Machine Learning》<a href="https://www.coursera.org/learn/machine-learning/home/week/2" target="_blank" rel="external">第三周课程</a>提供的练习题数据实现的。</p>
 <p>以下链接附有完整的代码（Python 实现）以及题目和数据。</p>
 <p><a href="https://github.com/un-knight/machine-learning-algorithm" target="_blank" rel="external">ex2_logistic_regression</a></p>
-<h3 id="9-1-Project-1"><a href="#9-1-Project-1" class="headerlink" title="9.1 Project 1"></a>9.1 Project 1</h3><p>这是题目一《Logistic regression》的实验结果。</p>
+<h3 id="7-1-Project-1"><a href="#7-1-Project-1" class="headerlink" title="7.1 Project 1"></a>7.1 Project 1</h3><p>这是题目一《Logistic regression》的实验结果。</p>
 <p>其中在求解 Logistic 参数的过程中，实验指导书使用了 matlab 內建函数，而在 python 平台我并不确定 numpy 或者 scipy 库有类似功能的函数可以替代，因此任然使用自己编写的梯度下降法进行学习求参。</p>
 <p>最终在学习率为 3.0 的情况下经过 400 此迭代后对数据 [exam1=45, exam2=85] 预测结果为 0.765 ，与实验指导书给出的 0.776 仍有一定的差距。</p>
 <p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/21/2016/1479906723022.png" alt="Alt text"></p>
@@ -665,7 +665,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语说明"><span class="nav-number">1.</span> <span class="nav-text">术语说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引入"><span class="nav-number">2.</span> <span class="nav-text">一、引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、假设函数的定义"><span class="nav-number">3.</span> <span class="nav-text">二、假设函数的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、决策边界（Decision-boundary）"><span class="nav-number">4.</span> <span class="nav-text">三、决策边界（Decision boundary）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、损失函数"><span class="nav-number">5.</span> <span class="nav-text">四、损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-简化损失函数"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 简化损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-补充"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、梯度下降"><span class="nav-number">6.</span> <span class="nav-text">七、梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、多分类问题（Multiclass-classification-problem）"><span class="nav-number">7.</span> <span class="nav-text">八、多分类问题（Multiclass classification problem）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、Coding-time"><span class="nav-number">8.</span> <span class="nav-text">九、Coding time</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-Project-1"><span class="nav-number">8.1.</span> <span class="nav-text">9.1 Project 1</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#术语说明"><span class="nav-number">1.</span> <span class="nav-text">术语说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引入"><span class="nav-number">2.</span> <span class="nav-text">一、引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、假设函数的定义"><span class="nav-number">3.</span> <span class="nav-text">二、假设函数的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、决策边界（Decision-boundary）"><span class="nav-number">4.</span> <span class="nav-text">三、决策边界（Decision boundary）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、损失函数"><span class="nav-number">5.</span> <span class="nav-text">四、损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-简化损失函数"><span class="nav-number">5.1.</span> <span class="nav-text">4.1 简化损失函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-补充"><span class="nav-number">5.2.</span> <span class="nav-text">4.2 补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、梯度下降"><span class="nav-number">6.</span> <span class="nav-text">五、梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、多分类问题（Multiclass-classification-problem）"><span class="nav-number">7.</span> <span class="nav-text">六、多分类问题（Multiclass classification problem）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、Coding-time"><span class="nav-number">8.</span> <span class="nav-text">七、Coding time</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-Project-1"><span class="nav-number">8.1.</span> <span class="nav-text">7.1 Project 1</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
