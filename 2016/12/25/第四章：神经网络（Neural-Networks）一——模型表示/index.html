@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="TensorFlow,安装问题," />
+  <meta name="keywords" content="Python3," />
 
 
 
@@ -84,22 +84,54 @@
 
 
 
-<meta name="description" content="今天在 Anaconda （Windows 环境）中安装 TensorFlow 的时候遇到了一个奇怪的问题。提示说：
-1Cannot remove entries from nonexistent file e:\anaconda3\lib\site-packages\easy-install.pth
-根据每个人的 Python 安装路径不同，提示的路径会有所不同，但形式都是 [your pyth">
+<meta name="description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决">
-<meta property="og:url" content="http://un-knight.github.io/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/index.html">
+<meta property="og:title" content="第四章：神经网络（Neural Networks）一——模型表示">
+<meta property="og:url" content="http://un-knight.github.io/2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="今天在 Anaconda （Windows 环境）中安装 TensorFlow 的时候遇到了一个奇怪的问题。提示说：
-1Cannot remove entries from nonexistent file e:\anaconda3\lib\site-packages\easy-install.pth
-根据每个人的 Python 安装路径不同，提示的路径会有所不同，但形式都是 [your pyth">
-<meta property="og:updated_time" content="2016-12-11T09:48:42.641Z">
+<meta property="og:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480142933875.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480215870745.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480230624361.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480231959201.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480235031007.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480235810844.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245913754.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245998749.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480241431930.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245667111.png">
+<meta property="og:updated_time" content="2016-12-25T09:05:09.334Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决">
-<meta name="twitter:description" content="今天在 Anaconda （Windows 环境）中安装 TensorFlow 的时候遇到了一个奇怪的问题。提示说：
-1Cannot remove entries from nonexistent file e:\anaconda3\lib\site-packages\easy-install.pth
-根据每个人的 Python 安装路径不同，提示的路径会有所不同，但形式都是 [your pyth">
+<meta name="twitter:title" content="第四章：神经网络（Neural Networks）一——模型表示">
+<meta name="twitter:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+符号说明
+$m$ ——训练集的大小
+$x$ ——输入变量
+$y$ ——输出变量
+$(x, y)$ ——单一训练样例
+$(x^{i}, y^{i})$ ——第 i 个训练样例
+$:=$ ——赋值符号
+$\alpha$ ——学习率（">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480142933875.png">
 
 
 
@@ -120,10 +152,10 @@
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/"/>
 
 
-  <title> Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决 | 小鸡遛狗的博客 </title>
+  <title> 第四章：神经网络（Neural Networks）一——模型表示 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -263,7 +295,7 @@
             
             
               
-                Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决
+                第四章：神经网络（Neural Networks）一——模型表示
               
             
           </h1>
@@ -275,8 +307,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-11T17:47:09+08:00" content="2016-12-11">
-              2016-12-11
+            <time itemprop="dateCreated" datetime="2016-12-25T16:57:06+08:00" content="2016-12-25">
+              2016-12-25
             </time>
           </span>
 
@@ -289,8 +321,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术汇/" itemprop="url" rel="index">
-                    <span itemprop="name">技术汇</span>
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -305,8 +337,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" itemprop="commentsCount"></span>
+                <a href="/2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -317,7 +349,7 @@
 
           
           
-             <span id="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" class="leancloud_visitors" data-flag-title="Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决">
+             <span id="/2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/" class="leancloud_visitors" data-flag-title="第四章：神经网络（Neural Networks）一——模型表示">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -339,19 +371,68 @@
       
 
       
-        <p>今天在 Anaconda （Windows 环境）中安装 TensorFlow 的时候遇到了一个奇怪的问题。提示说：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cannot remove entries from nonexistent file e:\anaconda3\lib\site-packages\easy-install.pth</div></pre></td></tr></table></figure>
-<p>根据每个人的 Python 安装路径不同，提示的路径会有所不同，但形式都是 <code>[your python path]\lib\site-packages\easy-install.pth</code> 。</p>
-<a id="more"></a>
-<p>导致这一问题的是原因是在 Anaconda 的扩展包路径下不存在 easy-install.pth 。所以一个妥协的方案是，可以通过在安装 TensorFlow 之前先装上 easy-install 。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install --ignore-installed --upgrade pip setuptools</div></pre></td></tr></table></figure>
-<p>然后再安装 TensorFlow （仅支持 CPU 版本）。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-0.12.0rc0-cp35-cp35m-win_amd64.whl</div></pre></td></tr></table></figure>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p>显然这个坑还涉及更多的问题，在 <a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="external">TensorFlow 的 Github</a> 上也有许多相关的 Issues ，不过我没有一一去看，如果以上的方案对你并不适用，那么建议你到以下 Issues 中找找其它的解决方法。</p>
-<ul>
-<li><a href="https://github.com/tensorflow/tensorflow/issues/3324" target="_blank" rel="external">https://github.com/tensorflow/tensorflow/issues/3324</a></li>
-<li><a href="https://github.com/ContinuumIO/anaconda-issues/issues/542" target="_blank" rel="external">https://github.com/ContinuumIO/anaconda-issues/issues/542</a></li>
+        <blockquote>
+<p>说明：这是我在学习吴恩达老师在 coursera 中 <a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="external">《Machine Learning》课程</a>的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。</p>
+</blockquote>
+<h2 id="符号说明"><a href="#符号说明" class="headerlink" title="符号说明"></a>符号说明</h2><ul>
+<li>$m$ ——训练集的大小</li>
+<li>$x$ ——输入变量</li>
+<li>$y$ ——输出变量</li>
+<li>$(x, y)$ ——单一训练样例</li>
+<li>$(x^{i}, y^{i})$ ——第 i 个训练样例</li>
+<li>$:=$ ——赋值符号</li>
+<li>$\alpha$ ——学习率（learning rate）</li>
 </ul>
+<h2 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h2><p>神经网络（Neural networks）算法适用于复杂的（特征向量空间较大）非线性分类问题，比如图像分类。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480142933875.png" alt="Alt text"></p>
+<p>如上图，对一张图片（假设图片大小为 50x50）中的主体是否是车进行分类，如果只取图中的 pixel1 与 pixel2 作为判断的特征依据的话，那么特征向量空间还相对简单，但是实际上对于一张 50x50 图像进行分类显然不可能只取上图中的两点作为分类的特征因为这样忽略了图中其它剩余的特征信息。所以实际的做法是将整张图片的每个像素值都作为特征输入，并且对于 RGB 图像每个像素还有 3 个通道，这意味着将获得一个 50x50x3=7500 的特征向量空间。并且图像分类问题中的分类边界总是呈现出非线性的特性，所以如果使用逻辑回归（Logistic regression）来解决这类分类问题并不合适。</p>
+<p>神经网络（NNs）算法顾名思义就是利用算法模仿大脑神经元的工作模式来打造学习系统。该算法在八十到九十年代曾流行过一段时间但是九十年代之后就没落了，最大原因就在于该算法需要消耗大量的运算资源，这在当时硬件条件下是不被允许的，但是最近得益于硬件性能的发展 NNs 得以复兴。</p>
+<a id="more"></a>
+<h2 id="二、模型表示"><a href="#二、模型表示" class="headerlink" title="二、模型表示"></a>二、模型表示</h2><p>神经元是大脑神经网络组成的基本单位，下图是一张神经元的结构图。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480215870745.png" alt="Alt text"></p>
+<p>神经元主要由三部分组成，分别是<strong>树突（Dendrite）、细胞体（Cell body）和轴突（Axon）</strong>。而它的信息传输过程大致可以描述为一个或者多个信号（电刺激）从树突输入到细胞体进行处理，然后再将处理后的信息交给轴突输出。</p>
+<p>人造神经网络对于神经元的表示正是基于这种生物模型构建而成。在人造神经网络当中，神经元即是一个<strong>逻辑单元（logistic unit）</strong>，与生物神经元类似地，人造神经元包含三个部分，分别是<strong>输入层、逻辑计算单元、输出层</strong>，并且逻辑计算单元的逻辑计算与逻辑回归中的假设函数是一致的。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480230624361.png" alt="Alt text"></p>
+<p>上图中展示了人造神经元的结构，其中包含了一个逻辑激活函数（logistic activation function），在这里激活函数中的 $\theta$ 向量也称为权值（weights）。另外通常在输入向量中会多添加一个偏置单元（bias unit）$x_{0} = 1$ 。</p>
+<blockquote>
+<p>说明：这里使用激活（activation）泛指获取输入进行处理之后再进行输出的单元。</p>
+</blockquote>
+<p>底下给出了引入多个人造神经单元并构成神经网络的结构图。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480231959201.png" alt="Alt text"></p>
+<p>在这个结构中包含有三层结构。</p>
+<ul>
+<li>第一层是输入层（input layer）</li>
+<li>第二层是隐含层（hidden layer），用于处理输入数据，并且允许拥有多个隐含层</li>
+<li>第三层是输出层（output layer）</li>
+</ul>
+<p>所以上图中 $x_{1}, x_{2}, x_{3}$ 对应三个输入值输入到隐含层中，隐含层中包含有三个逻辑运算单元，<strong>每个逻辑单元都能获取完整的输入数据</strong>进行计算并且输出运算结果。</p>
+<h3 id="2-1-符号说明"><a href="#2-1-符号说明" class="headerlink" title="2.1 符号说明"></a>2.1 符号说明</h3><p>下图给出了神经网络的一个例子用以做符号说明。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480235031007.png" alt="Alt text"></p>
+<p>该图反映了前向传播（forward propagation）过程。</p>
+<p>$a_{i}^{j}$ 代表第 j 层第 i 个激活单元。</p>
+<p>$\theta^{l}$ 表示第 l 层到第 l+1 层映射关系的参数矩阵，其中的元素 $\theta_{ji}^{l}$ 需要满足以下条件。</p>
+<ul>
+<li>j 的定义域为 $1$ 到 $n_{l+1}$ （第 $l+1$ 层的单元数）</li>
+<li>i 的定义域为 $0$ 到 $n_{l}$ （第 $l$ 层的单元数）</li>
+<li>l 指的是当前运算所处的层数</li>
+</ul>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480235810844.png" alt="Alt text"></p>
+<h2 id="三、例子说明"><a href="#三、例子说明" class="headerlink" title="三、例子说明"></a>三、例子说明</h2><p>为了更直观地理解神经网络的工作方式，这里举个例子，暂时先不用在意例子中的权值是如何得到的。比如要通过神经网络实现逻辑与运算，可以这样设计。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245913754.png" alt="Alt text"></p>
+<p>上图中 [-30, 20, 20] 就是权值 $\theta$ 。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245998749.png" alt="Alt text"></p>
+<p>这样如上图中右侧表格所示，我们将可能的逻辑值带入神经网络进行运算，最后所得的结果与实际的逻辑运算是一样的。</p>
+<h2 id="四、多分类"><a href="#四、多分类" class="headerlink" title="四、多分类"></a>四、多分类</h2><p>要使用神经网络解决多分类问题也很简单，就是在输出层多添加几个单元用，每个输出单元对应一个类别，当输入的特征经过计算之后将输出单元中值最大的类别作为分类类别。</p>
+<p>比如需要对行人、小车、摩托车和卡车进行分类，可以构建四个输出单元分别对应四种类别，当计算输出向量 [1, 0, 0, 0] 的时候我们就认为该样本应该被分类为人，其它类别以此类推。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480241431930.png" alt="Alt text"></p>
+<p>同理的，不同以往的训练数据中 y 采用 {1, 2, 3, 4} 表示类别，在这里使用的训练数据需要表示成向量。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/25/2016/1480245667111.png" alt="Alt text"></p>
+<h2 id="Coding-time"><a href="#Coding-time" class="headerlink" title="Coding time"></a>Coding time</h2><p>本代码是基于吴恩达老师在 coursera 中 《Machine Learning》<a href="httphttps://www.coursera.org/learn/machine-learning/home/week/4" target="_blank" rel="external">第四周课程</a>提供的编程作业数据实现的。</p>
+<p>以下链接附有完整的代码（Python 实现）以及题目和数据。</p>
+<p><a href="https://github.com/un-knight/machine-learning-algorithm" target="_blank" rel="external">ex3_multiclass_classification_and_neural_networks</a></p>
+<blockquote>
+<p>备注：笔记中的例子与数据（除了 Coding time 部分之外）均来自吴恩达老师在 coursera 中 《Machine Learning》课程。</p>
+</blockquote>
 
       
     </div>
@@ -390,9 +471,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/TensorFlow/" rel="tag">#TensorFlow</a>
-          
-            <a href="/tags/安装问题/" rel="tag">#安装问题</a>
+            <a href="/tags/Python3/" rel="tag">#Python3</a>
           
         </div>
       
@@ -401,17 +480,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/" rel="next" title="Python3 中的 OpenCV 模块操作简介">
-                <i class="fa fa-chevron-left"></i> Python3 中的 OpenCV 模块操作简介
+              <a href="/2016/12/21/第三章：Logistic-regression/" rel="next" title="第三章：Logistic regression">
+                <i class="fa fa-chevron-left"></i> 第三章：Logistic regression
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/19/Recall-vs-Precision/" rel="prev" title="Recall vs. Precision">
-                Recall vs. Precision <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -437,8 +512,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/"
-           data-title="Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决" data-url="http://un-knight.github.io/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/">
+      <div class="ds-thread" data-thread-key="2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/"
+           data-title="第四章：神经网络（Neural Networks）一——模型表示" data-url="http://un-knight.github.io/2016/12/25/第四章：神经网络（Neural-Networks）一——模型表示/">
       </div>
     
   </div>
@@ -572,7 +647,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关链接"><span class="nav-number">1.</span> <span class="nav-text">相关链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号说明"><span class="nav-number">1.</span> <span class="nav-text">符号说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、引入"><span class="nav-number">2.</span> <span class="nav-text">一、引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、模型表示"><span class="nav-number">3.</span> <span class="nav-text">二、模型表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-符号说明"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 符号说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、例子说明"><span class="nav-number">4.</span> <span class="nav-text">三、例子说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、多分类"><span class="nav-number">5.</span> <span class="nav-text">四、多分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coding-time"><span class="nav-number">6.</span> <span class="nav-text">Coding time</span></a></li></ol></div>
             
           </div>
         </section>
