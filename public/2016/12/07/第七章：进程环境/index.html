@@ -1,0 +1,964 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unix 高级环境编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="7.1 main 函数C 程序总是从 main 函数开始执行。 main 函数的原型是：123int main(int argc, char *argv[])//param argc：命令行参数数目//param argv：指向参数的各个指针所构成的数组
+当内核执行 C 程序时（使用一个 exec 函数，将在第八章中说明），在调用 main 函数之前先调用一个特殊的启动例程。可执行程序文件将此启动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七章：进程环境">
+<meta property="og:url" content="http://un-knight.github.io/2016/12/07/第七章：进程环境/index.html">
+<meta property="og:site_name" content="小鸡遛狗的博客">
+<meta property="og:description" content="7.1 main 函数C 程序总是从 main 函数开始执行。 main 函数的原型是：123int main(int argc, char *argv[])//param argc：命令行参数数目//param argv：指向参数的各个指针所构成的数组
+当内核执行 C 程序时（使用一个 exec 函数，将在第八章中说明），在调用 main 函数之前先调用一个特殊的启动例程。可执行程序文件将此启动">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478251401218.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478253957005.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478313339497.png">
+<meta property="og:updated_time" content="2016-12-07T03:36:51.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第七章：进程环境">
+<meta name="twitter:description" content="7.1 main 函数C 程序总是从 main 函数开始执行。 main 函数的原型是：123int main(int argc, char *argv[])//param argc：命令行参数数目//param argv：指向参数的各个指针所构成的数组
+当内核执行 C 程序时（使用一个 exec 函数，将在第八章中说明），在调用 main 函数之前先调用一个特殊的启动例程。可执行程序文件将此启动">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478251401218.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6349524465411442000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://un-knight.github.io/2016/12/07/第七章：进程环境/"/>
+
+
+  <title> 第七章：进程环境 | 小鸡遛狗的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cabfbd8184720db4b07c0416369c5d0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小鸡遛狗的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第七章：进程环境
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-07T11:28:14+08:00" content="2016-12-07">
+              2016-12-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/07/第七章：进程环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/07/第七章：进程环境/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/07/第七章：进程环境/" class="leancloud_visitors" data-flag-title="第七章：进程环境">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="7-1-main-函数"><a href="#7-1-main-函数" class="headerlink" title="7.1 main 函数"></a>7.1 main 函数</h2><p>C 程序总是从 main 函数开始执行。 main 函数的原型是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></div><div class="line"><span class="comment">//param argc：命令行参数数目</span></div><div class="line"><span class="comment">//param argv：指向参数的各个指针所构成的数组</span></div></pre></td></tr></table></figure></p>
+<p>当内核执行 C 程序时（使用一个 exec 函数，将在第八章中说明），在调用 main 函数之前先调用一个特殊的<strong>启动例程</strong>。可执行程序文件将此启动例程指定为程序的起始地址——这是由连接编辑器设置的，而连接编辑器则由 C 编译器（通常是 CC ）调用。<strong>启动例程从内核取得命令行参数和环境变量值</strong>，然后为调用 main 函数做好安排。</p>
+<a id="more"></a>
+<h2 id="7-2-进程终止"><a href="#7-2-进程终止" class="headerlink" title="7.2 进程终止"></a>7.2 进程终止</h2><p>有 8 中方式使3进程终止（termination），其中 5 种为正常终止。</p>
+<ol>
+<li>从 main 返回。</li>
+<li>调用 exit 。</li>
+<li>调用 _exit 或 _Exit 。</li>
+<li>最后一个线程从其启动例程返回。</li>
+<li>最后一个线程调用 pthread_exit 。</li>
+</ol>
+<p>异常终止包括 3 种方式。</p>
+<ol>
+<li>调用 abort 。</li>
+<li>接到一个信号并终止。</li>
+<li>最后一个线程对取消请求作出响应。</li>
+</ol>
+<p>7.1 提到的启动例程要求能使得从 main 返回后立即调用 exit 函数。如果将启动例程以 C 代码形式表示（实际上该例程常用汇编语言编写），则它调用 main 函数的形式可能是 <code>exit(main(argc, argv));</code> 。</p>
+<h3 id="exit-终止程序"><a href="#exit-终止程序" class="headerlink" title="exit 终止程序"></a><code>exit</code> 终止程序</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">exit</span><span class="params">(<span class="keyword">int</span> status)</span></span>;</div><div class="line"><span class="keyword">void</span> _Exit(<span class="keyword">int</span> status);</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="keyword">void</span> _exit(<span class="keyword">int</span> status);</div></pre></td></tr></table></figure>
+<p>以上三个函数用于正常终止一个程序。不同的是 <code>_exit</code> 和 <code>_Exit</code> 执行时会立即进入内核， <code>exit</code> 则先执行一些清理处理（包括调用执行各终止处理程序，关闭所有标准 I/O 流等），然后才进入内核。</p>
+<p><code>exit</code> 函数总是执行一个标准 I/O 库的清理关闭操作：为所有打开流调用 <code>fclose</code> 函数。这回导致所有的缓冲的输入数据被冲洗（写到文件上）。</p>
+<p>三个 <code>exit</code> 函数都带有一个整型参数，称之为终止状态。如果调用这些函数时不带终止状态，或 main 执行了一个无返回值的 return 语句，或 main 没有声明返回类型为整型，则该进程的终止状态是未定义的。但是如果 main 的返回类型是整型，并且 main 执行到最后一条语句时返回（隐式返回），那么该进程的终止状态是 0 。</p>
+<p>main 函数返回一整型值与调用 exit 是等价的。即 <code>exit(0);</code> 等价 <code>return 0;</code> 。</p>
+<h3 id="atexit-登记函数"><a href="#atexit-登记函数" class="headerlink" title="atexit 登记函数"></a><code>atexit</code> 登记函数</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">int atexit(void (*func)(void));</div><div class="line">//return：成功返回 0，出错返回非 0 值</div></pre></td></tr></table></figure>
+<p>按照 ISO C 的规定，一个进程可以登记 32 个函数，这些函数将由 exit 自动调用。我们称这些函数为终止处理程序，并调用 <code>atexit</code> 函数来登记这些函数。</p>
+<p><code>atexit</code> 的参数是一个函数地址（回调函数）。 <code>exit</code> 调用这些函数的顺序与它们登记时候的顺序相反。同一函数如若登记多次，则也会被调用多次。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478251401218.png" alt="Alt text"></p>
+<p>由上图可知内核使程序执行的唯一方法是调用 <code>exec</code> 函数。进程自愿终止的唯一方法是显式或隐式地调用 <code>_exit</code> 或 <code>_Exit</code> 。另外上图中没有显示出来的是进程也可以非自愿地由一个信号使其终止。</p>
+<h2 id="7-3-命令行参数"><a href="#7-3-命令行参数" class="headerlink" title="7.3 命令行参数"></a>7.3 命令行参数</h2><p>当执行一个程序时，调用 <code>exec</code> 的进程可将命令行参数传递给该新程序。通常可以这么遍历参数列表：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>, i &lt; argc; ++i)</div></pre></td></tr></table></figure>
+<p>但是 ISO C 和 POSIX.1 要求 <code>argv[argc]</code> 是一个空指针，因此遍历循环还可以这么写：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(i = <span class="number">0</span>; argv[i] != <span class="literal">NULL</span>; ++i)</div></pre></td></tr></table></figure>
+<h2 id="7-4-环境表"><a href="#7-4-环境表" class="headerlink" title="7.4 环境表"></a>7.4 环境表</h2><p>每个程序都会接收一张环境表。与参数表一样，环境表也是一个字符指针数组，其中每个指针包含一个以 NULL 结束的 C 字符串的地址。全局变量 <code>environ</code> 则包含了该指针数组的地址：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">extern</span> <span class="keyword">char</span> **environ;</div></pre></td></tr></table></figure></p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478253957005.png" alt="Alt text"></p>
+<p>环境由 <code>name=value</code> 这样的格式组成。但是通常采用 <code>getenv</code> 和 <code>putenv</code> 函数来访问特定的环境变量。除非要查看整个环境才采用 <code>environ</code> 指针。</p>
+<h2 id="7-5-C-程序的存储空间布局"><a href="#7-5-C-程序的存储空间布局" class="headerlink" title="7.5 C 程序的存储空间布局"></a>7.5 C 程序的存储空间布局</h2><p>C 程序一直由以下几个部分组成：</p>
+<ul>
+<li><strong>正文段</strong>。这是由 CPU 执行的机器指令部分。通常，正文段是可共享的，所以即使是频繁执行的程序（如文本编辑器、 C 编译器和 shell 等）在存储器中也只需有一个副本，另外，正文段常常是只读的，以防止程序由于意外而修改其身的指令。</li>
+<li><strong>初始化数据段</strong>。通常将此段称为数据段，它包含了程序中需要明确地赋予初值的变量。例如， C 程序中出现在任何函数之外的声明，如 <code>int maxcount = 99;</code> ，使此变量带有其初值存放在初始化数据段中。</li>
+<li><strong>非初始化数据段</strong>。通常将此段称为 bss 段，这一名称来源于一个早期的汇编运算符，意思是 “block started by symbol” （由符号开始的块），在程序开始执行之前，内核将此段中的数据初始化为 0 或空指针。出现在任何函数外的 C 声明，如 <code>long sum[1000];</code> 使此变量存放在非初始化数据段中。</li>
+<li><strong>栈</strong>。自动变量以及每次函数调用时所需保存的信息都存放在此段中。每次调用函数时，其<strong>返回地址</strong>以及<strong>调用者的环境信息</strong>（例如寄存器值、CPU 现场）都存放在栈中。然后，最近被调用的函数在栈上为其自动和临时变量分配存储空间。通过这种方式，可以递归调用 C 函数。递归函数每次调用自身时，就使用一个新的栈帧，因此一个函数调用实例中的变量集不会影响另一个函数调用实例中的变量。</li>
+<li><strong>堆</strong>。通常在堆中进行动态存储分配。由于历史惯例，堆位于非初始化数据段和栈之间。</li>
+</ul>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/12/07/2016/1478313339497.png" alt="Alt text"></p>
+<p>上图显示了这些段的一些典型安排方式。注意到在上图的结构中，栈从高地址向低地址方向增长。堆顶和栈底之间未用的虚地址空间很大。</p>
+<h3 id="7-6-共享库"><a href="#7-6-共享库" class="headerlink" title="7.6 共享库"></a>7.6 共享库</h3><p>共享库使得可执行文件中不再需要包含公用的库例程，而只需要在所有进程都可引用的存储区中维护这种库例程的一个副本。程序第一次执行或者第一次调用某个库函数时，用动态链接方法将程序与共享库函数相链接。这样做的优点就是能减少每个可执行文件的长度，但是也增长运行时间。另外一个优点是共享库可以单独进行更新替换而无需对使用该库的程序重新进行编译链接（前提：接口参数都没有改变）。</p>
+<h3 id="7-7-存储器分配"><a href="#7-7-存储器分配" class="headerlink" title="7.7 存储器分配"></a>7.7 存储器分配</h3><p>ISO C 说明了三个用于存储空间动态分配的函数</p>
+<ol>
+<li><code>malloc</code> ：分配指定字节数的存储区。此存储区中的初始值不确定。</li>
+<li><code>calloc</code> ：为指定数量具指定长度的对象分配存储空间。该空间中的每一位都初始化为 0 。</li>
+<li><code>realloc</code> ：更改以前分配的长度（增加或减少）。当长度增加时，可能需要将以前分配区的内容移动到另一个足够大的区域，以便于在尾端提供增加的存储区，而新增区域内的初始值则不确定。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">calloc</span><span class="params">(<span class="keyword">size_t</span> nobj, <span class="keyword">size_t</span> size)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> *<span class="title">realloc</span><span class="params">(<span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> newsize)</span></span>;</div><div class="line"><span class="comment">//return：三个函数都是成功返回非空指针，出错则返回 NULL</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">free</span><span class="params">(<span class="keyword">void</span> *ptr)</span></span>;</div></pre></td></tr></table></figure>
+<p>以上三个分配函数所返回的指针一定是适当对齐的，使其可用于任何数据对象。而且它们都返回通用指针 <code>void *</code> ，所以在将这些指针赋给其他不同类型的指针时就不需要显式执行强制类型转换。</p>
+<p><code>free</code> 函数用于释放 <code>ptr</code> 所指向的空间。被释放的空间通常被送入可用存储区池，以便之后再次利用。</p>
+<p>需要注意的是，大多数实现所分配的存储空间比所要求的都要大一些。额外的空间用来记录管理信息——分配块的长度、指向下一个分配块的指针等等。这就意味着如果对超过一个已分配区的尾端进行写操作则会重写后一个块的<strong>管理记录</strong>。同样，在已分配区起始位置之前进行写操作会重写本块的管理记录。</p>
+<p>如若一个进程调用 <code>malloc</code> 函数，但却忘记调用 <code>free</code> 函数，那么该进程占用的存储器就会连续增加，这被称为<strong>泄漏（leakage）</strong>。不调用 <code>free</code> 函数以释放不再使用的空间，那么进程地址空间长度就会慢慢增加，直至不再有空闲空间。此时，由于过度的分页开销，因而使性能下降。</p>
+<h2 id="7-8-环境变量"><a href="#7-8-环境变量" class="headerlink" title="7.8 环境变量"></a>7.8 环境变量</h2><p>环境字符串的形式通常如 <code>name=value</code> 。 UNIX 内核并不查看这些字符，它们的解释完全取决于各个应用程序。例如，shell 使用了大量的环境变量。其中某些在登录时自动设置（如 HOME、USER 等），有些则由用户设置。</p>
+<p>我们通常在一个 shell 启动文件中设置环境变量以控制 shell 的动作。例如，若设置了环境变量 <code>MAILPATH</code> ，它就告诉 shell 在什么路径下查看邮件。</p>
+<p>可以使用 <code>getenv</code> 获取环境变量值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span> *<span class="title">getenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</div><div class="line"><span class="comment">//return：指向与 name 关联的 value 的指针，若未找到则返回 NULL</span></div></pre></td></tr></table></figure>
+<p>关于环境变量的操作上 Linux 还有以下三个函数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">putenv</span><span class="params">(<span class="keyword">char</span> *str)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name, <span class="keyword">const</span> <span class="keyword">char</span> *value, <span class="keyword">int</span> rewrite)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">unsetenv</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</div><div class="line"><span class="comment">//return：三个函数都是成功返回 0 ，出错返回非 0 值。</span></div></pre></td></tr></table></figure>
+<p>三个函数的操作是：</p>
+<ul>
+<li><code>putenv</code> 取形式为 <code>name=value</code> 的字符串，将其放到环境表中。如果 <code>name</code> 已经存在，则先删除原来的定义。</li>
+<li><code>setenv</code> 将 <code>name</code> 设定为 <code>value</code> 。如果在环境中 <code>name</code> 已经存在，那么<ul>
+<li>若 <code>rewrite=0</code> 。则不改变原来的值</li>
+<li>若 <code>rewrite!=0</code> 。则删除现有定义写入新值。</li>
+</ul>
+</li>
+<li><code>unsetenv</code> 删除 <code>name</code> 的定义。即使不存在这种定义也不出错。</li>
+</ul>
+<h2 id="7-9-setjmp-和-longjmp-函数"><a href="#7-9-setjmp-和-longjmp-函数" class="headerlink" title="7.9 setjmp 和 longjmp 函数"></a>7.9 <code>setjmp</code> 和 <code>longjmp</code> 函数</h2><p><code>setjmp</code> 和 <code>longjmp</code> 函数可以实现跨函数的跳转。这两个函数都是非局部 <code>goto</code> 。非局部指的是，不是由普通 C 语言 <code>goto</code> 语句在一个函数内实施的跳转，而是在栈上跳过若干调用帧，返回到当前函数调用路径上的某一个函数中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;setjmp.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setjmp</span><span class="params">(jmp_buf env)</span></span>;</div><div class="line"><span class="comment">//return：若直接调用则返回 0，若从 longjmp 调用返回则返回非 0 值。</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">longjmp</span><span class="params">(jmp_buf env, <span class="keyword">int</span> val)</span></span>;</div></pre></td></tr></table></figure>
+<p>在希望返回到的位置调用 <code>setjmp</code> 。<code>setjmp</code> 参数 <code>env</code> 的类型是一个特殊类型 <code>jmp_buf</code> 。这一数据类型是某种形式的数组，其中存放在调用 <code>longjmp</code> 时能用来恢复栈状态的所有信息。因为需要再另一个函数中引用 <code>env</code> 变量，所以规范的处理方式是将 <code>env</code> 变量定义为全局变量。</p>
+<p>当检查到一个错误时，则以两个参数调用 <code>longjmp</code> 函数。第一个就是在调用 <code>setjmp</code> 时所用的 <code>env</code> ，第二个参数是具有非 0 值的 <code>val</code> ，它将成为从 <code>setjmp</code> 处返回的值。这样对于一个 <code>setjmp</code> 可以有多个 <code>longjmp</code> 。</p>
+<h2 id="7-10-getrlimit-和-setrlimit-函数查询和更改资源限制"><a href="#7-10-getrlimit-和-setrlimit-函数查询和更改资源限制" class="headerlink" title="7.10 getrlimit 和 setrlimit 函数查询和更改资源限制"></a>7.10 <code>getrlimit</code> 和 <code>setrlimit</code> 函数查询和更改资源限制</h2><p>每个进程都有一组资源限制，其中一些可以用 <code>getrlimit</code> 和 <code>setrlimit</code> 函数查询和更改。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/resource.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">getrlimit</span><span class="params">(<span class="keyword">int</span> resource, <span class="keyword">struct</span> rlimit *rlptr)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">setrlimit</span><span class="params">(<span class="keyword">int</span> resource, <span class="keyword">const</span> <span class="keyword">struct</span> rlimit *rlptr)</span></span>;</div><div class="line"><span class="comment">//retrun：两个函数都是成功返回 0，若出错则返回非 0 值</span></div></pre></td></tr></table></figure></p>
+<p>进程的资源限制通常是在系统初始化时由进程 0 建立，然后由每个后续进程继承。</p>
+<p>对这两个函数的每一次调用都会指定一个资源以及一个指向下列结构的指针，</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> rlimit&#123;</div><div class="line">    <span class="keyword">rlim_t</span> rlim_cur; <span class="comment">/* soft limit: current limit */</span></div><div class="line">    <span class="keyword">rlim_t</span> rlim_max; <span class="comment">/* hard limit: maximum value for rlim_cur */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在更改资源限制时，须遵循下列三条规则：</p>
+<ol>
+<li>任何一个进程都可将一个软限制值更改为小于或等于其硬限制值。</li>
+<li>任何一个进程都可以降低其硬限制值，但它必须大于或等于其软限制值。这种降低对普通用户而言是不可逆的。</li>
+<li>只有超级用户进程可以提高硬限制值。</li>
+</ol>
+<p>常量 <code>RLIM_INFINITY</code> 指定了一个无限量的限制。</p>
+<p>这两个函数的 resource 参数取下列值之一，以下给出了部分值。</p>
+<ul>
+<li><code>RLIMIT_AS</code> ：进程可用存储区的最大总长度（字节）。这会影响 <code>sbrk</code> 函数与 <code>mmap</code> 函数。</li>
+<li><code>RLIMIT_CORE</code> ：core 文件的最大字节数，若其值为 0 则阻止创建 core 文件。</li>
+<li><code>RLIMIT_CPU</code> ：CPU 时间的最大量值（秒），当超过此软限制时，向该进程发送 <code>SIGXCPU</code> 信号。</li>
+<li><code>RLIMIT_FSIZE</code> ：可以创建的文件的最大字节长度。当超过此软限制时，则向该进程发送 <code>SIGXFSZ</code> 信号。</li>
+<li><code>RLIMIT_STACK</code> ：栈的最大字节长度。</li>
+<li>…</li>
+</ul>
+<p>资源限制影响到调用进程并由其子进程继承。这就意味着为了影响一个用户的所有后续进程，需将资源限制的设置构造在 shell 之中。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-高级环境编程/" rel="tag">#Unix 高级环境编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/04/第六章：系统数据文件和信息/" rel="next" title="第六章：系统数据文件和信息">
+                <i class="fa fa-chevron-left"></i> 第六章：系统数据文件和信息
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/" rel="prev" title="Python3 中的 OpenCV 模块操作简介">
+                Python3 中的 OpenCV 模块操作简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/07/第七章：进程环境/"
+           data-title="第七章：进程环境" data-url="http://un-knight.github.io/2016/12/07/第七章：进程环境/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
+               alt="小鸡遛狗" />
+          <p class="site-author-name" itemprop="name">小鸡遛狗</p>
+          <p class="site-description motion-element" itemprop="description">Keep thinking</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/un-knight" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/UnderworldYjx" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3639801160" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dlecheng.cn/" title="Dylan" target="_blank">Dylan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-main-函数"><span class="nav-number">1.</span> <span class="nav-text">7.1 main 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-进程终止"><span class="nav-number">2.</span> <span class="nav-text">7.2 进程终止</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exit-终止程序"><span class="nav-number">2.1.</span> <span class="nav-text">exit 终止程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atexit-登记函数"><span class="nav-number">2.2.</span> <span class="nav-text">atexit 登记函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-命令行参数"><span class="nav-number">3.</span> <span class="nav-text">7.3 命令行参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-环境表"><span class="nav-number">4.</span> <span class="nav-text">7.4 环境表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-C-程序的存储空间布局"><span class="nav-number">5.</span> <span class="nav-text">7.5 C 程序的存储空间布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-6-共享库"><span class="nav-number">5.1.</span> <span class="nav-text">7.6 共享库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-7-存储器分配"><span class="nav-number">5.2.</span> <span class="nav-text">7.7 存储器分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-8-环境变量"><span class="nav-number">6.</span> <span class="nav-text">7.8 环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-9-setjmp-和-longjmp-函数"><span class="nav-number">7.</span> <span class="nav-text">7.9 setjmp 和 longjmp 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-10-getrlimit-和-setrlimit-函数查询和更改资源限制"><span class="nav-number">8.</span> <span class="nav-text">7.10 getrlimit 和 setrlimit 函数查询和更改资源限制</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小鸡遛狗</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"un-knight"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gSjcGtpxrvPtKFfRAmiFMmAg-gzGzoHsz", "jGg92JiNdsjYFY5hWDyRkJOU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

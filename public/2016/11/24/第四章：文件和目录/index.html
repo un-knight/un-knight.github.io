@@ -1,0 +1,1072 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unix 高级环境编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四章：文件和目录">
+<meta property="og:url" content="http://un-knight.github.io/2016/11/24/第四章：文件和目录/index.html">
+<meta property="og:site_name" content="小鸡遛狗的博客">
+<meta property="og:description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
+<meta property="og:updated_time" content="2016-11-27T15:20:50.185Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四章：文件和目录">
+<meta name="twitter:description" content="重要概念文件类型UNIX 系统的文件类型包括以下几种：
+
+普通文件 (regular file) 。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。
+
+
+补充：二进制可执行文件是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6349524465411442000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://un-knight.github.io/2016/11/24/第四章：文件和目录/"/>
+
+
+  <title> 第四章：文件和目录 | 小鸡遛狗的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cabfbd8184720db4b07c0416369c5d0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小鸡遛狗的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第四章：文件和目录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-24T23:17:32+08:00" content="2016-11-24">
+              2016-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/24/第四章：文件和目录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/24/第四章：文件和目录/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/11/24/第四章：文件和目录/" class="leancloud_visitors" data-flag-title="第四章：文件和目录">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>UNIX 系统的文件类型包括以下几种：</p>
+<ol>
+<li><strong>普通文件 (regular file) </strong>。这种文件包含了某种形式的数据。至于这种数据是文本还是二进制数据对于 UNIX 内核而言并无区别。对普通文件内容的解释由该文件的应用程序进行。</li>
+</ol>
+<blockquote>
+<p>补充：<strong>二进制可执行文件</strong>是一个值得注意的例外。为了执行程序，内核必须理解其格式。所有二进制可执行文件都遵循一种格式，这种格式使内核能够确定程序文本和数据的加载位置。</p>
+</blockquote>
+<ol>
+<li><strong>目录文件 (directory file)</strong> 。这种文件包含了其他文件的名字以及指向与这些文件有关信息的指针。对一个目录文件具有读权限的任一进程都可以读该目录的内容，但<strong>只有内核可以直接写目录文件</strong>。进程必须使用特定的函数才能更改目录。</li>
+<li><strong>块特殊文件 (block special file)</strong> 。这种文件类型提供对设备（例如磁盘）带缓冲的访问，每次访问以固定长度为单位进行。</li>
+<li><strong>字符特殊文件 (character special file)</strong> 。这种文件类型提供对设备不带缓冲的访问，每次访问长度可变。系统中的所有设备要么是字符特殊文件，要么是块特殊文件。</li>
+<li><strong>FIFO</strong> 。这种类型文件用于<strong>进程间通信</strong>，有时也将其称为<strong>命令管道 (named pipe)</strong> 。</li>
+<li><strong>套接字 (socket)</strong> 。这种文件类型用于进程间的网络通信。套接字也可用于在一台宿主机上进程之间的非网络通信。</li>
+<li><strong>符号链接 (symbolic link)</strong> 。这种文件类型指向另一个文件。</li>
+</ol>
+<a id="more"></a>
+<p>文件类型信息包含在 <code>stat</code> 结构的 <code>st_mode</code> 成员中。可以通过下表的宏确定文件类型。这些宏的参数都是 <code>stat</code> 结构中的 <code>st_mode</code> 成员。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">宏</th>
+<th style="text-align:left">文件类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">S_ISREG()</td>
+<td style="text-align:left">普通文件</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISDIR()</td>
+<td style="text-align:left">目录文件</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISCHR()</td>
+<td style="text-align:left">字符特殊文件</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISBLK()</td>
+<td style="text-align:left">块特殊文件</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISFIFO()</td>
+<td style="text-align:left">管道或FIFO</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISLNK()</td>
+<td style="text-align:left">符号链接</td>
+</tr>
+<tr>
+<td style="text-align:left">S_ISSOCK()</td>
+<td style="text-align:left">套接字</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>补充：<code>S_ISXXX</code> 宏的实现<br>早期的 UNIX 系统版本并不提供 <code>S_ISXXX</code> 宏，于是就需要将 <code>st_mode</code> 与屏蔽字 <code>S_IFMT</code> 进行逻辑与运算，然后再与相应的 <code>S_IFXXX</code> 常量进行比较。这些常量与屏蔽字大多定义在文件 <code>&lt;sys/stat.h&gt;</code> 中。事实上，<code>S_ISXXX</code> 宏的定义就是对上述过程的一个封装，例如 <code>S_ISDIR</code> 宏定义为：<br><code>#define S_ISDIR(mode) (((mode) &amp; S_IFMT) == S_IFDIR)</code></p>
+</blockquote>
+<h3 id="i-节点"><a href="#i-节点" class="headerlink" title="i 节点"></a>i 节点</h3><p><strong>i 节点</strong>是固定长度的记录项，它包含文件的大部分信息。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/11/24/2016/inode.png" alt="Alt text"></p>
+<p>i 节点包含了大多数与文件有关的信息：文件类型、文件访问权限位、文件长度和指向该文件所占用的数据块的指针数等等。<code>stat</code> 结构中的大多数信息都取自 i 节点。只有两项数据存放在目录项中：文件名和 i 节点编号。i 节点编号的数据类型是 <code>ino_t</code> 。</p>
+<h3 id="文件时间"><a href="#文件时间" class="headerlink" title="文件时间"></a>文件时间</h3><p>Linux 对每个文件保持有三个时间字段。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">例子</th>
+<th style="text-align:left">ls(1) 选项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">st_atime</td>
+<td style="text-align:left">文件数据的最后访问时间</td>
+<td style="text-align:left">read</td>
+<td style="text-align:left">-u</td>
+</tr>
+<tr>
+<td style="text-align:left">st_mtime</td>
+<td style="text-align:left">文件数据的最后修改时间</td>
+<td style="text-align:left">write</td>
+<td style="text-align:left">默认</td>
+</tr>
+<tr>
+<td style="text-align:left">st_ctime</td>
+<td style="text-align:left">i 节点状态的最后更改时间</td>
+<td style="text-align:left">chmod, chown</td>
+<td style="text-align:left">-c</td>
+</tr>
+</tbody>
+</table>
+<p>其中值得注意的是，<code>st_mtime</code> 与 <code>st_ctime</code> 的区别，<code>st_mtime</code> 指的是文件内容的最后一次修改时间。 <code>st_ctime</code> 指的是 i 节点最后次的修改时间，因为 i 节点存储着许多与文件属性（如：文件长度、文件权限、文件类型等）有关的信息，所以如果对文件这些属性进行更改将影响 i 节点的修改时间。</p>
+<h3 id="符号链接"><a href="#符号链接" class="headerlink" title="符号链接"></a>符号链接</h3><p>符号链接是指向一个的文件的间接指针，而硬链接是直接指向文件的 i 节点。引入符号链接的目的是为了打破硬链接的一些限制：</p>
+<ul>
+<li>硬链接通常要求链接和文件位于同一个文件系统之中</li>
+<li>只有超级用户才能创建指向目录的硬链接</li>
+</ul>
+<p>而对符号链接以及它指向何种对象并无任何文件系统限制，任何用户都可以创建指向目录的符号链接。符号链接一般用于将一个文件或整个目录结构移到系统中的另一位置。</p>
+<h3 id="Linux-文件内容删除"><a href="#Linux-文件内容删除" class="headerlink" title="Linux 文件内容删除"></a>Linux 文件内容删除</h3><p>只有当链接计数达到 0 时，一个文件的内容才可以被删除。另外如果有进程打开了该文件，其内容也不能删除。<br>因此，关闭一个文件时，内核首先检查打开该文件的进程数，如果为 0，内核再检查该文件的链接数，如果链接数也为 0 ，则删除该文件内容。</p>
+<h2 id="重要函数"><a href="#重要函数" class="headerlink" title="重要函数"></a>重要函数</h2><h3 id="stat-fstat-lstat"><a href="#stat-fstat-lstat" class="headerlink" title="stat, fstat, lstat"></a><code>stat, fstat, lstat</code></h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">stat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> pathname, <span class="keyword">struct</span> stat *<span class="keyword">restrict</span> buf)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fstat</span><span class="params">(<span class="keyword">int</span> filedes, <span class="keyword">struct</span> stat *buf)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lstat</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> pathname, <span class="keyword">struct</span> stat *<span class="keyword">restrict</span> buf)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 三个函数返回值：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure>
+<p>一旦给出 <code>pathname</code> ， <code>stat</code> 函数就返回与此命名文件有关的信息结构。 <code>fstat</code> 函数获取已在描述符 <code>filedes</code> 上打开的文件的有关信息。 <code>lstat</code> 函数类似于 <code>stat</code> ，但是当命名文件是一个符号链接（下文将更详细地说明符号链接）时， <code>lstat</code> 返回该符号链接的有关信息，而不是由该符号链接引用文件的信息。</p>
+<p>参数 <code>buf</code> 是指针，它指向一个 <code>stat</code> 结构。这些函数填写由 <code>buf</code> 指向的结构。该结构的实际定义可能随实现有所不同，但基本形式是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> stat&#123;</div><div class="line">	<span class="keyword">mode_t</span>     st_mode;    <span class="comment">// file type &amp; mode (permissions)</span></div><div class="line">	<span class="keyword">ino_t</span>      st_ino;     <span class="comment">// i-node number (serial number)</span></div><div class="line">	<span class="keyword">dev_t</span>      st_dev;     <span class="comment">// device number (file system)</span></div><div class="line">	<span class="keyword">dev_t</span>      st_rdev;    <span class="comment">// device number for special files</span></div><div class="line">	<span class="keyword">nlink_t</span>    st_blink;   <span class="comment">// number of links</span></div><div class="line">	<span class="keyword">uid_t</span>      st_uid;     <span class="comment">// user ID of owner</span></div><div class="line">	<span class="keyword">gid_t</span>      st_gid;     <span class="comment">// group ID of owner</span></div><div class="line">	<span class="keyword">off_t</span>      st_size;    <span class="comment">// sizee in bytes, for regular files</span></div><div class="line">	<span class="keyword">time_t</span>     st_atime;   <span class="comment">// time of last access</span></div><div class="line">	<span class="keyword">time_t</span>     st_mtime;   <span class="comment">// time of last modification</span></div><div class="line">	<span class="keyword">time_t</span>     st_ctime;   <span class="comment">// time of last file status change</span></div><div class="line">	<span class="keyword">blksize_t</span>  st_blksize; <span class="comment">// best I/O block size</span></div><div class="line">	<span class="keyword">blkcnt_t</span>   st_blocks;  <span class="comment">// number of disk blocks allocated</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="access-函数是按实际用户-ID-和实际组-ID-进行访问权限测试。"><a href="#access-函数是按实际用户-ID-和实际组-ID-进行访问权限测试。" class="headerlink" title="access 函数是按实际用户 ID 和实际组 ID 进行访问权限测试。"></a><code>access</code> 函数是按实际用户 ID 和实际组 ID 进行访问权限测试。</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">access</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">int</span> mode)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">//返回值：若成功返回 0，若失败返回 -1</span></div></pre></td></tr></table></figure>
+<p>其中，mode 是下表中所列常量的按位或。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">R_OK</td>
+<td style="text-align:left">测试读权限</td>
+</tr>
+<tr>
+<td style="text-align:left">W_OK</td>
+<td style="text-align:left">测试写权限</td>
+</tr>
+<tr>
+<td style="text-align:left">X_OK</td>
+<td style="text-align:left">测试执行权限</td>
+</tr>
+<tr>
+<td style="text-align:left">F_OK</td>
+<td style="text-align:left">测试文件是否存在</td>
+</tr>
+</tbody>
+</table>
+<h3 id="umask-函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）"><a href="#umask-函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）" class="headerlink" title="umask 函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）"></a><code>umask</code> 函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></div><div class="line"><span class="keyword">mode_t</span> umask(<span class="keyword">mode_t</span> cmask);</div><div class="line"></div><div class="line"><span class="comment">//返回值：以前的文件模式创建屏蔽字</span></div></pre></td></tr></table></figure>
+<h3 id="chmod-fchmod-更改文件访问权限"><a href="#chmod-fchmod-更改文件访问权限" class="headerlink" title="chmod, fchmod  更改文件访问权限"></a><code>chmod, fchmod</code>  更改文件访问权限</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">chmod</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">mode_t</span> mode)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fchmod</span><span class="params">(<span class="keyword">int</span> filedes, <span class="keyword">mode_t</span> mode)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">//两个函数的返回值：若成功则返回 0，若失败则返回 -1</span></div></pre></td></tr></table></figure>
+<p><code>chmod</code> 在指定的文件上进行操作，而 <code>fchmod</code> 则对已经打开的文件进行操作。</p>
+<h3 id="chown-fchown-lchown-用于更改文件的用户-ID-和组-ID"><a href="#chown-fchown-lchown-用于更改文件的用户-ID-和组-ID" class="headerlink" title="chown, fchown, lchown 用于更改文件的用户 ID 和组 ID"></a><code>chown, fchown, lchown</code> 用于更改文件的用户 ID 和组 ID</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">chown</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">uid_t</span> owner, <span class="keyword">gid_t</span> group)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fchown</span><span class="params">(<span class="keyword">int</span> filedes, <span class="keyword">uid_t</span> owner, <span class="keyword">gid_t</span> group)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">lchown</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">uid_t</span> owner, <span class="keyword">gid_t</span> group)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">//三个函数返回值：若成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure>
+<p><code>owner</code> 或者 <code>group</code> 参数中任意一个是 -1，则对应的 ID 不变。</p>
+<p>在符号链接的情况下， <code>lchown</code> 更改符号链接本身的所有者，而不是该符号链接所指向的文件，除此之外，这三个函数操作相似。</p>
+<h3 id="truncate-ftruncate-进行文件截短"><a href="#truncate-ftruncate-进行文件截短" class="headerlink" title="truncate, ftruncate 进行文件截短"></a><code>truncate, ftruncate</code> 进行文件截短</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">truncate</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">off_t</span> length)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">ftruncate</span><span class="params">(<span class="keyword">int</span> filedes, <span class="keyword">off_t</span> length)</span></span>;</div><div class="line"></div><div class="line"><span class="comment">// 两个函数的返回值：成功返回 0，出错则返回 -1</span></div></pre></td></tr></table></figure>
+<p>这两个函数将把现有的文件长度截短为 length 字节。如果该文件以前的长度大于 length ，则超过 length 以外的数据就不能再访问。若以前的长度小于 length ，则其效果与具体的系统有关。</p>
+<h3 id="link-unlink-remove-rename"><a href="#link-unlink-remove-rename" class="headerlink" title="link, unlink, remove, rename"></a><code>link, unlink, remove, rename</code></h3><p>任何一个文件都允许多个目录项指向其 i 节点。可以通过 <code>link</code> 函数创建一个指向现有文件的链接。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">link</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *existingpath, <span class="keyword">const</span> <span class="keyword">char</span> *newpath)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure></p>
+<p>此函数创建一个新目录项 <code>newpath</code> ，它引用现有的文件 <code>existingpath</code> 。如若 <code>newpath</code> 已经存在，则返回出错。而且只创建 <code>newpath</code> 中的最后一个分量，路径中的其他部分应当已经存在。</p>
+<p>可以使用 <code>unlink</code> 来删除一个现有的目录项。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">unlink</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure></p>
+<p>这个函数可以删除目录项，并将由 <code>pathname</code> 所引用文件的链接数减 1。如果还有指向该文件的其他链接，则仍可以通过其他链接访问该文件的数据。<br>如果 <code>pathname</code> 是<strong>符号链接</strong>，那么 <code>unlink</code> 删除该符号链接，而不会删除由该链接所引用的文件。给出符号链接名的情况下，没有任何函数能删除由该链接所引用的文件。</p>
+<p>也可以使用 <code>remove</code> 函数来解除对一个文件或者目录的链接。对于文件， <code>remove</code> 的功能与 <code>unlink</code> 相同。对于目录， <code>remove</code> 的功能与 <code>rmdir</code> 相同。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">remove</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure></p>
+<p><code>rename</code> 函数对文件或目录名进行更改。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rename</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *oldname, <span class="keyword">const</span> <span class="keyword">char</span> *newname)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure></p>
+<h3 id="symlink-readlink-函数"><a href="#symlink-readlink-函数" class="headerlink" title="symlink, readlink 函数"></a><code>symlink, readlink</code> 函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">symlink</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *actualpath, <span class="keyword">const</span> <span class="keyword">char</span> *sympath)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure>
+<p><code>symlink</code> 函数用于创建符号链接。创建一个指向 <code>actualpath</code> 的新目录项 <code>sympath</code> ，在创建符号链接时不要求 <code>actualpath</code> 已经存在。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="keyword">ssize_t</span> readlink(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">restrict</span> pathname, <span class="keyword">char</span> *<span class="keyword">restrict</span> buf, <span class="keyword">size_t</span> bufsize);</div><div class="line"><span class="comment">//return：成功返回读取到的字节数，失败则返回 -1.</span></div></pre></td></tr></table></figure>
+<p>这个函数组合 <code>open, read, close</code> 函数的所有操作。在 <code>buf</code> 中返回的符号链接的内容不以 null 字符终止。</p>
+<h3 id="utime-更改文件的访问和修改时间"><a href="#utime-更改文件的访问和修改时间" class="headerlink" title="utime 更改文件的访问和修改时间"></a><code>utime</code> 更改文件的访问和修改时间</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;utime.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">utime</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">const</span> <span class="keyword">struct</span> utimbuf *times)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1.</span></div></pre></td></tr></table></figure>
+<p>其中结构 <code>struct utimbuf</code> 的定义是：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> utimbuf&#123;</div><div class="line">	<span class="keyword">time_t</span> actime;  <span class="comment">// 最后访问时间</span></div><div class="line">	<span class="keyword">time_t</span> modtime; <span class="comment">// 最后修改时间</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此函数的操作以及执行它所要求的特权取决于 <code>times</code> 参数是否为 <code>NULL</code> 。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">times 参数</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">空指针</td>
+<td style="text-align:left">将 <code>actime</code> 与 <code>modtime</code> 都设置为当前时间</td>
+<td style="text-align:left">- 进程的有效用户 ID 必须等于该文件的所有者 ID；或者进程对文件具有写权限</td>
+</tr>
+<tr>
+<td style="text-align:left">非空指针</td>
+<td style="text-align:left"><code>actime</code> 与 <code>modtime</code> 设置为 <code>times</code> 结构中的指定值</td>
+<td style="text-align:left">进程的有效用户 ID 必须等于该文件所有者 ID；或者进程必须是超级用户进程，此时只具有写权限是不够的</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mkdir-rmdir-目录操作"><a href="#mkdir-rmdir-目录操作" class="headerlink" title="mkdir, rmdir 目录操作"></a><code>mkdir, rmdir</code> 目录操作</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/stat.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkdir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname, <span class="keyword">mode_t</span> mode)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1.</span></div></pre></td></tr></table></figure>
+<p>此函数创建一个新的空目录。其中， <code>.</code> 和 <code>..</code> 目录项是自动创建的。所指定的文件访问权限 <code>mode</code> 由进程的文件模式创建屏蔽字修改。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">rmdir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1.</span></div></pre></td></tr></table></figure>
+<p>用 <code>rmdir</code> 函数可以删除一个空目录。空目录只包含 <code>.</code> 和 <code>..</code> 两个目录项。</p>
+<h3 id="读目录"><a href="#读目录" class="headerlink" title="读目录"></a>读目录</h3><p>对某个目录具有访问权限的任一用户都可以读该目录，但是，为了防止文件系统产生混乱，只有内核才能写目录。</p>
+<p>目录的实际格式依赖于 UNIX 系统，特别是其文件系统的具体设计和实现。这就意味着读目录的程序与系统有关。为了简化这种情况，UNIX 现在包含了一套与读目录有关的例程。很多实现阻止应用程序使用 <code>read</code> 函数读取目录的内容，从而进一步将应用程序与目录格式中与现实相关的细节隔离开。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;dirent.h&gt;</span></span></div><div class="line"><span class="function">DIR* <span class="title">opendir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</div><div class="line"> <span class="comment">//@return：成功返回指针，失败返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">struct</span> dirent* <span class="title">readdir</span><span class="params">(DIR *dp)</span></span>;</div><div class="line"><span class="comment">//@return:成功返回指针，若在目录结尾或出错则返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">rewinddir</span><span class="params">(DIR *dp)</span></span>;</div><div class="line"><span class="comment">//无返回值</span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">closedir</span><span class="params">(DIR *dp)</span></span>;</div><div class="line"><span class="comment">//@return：成功返回 0，出错返回 -1</span></div><div class="line"><span class="function"><span class="keyword">long</span> <span class="title">telldir</span><span class="params">(DIR *dp)</span></span>;</div><div class="line"><span class="comment">//@return：与 dp 关联的目录中的当前位置</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">seekdir</span><span class="params">(DIR *dp, <span class="keyword">long</span> loc)</span></span>;</div><div class="line"><span class="comment">//无返回值</span></div></pre></td></tr></table></figure></p>
+<p>头文件 <code>&lt;dirent.h&gt;</code> 中定义的 <code>dirent</code> 结构与实现有关。几种典型的 UNIX 实现对此结构所作的定义至少包含下列两个成员：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> dirent&#123;</div><div class="line">	<span class="keyword">ino_t</span> d_ino;                    <span class="comment">// i 节点编号</span></div><div class="line">	<span class="keyword">char</span>  d_name[NAME_MAX + <span class="number">1</span>];     <span class="comment">// null-terminated filename</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><code>DIR</code> 结构是一个内部结构，上述6个函数用这个内部结构保存当前正被读的目录的有关信息。其作用类似于 <code>FILE</code> 结构。<code>FILE</code> 结构由标准 <code>I/O</code> 库维护。</p>
+<p>由 <code>opendir</code> 返回的指向 <code>DIR</code> 结构的指针由另外 5 个函数使用。 <code>opendir</code> 执行初始化操作，使第一个 <code>readdir</code> 读目录中的第一个目录项。目录中个目录项的顺序与实现有关，通常并不按字典顺序排列。</p>
+<h3 id="chdir-fchdir-getcwd-文件目录操作"><a href="#chdir-fchdir-getcwd-文件目录操作" class="headerlink" title="chdir, fchdir, getcwd 文件目录操作"></a><code>chdir, fchdir, getcwd</code> 文件目录操作</h3><p>每个进程都有一个当前工作目录，此目录是搜索所有相对路径名的起点。当用户登录到 UNIX 系统时，其当前工作目录通常是口令文件（/etc/passwd）中该用户登录项的第 6 个字段——用户的起始目录（home directory）。当前工作目录是进程的一个属性，起始目录则是登录名的一个属性。</p>
+<p>更改进程工作目录。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">chdir</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *pathname)</span></span>;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fchdir</span><span class="params">(<span class="keyword">int</span> filedes)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1.</span></div></pre></td></tr></table></figure></p>
+<p>上述两个函数，分别使用 <code>pathname</code> 或者<strong>打开的文件描述符</strong>来指定当前的工作目录。</p>
+<p>获取目录的完整路径。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">char</span>* <span class="title">getcwd</span><span class="params">(<span class="keyword">char</span> *buf, <span class="keyword">size_t</span> size)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 buf，出错返回 NULL</span></div></pre></td></tr></table></figure></p>
+<p>此函数接受两个参数，一个是缓冲地址 <code>buf</code> ，另一个是缓冲的长度 <code>size</code> 。其中， 缓冲必须有足够的长度以容纳绝对路径名加上 null 终止符，否则返回出错。</p>
+<p>在更换程序的工作目录之前，我们可以调用 <code>getcwd</code> 函数先将当前目录的绝对路径保存起来。在完成了处理之后，再将之前保存的路径名传递给 <code>chdir</code> ，这样就能返回之前的工作目录了。</p>
+<p>另外 <code>fchdir</code> 函数为我们提供了一个更加便捷的方法。在更换到文件系统中的不同位置前，无需调用 <code>getcwd</code> 函数，而是使用 <code>open</code> 打开<strong>当前工作目录</strong>，然后保存文件描述符。当希望回到工作目录时，只要简单地将文件描述符传递给 <code>fchdir</code> 。</p>
+<h3 id="major-minor-宏"><a href="#major-minor-宏" class="headerlink" title="major, minor 宏"></a><code>major, minor</code> 宏</h3><p>用于访问设备号，分别获取主设备号和次设备号。Linux 将该宏定义于 <code>&lt;sys/stat.h&gt;</code> 中。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ol>
+<li><p>每个进程都有一个根目录用于解析绝对路径名，可以通过 <code>chroot</code> 函数改根目录。 <code>chroot</code> 函数用于辅助因特网文件传输程序（FTP）中的安全性。系统中没有账号的用户（匿名FTP）放在一个单独的目录下，利用 <code>chroot</code> 将此目录当做新的根目录就可以阻止用户访问此目录以外的文件。 <code>chroot</code> 也用于在另一台机器上构造以文件系统层次结构的一个副本，然后修改此副本，但不更改原来的文件系统。这可用于测试新软件包的安装。 <code>chroot</code> 只能由超级用户使用，一旦更改了一个进程的 <code>root</code> ，该进程及其后代进程就再也不能恢复至原先的 <code>root</code> 。</p>
+</li>
+<li><p>对 <code>cpio</code> 来说，既可以改变文件的访问时间（<code>st_atime</code>）和修改时间（<code>st_mtime</code>），也可以都不改变。 <code>cpio</code> 的 <code>-a</code> 选项可以在读文件后重新设置文件的存取时间，改变文件的存取时间。另一方面， <code>-m</code> 将文件的修改时间和存取时间保存为归档时的值。<br>对 <code>tar</code> 来说，在抽取文件时，其默认方式是复原归档时的修改时间，但是 <code>-m</code> 选择项将修改时间设置为抽取文件时的时间。无论 <code>tar</code> 在何种情况，文件的存取时间均是抽取文件时的时间。<br>由于不能修改状态改变时间（<code>utime</code> 也只能改变访问时间和修改时间，修改状态时间 <code>st_ctime</code> 字段被自动更新），所以没有将其保存在文档上。</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-高级环境编程/" rel="tag">#Unix 高级环境编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/23/第三章：文件-I-O/" rel="next" title="第三章：文件 I/O">
+                <i class="fa fa-chevron-left"></i> 第三章：文件 I/O
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/27/第五章：标准-I-O-库/" rel="prev" title="第五章：标准 I/O 库">
+                第五章：标准 I/O 库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/24/第四章：文件和目录/"
+           data-title="第四章：文件和目录" data-url="http://un-knight.github.io/2016/11/24/第四章：文件和目录/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
+               alt="小鸡遛狗" />
+          <p class="site-author-name" itemprop="name">小鸡遛狗</p>
+          <p class="site-description motion-element" itemprop="description">Keep thinking</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/un-knight" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/UnderworldYjx" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3639801160" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dlecheng.cn/" title="Dylan" target="_blank">Dylan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重要概念"><span class="nav-number">1.</span> <span class="nav-text">重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件类型"><span class="nav-number">1.1.</span> <span class="nav-text">文件类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-节点"><span class="nav-number">1.2.</span> <span class="nav-text">i 节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件时间"><span class="nav-number">1.3.</span> <span class="nav-text">文件时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#符号链接"><span class="nav-number">1.4.</span> <span class="nav-text">符号链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-文件内容删除"><span class="nav-number">1.5.</span> <span class="nav-text">Linux 文件内容删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要函数"><span class="nav-number">2.</span> <span class="nav-text">重要函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stat-fstat-lstat"><span class="nav-number">2.1.</span> <span class="nav-text">stat, fstat, lstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#access-函数是按实际用户-ID-和实际组-ID-进行访问权限测试。"><span class="nav-number">2.2.</span> <span class="nav-text">access 函数是按实际用户 ID 和实际组 ID 进行访问权限测试。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#umask-函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）"><span class="nav-number">2.3.</span> <span class="nav-text">umask 函数为进程设置文件模式创建屏蔽字，并返回以前的值。（这是少数几个没有出错返回函数之一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chmod-fchmod-更改文件访问权限"><span class="nav-number">2.4.</span> <span class="nav-text">chmod, fchmod  更改文件访问权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chown-fchown-lchown-用于更改文件的用户-ID-和组-ID"><span class="nav-number">2.5.</span> <span class="nav-text">chown, fchown, lchown 用于更改文件的用户 ID 和组 ID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#truncate-ftruncate-进行文件截短"><span class="nav-number">2.6.</span> <span class="nav-text">truncate, ftruncate 进行文件截短</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#link-unlink-remove-rename"><span class="nav-number">2.7.</span> <span class="nav-text">link, unlink, remove, rename</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#symlink-readlink-函数"><span class="nav-number">2.8.</span> <span class="nav-text">symlink, readlink 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#utime-更改文件的访问和修改时间"><span class="nav-number">2.9.</span> <span class="nav-text">utime 更改文件的访问和修改时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mkdir-rmdir-目录操作"><span class="nav-number">2.10.</span> <span class="nav-text">mkdir, rmdir 目录操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读目录"><span class="nav-number">2.11.</span> <span class="nav-text">读目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chdir-fchdir-getcwd-文件目录操作"><span class="nav-number">2.12.</span> <span class="nav-text">chdir, fchdir, getcwd 文件目录操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#major-minor-宏"><span class="nav-number">2.13.</span> <span class="nav-text">major, minor 宏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小鸡遛狗</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"un-knight"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gSjcGtpxrvPtKFfRAmiFMmAg-gzGzoHsz", "jGg92JiNdsjYFY5hWDyRkJOU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>

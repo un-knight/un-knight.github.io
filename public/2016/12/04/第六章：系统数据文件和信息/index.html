@@ -1,0 +1,980 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Unix 高级环境编程," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="UNIX 系统的正常运行需要使用大量与系统有关的数据文件，例如 /etc/passwd 和 /etc/group 这两个就是经常用到的口令文件。
+由于历史原因，这些数据文件都是 ASCII 文本文件，并且使用标准 I/O 库读这些文件。但是，对于较大的系统，顺序扫描口令文件非常耗时，我们需要能够以非 ASCII 文本格式存放这些文件，但仍向应用程序提供可以处理任何一种文件格式的接口。针对这些数据文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第六章：系统数据文件和信息">
+<meta property="og:url" content="http://un-knight.github.io/2016/12/04/第六章：系统数据文件和信息/index.html">
+<meta property="og:site_name" content="小鸡遛狗的博客">
+<meta property="og:description" content="UNIX 系统的正常运行需要使用大量与系统有关的数据文件，例如 /etc/passwd 和 /etc/group 这两个就是经常用到的口令文件。
+由于历史原因，这些数据文件都是 ASCII 文本文件，并且使用标准 I/O 库读这些文件。但是，对于较大的系统，顺序扫描口令文件非常耗时，我们需要能够以非 ASCII 文本格式存放这些文件，但仍向应用程序提供可以处理任何一种文件格式的接口。针对这些数据文">
+<meta property="og:updated_time" content="2016-12-04T12:59:28.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第六章：系统数据文件和信息">
+<meta name="twitter:description" content="UNIX 系统的正常运行需要使用大量与系统有关的数据文件，例如 /etc/passwd 和 /etc/group 这两个就是经常用到的口令文件。
+由于历史原因，这些数据文件都是 ASCII 文本文件，并且使用标准 I/O 库读这些文件。但是，对于较大的系统，顺序扫描口令文件非常耗时，我们需要能够以非 ASCII 文本格式存放这些文件，但仍向应用程序提供可以处理任何一种文件格式的接口。针对这些数据文">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6349524465411442000',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://un-knight.github.io/2016/12/04/第六章：系统数据文件和信息/"/>
+
+
+  <title> 第六章：系统数据文件和信息 | 小鸡遛狗的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4cabfbd8184720db4b07c0416369c5d0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">小鸡遛狗的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第六章：系统数据文件和信息
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-04T20:57:28+08:00" content="2016-12-04">
+              2016-12-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/04/第六章：系统数据文件和信息/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/04/第六章：系统数据文件和信息/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/04/第六章：系统数据文件和信息/" class="leancloud_visitors" data-flag-title="第六章：系统数据文件和信息">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>UNIX 系统的正常运行需要使用大量与系统有关的数据文件，例如 <code>/etc/passwd</code> 和 <code>/etc/group</code> 这两个就是经常用到的口令文件。</p>
+<p>由于历史原因，这些数据文件都是 ASCII 文本文件，并且使用标准 I/O 库读这些文件。但是，对于较大的系统，顺序扫描口令文件非常耗时，我们需要能够以非 ASCII 文本格式存放这些文件，但仍向应用程序提供可以处理任何一种文件格式的接口。针对这些数据文件的可移植接口是本章的主题。本章还介绍了系统标识函数、时间和日期函数。</p>
+<h2 id="重要函数"><a href="#重要函数" class="headerlink" title="重要函数"></a>重要函数</h2><h3 id="口令文件"><a href="#口令文件" class="headerlink" title="口令文件"></a>口令文件</h3><p>UNIX 系统的口令文件（POSIX.1 称其为用户数据库）包含了许多字段，这些字段包含在 <code>&lt;pwd.h&gt;</code> 中定义的 <code>passwd</code> 结构中。</p>
+<p>Linux 系统 <code>/etc/passwd</code> 文件中的各字段按顺序如下：</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">struct passwd 成员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left"><code>char *pw_name</code></td>
+</tr>
+<tr>
+<td style="text-align:left">加密口令</td>
+<td style="text-align:left"><code>char *pw_passwd</code></td>
+</tr>
+<tr>
+<td style="text-align:left">数值用户 ID</td>
+<td style="text-align:left"><code>uid_t pw_uid</code></td>
+</tr>
+<tr>
+<td style="text-align:left">数值组 ID</td>
+<td style="text-align:left"><code>gid_t pw_gid</code></td>
+</tr>
+<tr>
+<td style="text-align:left">注释字段</td>
+<td style="text-align:left"><code>char *pw_gecos</code></td>
+</tr>
+<tr>
+<td style="text-align:left">初始工作目录</td>
+<td style="text-align:left"><code>char *pw_dir</code></td>
+</tr>
+<tr>
+<td style="text-align:left">初始 shell</td>
+<td style="text-align:left"><code>char *pw_shell</code></td>
+</tr>
+</tbody>
+</table>
+<p>由于历史原因，口令文件存储在 <code>/etc/passwd</code> 中，而且是一个 ASCII 文件。每行包含有表中各个字段，字段之间用冒号分隔。比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root:x:0:0:root:/root:/bin/bash</div></pre></td></tr></table></figure>
+<p> 以下两个函数在给出用户名或数值 ID 后，能用于查询相关项。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pwd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">struct</span> passwd *<span class="title">getpwuid</span><span class="params">(<span class="keyword">uid_t</span> uid)</span></span>;</div><div class="line"><span class="function"><span class="keyword">struct</span> passwd *<span class="title">getpwnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</div><div class="line"><span class="comment">//return：两个函数都是成功返回指针，失败返回 NULL</span></div></pre></td></tr></table></figure>
+<p>但是也有些程序需要查看整个口令文件，下列三个函数可用于此目的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;pwd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">struct</span> passwd *<span class="title">getpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：成功返回指针，出错或者到达文件尾返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">endpwent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div></pre></td></tr></table></figure>
+<p>调用 <code>getpwent</code> 时，它返回口令文件中的下一个记录项。 <code>setpwent</code> 反绕它所使用的文件， <code>endpwent</code> 则关闭这些文件。</p>
+<p>在使用 <code>getpwent</code> 查看完口令文件后一定要调用 <code>endpwent</code> 函数关闭这些文件。</p>
+<p>并且事实上， <code>getpwnam</code> 就是借助这三个函数实现的。</p>
+<h3 id="阴影文件"><a href="#阴影文件" class="headerlink" title="阴影文件"></a>阴影文件</h3><p>为了避免加密口令被人通过猜测明文口令经加密之后与密文相匹配的方式猜测出来，所以某些系统将加密口令存放在一个称为阴影口令（shadow password）的文件中。阴影口令不是一般用户能读取的，通常只有账户为 root 的程序才有权限读取。这样普通的口令文件 <code>etc/passwd</code> 就可以各用户自由读取。</p>
+<p><code>etc/shadow</code> 文件字段如下。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">struct spwd 成员</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">用户登录名</td>
+<td style="text-align:left"><code>char *sp_namp</code></td>
+</tr>
+<tr>
+<td style="text-align:left">加密口令</td>
+<td style="text-align:left"><code>char *sp_pwdp</code></td>
+</tr>
+<tr>
+<td style="text-align:left">上次更改口令以来经过的时间</td>
+<td style="text-align:left"><code>int sp_lstchg</code></td>
+</tr>
+<tr>
+<td style="text-align:left">经过多少天后允许更改</td>
+<td style="text-align:left"><code>int sp_min</code></td>
+</tr>
+<tr>
+<td style="text-align:left">要求更改尚余天数</td>
+<td style="text-align:left"><code>int sp_max</code></td>
+</tr>
+<tr>
+<td style="text-align:left">到期警告天数</td>
+<td style="text-align:left"><code>int sp_warn</code></td>
+</tr>
+<tr>
+<td style="text-align:left">账户不活动之前尚余天数</td>
+<td style="text-align:left"><code>int sp_inact</code></td>
+</tr>
+<tr>
+<td style="text-align:left">账户到期天数</td>
+<td style="text-align:left"><code>int sp_expire</code></td>
+</tr>
+<tr>
+<td style="text-align:left">保留</td>
+<td style="text-align:left"><code>unsigned int sp_flag</code></td>
+</tr>
+</tbody>
+</table>
+<p>表格中这么多字段其实只有<strong>用户登录名</strong>与<strong>加密口令</strong>是必须的。</p>
+<p>与口令文件相类似的，Linux 提供有一组函数用于访问阴影口令文件。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;shadow.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">struct</span> spwd *<span class="title">getspnam</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *name)</span></span>;</div><div class="line"><span class="function"><span class="keyword">struct</span> spwd *<span class="title">getspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：两个函数值都是成功返回指针，失败返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">endspent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div></pre></td></tr></table></figure>
+<h3 id="组文件"><a href="#组文件" class="headerlink" title="组文件"></a>组文件</h3><p>Linux 组文件包含以下字段，包含在 <code>&lt;grp.h&gt;</code> 中所定义的 <code>group</code> 结构中。</p>
+<p><code>/etc/group</code> 文件字段。<br>| 说明      |  struct group 成员 |<br>| :——– | :——–|<br>| 组名    |   <code>char *gr_name</code> |<br>| 加密口令 | <code>char *gr_passwd</code> |<br>| 数值组 ID | <code>int gr_gid</code> |<br>| 指向各用户的指针数组 | <code>char **gr_mem</code> |</p>
+<p>字段 <code>gr_mem</code> 是一个指针数组，其中每个指针各指向一个属于该组的用户名。数组以空指针结尾。</p>
+<p> 以下两个函数在给出组名或数值组 ID 后，能用于查询相关项。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;grp.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">struct</span> group *<span class="title">getgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：成功返回指针，若出错或到达文件结尾则返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">endgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>但是也有些程序需要查看整个组文件，下列三个函数可用于此目的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;grp.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">struct</span> group *<span class="title">getgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="comment">//return：成功返回指针，出错或者到达文件尾则返回 NULL</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">setgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">endgrent</span><span class="params">(<span class="keyword">void</span>)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>这三个函数的作用与口令文件的类似， <code>setgrent</code> 用于反绕组文件， <code>getgrent</code> 用于从组文件中读取下一个记录， <code>endgrent</code> 用于关闭组文件。</p>
+<h3 id="系统标识"><a href="#系统标识" class="headerlink" title="系统标识"></a>系统标识</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/utsname.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">uname</span><span class="params">(<span class="keyword">struct</span> utsname *name)</span></span>;</div><div class="line"><span class="comment">//return：成功返回非负值，若出错返回 -1</span></div></pre></td></tr></table></figure>
+<p><code>uname</code> 返回与当前主机和操作系统有关的信息，通过该函数的参数像其传递一个 <code>utsname</code> 结构的地址，然后该函数填写此结构。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> utsname&#123;</div><div class="line">    <span class="keyword">char</span> sysname[];    <span class="comment">/* name of operating system */</span></div><div class="line">    <span class="keyword">char</span> nodename[];   <span class="comment">/* name of this node */</span></div><div class="line">    <span class="keyword">char</span> release[];    <span class="comment">/* current release of operating system */</span></div><div class="line">    <span class="keyword">char</span> version[];    <span class="comment">/* current version of this release */</span></div><div class="line">    <span class="keyword">char</span> machine[];    <span class="comment">/* name of hardware type */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>gethostname</code> 获取主机名，改名字通常是 TCP/IP 网络上的主机名字。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">gethostname</span><span class="params">(<span class="keyword">char</span> *name, <span class="keyword">int</span> namelen)</span></span>;</div><div class="line"><span class="comment">//return：成功返回 0，失败返回 -1</span></div></pre></td></tr></table></figure></p>
+<p><code>namelen</code> 参数指定了 <code>name</code> 缓冲区的长度。</p>
+<h3 id="时间和日期例程"><a href="#时间和日期例程" class="headerlink" title="时间和日期例程"></a>时间和日期例程</h3><p>UNIX 内核提供的基本时间服务是计算自国际标准时间公元 1970 年 1 月 1 日 00:00:00 以来经过的秒数。这种秒数以数据类型 <code>time_t</code> 表示。</p>
+<p>time 函数返回当前时间和日期。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></div><div class="line"><span class="keyword">time_t</span> time(<span class="keyword">time_t</span> *calptr);</div><div class="line"><span class="comment">//return：成功返回时间值，失败返回 -1</span></div></pre></td></tr></table></figure>
+<p>时间值总是作为函数值返回。如果参数不为空，则时间值也存放在由 calptr 指向的单元内。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Unix-高级环境编程/" rel="tag">#Unix 高级环境编程</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/03/Python-中的枚举类型/" rel="next" title="Python 中的枚举类型">
+                <i class="fa fa-chevron-left"></i> Python 中的枚举类型
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/07/第七章：进程环境/" rel="prev" title="第七章：进程环境">
+                第七章：进程环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/04/第六章：系统数据文件和信息/"
+           data-title="第六章：系统数据文件和信息" data-url="http://un-knight.github.io/2016/12/04/第六章：系统数据文件和信息/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
+               alt="小鸡遛狗" />
+          <p class="site-author-name" itemprop="name">小鸡遛狗</p>
+          <p class="site-description motion-element" itemprop="description">Keep thinking</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/un-knight" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/UnderworldYjx" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3639801160" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dlecheng.cn/" title="Dylan" target="_blank">Dylan</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#重要函数"><span class="nav-number">1.</span> <span class="nav-text">重要函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#口令文件"><span class="nav-number">1.1.</span> <span class="nav-text">口令文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阴影文件"><span class="nav-number">1.2.</span> <span class="nav-text">阴影文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组文件"><span class="nav-number">1.3.</span> <span class="nav-text">组文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统标识"><span class="nav-number">1.4.</span> <span class="nav-text">系统标识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间和日期例程"><span class="nav-number">1.5.</span> <span class="nav-text">时间和日期例程</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小鸡遛狗</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+<div>
+  <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"un-knight"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gSjcGtpxrvPtKFfRAmiFMmAg-gzGzoHsz", "jGg92JiNdsjYFY5hWDyRkJOU");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
