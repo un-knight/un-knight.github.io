@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="##查看主板硬件槽查看主板上所有硬件槽的信息。
-123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor">
+<meta name="description" content="查看主板硬件槽查看主板上所有硬件槽的信息。
+123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 下查看硬件信息常用指令">
 <meta property="og:url" content="http://un-knight.github.io/2016/12/31/Linux-下查看硬件信息常用指令/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="##查看主板硬件槽查看主板上所有硬件槽的信息。
-123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor">
-<meta property="og:updated_time" content="2016-12-31T05:40:16.163Z">
+<meta property="og:description" content="查看主板硬件槽查看主板上所有硬件槽的信息。
+123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PC">
+<meta property="og:updated_time" content="2016-12-31T05:43:07.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux 下查看硬件信息常用指令">
-<meta name="twitter:description" content="##查看主板硬件槽查看主板上所有硬件槽的信息。
-123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor">
+<meta name="twitter:description" content="查看主板硬件槽查看主板上所有硬件槽的信息。
+123456$ lspci00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PC">
 
 
 
@@ -336,11 +336,12 @@
       
 
       
-        <p>##查看主板硬件槽<br>查看主板上所有硬件槽的信息。</p>
+        <h2 id="查看主板硬件槽"><a href="#查看主板硬件槽" class="headerlink" title="查看主板硬件槽"></a>查看主板硬件槽</h2><p>查看主板上所有硬件槽的信息。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ lspci</div><div class="line">00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)</div><div class="line">00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)</div><div class="line">...</div></pre></td></tr></table></figure>
 <p>结合管道命令操作符可以直接获取想要的硬件槽信息，比如以下操作就能获得显卡信息。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i vga</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GM200 [GeForce GTX TITAN X] (rev a1)</div></pre></td></tr></table></figure>
 <p>添加 <code>-v</code> 选项展示详细信息，比如说想获取 GPU 的具体信息。</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ lspci -v <span class="_">-s</span> 01:00.0</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GM200 [GeForce GTX TITAN X] (rev a1) (prog-if 00 [VGA controller])</div><div class="line">	Subsystem: NVIDIA Corporation GM200 [GeForce GTX TITAN X]</div><div class="line">	Flags: fast devsel, IRQ 16</div><div class="line">	Memory at f6000000 (32-bit, non-prefetchable) [size=16M]</div><div class="line">	Memory at e0000000 (64-bit, prefetchable) [size=256M]</div><div class="line">	Memory at f0000000 (64-bit, prefetchable) [size=32M]</div><div class="line">	I/O ports at e000 [size=128]</div><div class="line">	Expansion ROM at f7000000 [disabled] [size=512K]</div><div class="line">	Capabilities: &lt;access denied&gt;</div><div class="line">	Kernel modules: nvidiafb, nouveau</div></pre></td></tr></table></figure>
 <p>其中 <code>01:00.0</code> 是 GPU 所在的槽号，这里由于权限不足所以有些信息没有展示出来。</p>
 <h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><p>通过以下指令可以查看内存详细使用情况。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$ cat /proc/meminfo</div><div class="line">MemTotal:       16318360 kB</div><div class="line">MemFree:        14173276 kB</div><div class="line">MemAvailable:   14924184 kB</div><div class="line">Buffers:          101760 kB</div><div class="line">Cached:          1217868 kB</div><div class="line">SwapCached:            0 kB</div><div class="line">Active:          1093656 kB</div><div class="line">Inactive:         822480 kB</div><div class="line">Active(anon):     598048 kB</div><div class="line">Inactive(anon):   359480 kB</div><div class="line">...</div></pre></td></tr></table></figure></p>
@@ -555,7 +556,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内存"><span class="nav-number">1.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘与分区"><span class="nav-number">2.</span> <span class="nav-text">硬盘与分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU"><span class="nav-number">3.</span> <span class="nav-text">CPU</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查看主板硬件槽"><span class="nav-number">1.</span> <span class="nav-text">查看主板硬件槽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存"><span class="nav-number">2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬盘与分区"><span class="nav-number">3.</span> <span class="nav-text">硬盘与分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CPU"><span class="nav-number">4.</span> <span class="nav-text">CPU</span></a></li></ol></div>
             
           </div>
         </section>
