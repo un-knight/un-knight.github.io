@@ -259,6 +259,144 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/23/第三章：文件-I-O/" itemprop="url">
+                  第三章：文件 I/O
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-23T23:08:54+08:00" content="2016-11-23">
+              2016-11-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/23/第三章：文件-I-O/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/23/第三章：文件-I-O/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/11/23/第三章：文件-I-O/" class="leancloud_visitors" data-flag-title="第三章：文件 I/O">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="专业名词"><a href="#专业名词" class="headerlink" title="专业名词"></a>专业名词</h2><ol>
+<li><p><strong>不带缓冲</strong>：指的是每个 <code>read</code> 和 <code>write</code> 都调用内核中的一个系统调用。<br>PS：这里的“不带缓冲”并不说 read 与 write 函数就不带缓冲机制。事实上，所有的磁盘 I/O 都要经过内核的块缓存器，唯一例外的是对原始磁盘设备的 I/O ，但是我们不考虑。既然 read 或 write 的数据都要被内核缓存，那么术语“不带缓存的 I/O”指的是在用户的进程中对这两个函数不会自动缓存，每次 read 或者 write 就要进行一次系统调用。</p>
+</li>
+<li><p><strong>文件描述符</strong>：文件描述符是一个<strong>非负整数</strong>，当使用 <code>create</code> 或者 <code>open</code> 函数创建或者打开一个文件的时候，内核向进程返回一个文件描述符。对内核而言，所有对打开的文件都通过文件描述符进行引用操作。</p>
+</li>
+<li><strong>延迟写</strong>：当要将数据写入文件时，内核通常先将该数据复制到其中一个缓冲区块中，等待该缓冲区块写满或者当内核需要重用该缓冲区以便存放其他磁盘块数据时，再将该缓冲排入输入队列，然后待其到达队首时，才进行实际的 I/O 操作。<br>优缺点：延迟写虽然减少了磁盘读写次数，但是却降低了文件内容的更新速度，可能导致磁盘上实际文件内容与缓冲区中内容不一致的问题。</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/23/第三章：文件-I-O/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/15/STDIN-FILENO-与-stdin-的区别/" itemprop="url">
                   STDIN_FILENO 与 stdin 的区别
                 </a>
@@ -800,141 +938,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/12/使用-docopt-快速构建命令行解析器/" itemprop="url">
-                  使用 docopt 快速构建命令行解析器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-12T15:34:19+08:00" content="2016-11-12">
-              2016-11-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/12/使用-docopt-快速构建命令行解析器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/12/使用-docopt-快速构建命令行解析器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/11/12/使用-docopt-快速构建命令行解析器/" class="leancloud_visitors" data-flag-title="使用 docopt 快速构建命令行解析器">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="docopt-使用说明"><a href="#docopt-使用说明" class="headerlink" title="docopt 使用说明"></a>docopt 使用说明</h2><p>docopt 是 Python 的一个第三方参数解析库，可以根据使用者提供的文档描述自动生成解析器。因此使用者可以用它来定义交互参数与解析参数。</p>
-<p>安装 docopt 模块：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo pip install docopt</div></pre></td></tr></table></figure>
-<p>接下来我们将通过一个简单的例子来说明 docopt 的使用。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/12/使用-docopt-快速构建命令行解析器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -980,7 +983,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
