@@ -882,7 +882,20 @@
 
       
         
-          <h2 id="windows-下安装-opencv"><a href="#windows-下安装-opencv" class="headerlink" title="windows 下安装 opencv"></a>windows 下安装 opencv</h2><p>从 opencv 3.x 开始，opencv 其实就已经可以支持 python 3 了，但是官方给出的编译版本还只支持 python 2.7 ，所以如果想要给 python 3 安装 opencv 模块，我们就得自己编译源码，但是这个过程相对繁琐，还容易出错。</p>
+          <blockquote>
+<p>说明：更新于 2017/01/02 ，添加了 Linux 中编译安装 OpenCV 的内容。</p>
+</blockquote>
+<h2 id="windows-下安装-opencv"><a href="#windows-下安装-opencv" class="headerlink" title="windows 下安装 opencv"></a>windows 下安装 opencv</h2><p>从 opencv 3.x 开始，opencv 其实就已经可以支持 python 3 了，但是官方给出的编译版本还只支持 python 2.7 ，所以如果想要给 python 3 安装 opencv 模块，我们就得自己编译源码，但是这个过程相对繁琐，还容易出错。</p>
+<p>这里提供一个非官方的下载地址：</p>
+<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv">http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv</a></p>
+<p>该网站提供了众多在 windows 平台下的第三方已编译 python 包扩展下载。</p>
+<p>进入网页，选择一个合适自己的版本 <code>opencv_python-xxx.whl</code> 下载。</p>
+<p>比如，我使用 python 3.5 ，所以选择下载 ：</p>
+<p><code>opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> </p>
+<p><code>amd64</code> 适用所有 <code>64-bit</code> 的操作系统。</p>
+<p>下载好之后，使用 CMD 进入 <code>.whl</code> 文件所在目录，执行（以 <code>opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> 为例）：</p>
+<p><code>pip install opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> </p>
+<p>进行安装。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/11/05/Python3-x配置OpenCV3/#more" rel="contents">
               阅读全文 &raquo;
@@ -976,7 +989,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1057,8 +1070,8 @@
 </script>
 <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
