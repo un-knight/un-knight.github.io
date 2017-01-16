@@ -102,7 +102,7 @@ $$J(\Th">
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016421992.png">
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481031077978.png">
 <meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1480854187196.png">
-<meta property="og:updated_time" content="2017-01-16T14:50:39.145Z">
+<meta property="og:updated_time" content="2017-01-16T14:59:41.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第五章：神经网络（Neural Networks）阶段二——学习训练">
 <meta name="twitter:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
@@ -374,7 +374,7 @@ $$J(\Th">
 <p><img src="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016421992.png" alt="Alt text"></p>
 <p>那么对于该网络要如何进行反向传播计算呢？对于每个节点都可以计算 $\delta_{j}^{l}$ ，这表示第 $l$ 层的节点 $j$ 的 error 。</p>
 <p>所以对于第四层的所有节点有 $\delta^{4} = h_{\Theta}(x) - y$ ，其中 $h_{\Theta}(x) = a^{4}$ 。</p>
-<p>然后利用 $\delta^{4}$ 计算 $\delta^{3} = (\Theta^{3})^{T} \delta^{4} .<em> {g}’(z^{3})$ 。其中 $.</em>$ 是一个 element wise multiplication 操作，意思就是只将两个矩阵中对应位置的元素相乘的操作。并且 ${g}’(z) = g(z)(1 - g(z))$</p>
+<p>然后利用 $\delta^{4}$ 计算 $\delta^{3}=(\Theta^{3})^{T}\delta^{4}.*{g}’(z^{3})$ 。其中 $.*$ 是一个 element wise multiplication 操作，意思就是只将两个矩阵中对应位置的元素相乘的操作。并且 ${g}’(z) = g(z)(1 - g(z))$</p>
 <p>再利用 $\delta^{3}$ 计算 $\delta^{2} = (\Theta^{2})^{T} \delta^{3} .* {g}’(z^{2})$ 。</p>
 <p>之前已经说明过 $\delta$ 反映的是当前值与实际值之间的 error ，由于第一层是输入层，而输入层的值都是真实值所以也就没有必要计算 $\delta^{1}$ 。</p>
 <p>当计算完所有的 $\delta$ 之后，就可以利用 $\delta$ 求出损失函数对每一个权值的偏导。</p>
