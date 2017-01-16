@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="numpy,总结," />
+  <meta name="keywords" content="Python3," />
 
 
 
@@ -84,25 +84,33 @@
 
 
 
-<meta name="description" content="（不定期更新中。。。。）首先导入模块。
-1import numpy as np
-zeros12np.zeros((height, width, channels), dtype=&quot;uint8&quot;)# 创建一个 height*width*channels 的矩阵，设定矩阵数值类型为无符号八位整型。
-float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
+<meta name="description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+损失函数与逻辑回归相类似，神经网络的损失函数定义为：
+$$h_{\Theta}(x) \in \mathbb{R}^{K}\ \ \ \ (h_{\Theta}(x))_{i} = i^{th} output$$
+$$J(\Th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Numpy 模块总结">
-<meta property="og:url" content="http://un-knight.github.io/2016/11/08/Numpy-模块总结/index.html">
+<meta property="og:title" content="第五章：神经网络（Neural Networks）阶段二——学习训练">
+<meta property="og:url" content="http://un-knight.github.io/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="（不定期更新中。。。。）首先导入模块。
-1import numpy as np
-zeros12np.zeros((height, width, channels), dtype=&quot;uint8&quot;)# 创建一个 height*width*channels 的矩阵，设定矩阵数值类型为无符号八位整型。
-float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
-<meta property="og:updated_time" content="2016-11-08T15:31:19.540Z">
+<meta property="og:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+损失函数与逻辑回归相类似，神经网络的损失函数定义为：
+$$h_{\Theta}(x) \in \mathbb{R}^{K}\ \ \ \ (h_{\Theta}(x))_{i} = i^{th} output$$
+$$J(\Th">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016324301.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016421992.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481031077978.png">
+<meta property="og:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1480854187196.png">
+<meta property="og:updated_time" content="2017-01-16T14:50:39.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Numpy 模块总结">
-<meta name="twitter:description" content="（不定期更新中。。。。）首先导入模块。
-1import numpy as np
-zeros12np.zeros((height, width, channels), dtype=&quot;uint8&quot;)# 创建一个 height*width*channels 的矩阵，设定矩阵数值类型为无符号八位整型。
-float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
+<meta name="twitter:title" content="第五章：神经网络（Neural Networks）阶段二——学习训练">
+<meta name="twitter:description" content="说明：这是我在学习吴恩达老师在 coursera 中 《Machine Learning》课程的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。
+
+损失函数与逻辑回归相类似，神经网络的损失函数定义为：
+$$h_{\Theta}(x) \in \mathbb{R}^{K}\ \ \ \ (h_{\Theta}(x))_{i} = i^{th} output$$
+$$J(\Th">
+<meta name="twitter:image" content="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016324301.png">
 
 
 
@@ -123,10 +131,10 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/2016/11/08/Numpy-模块总结/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/"/>
 
 
-  <title> Numpy 模块总结 | 小鸡遛狗的博客 </title>
+  <title> 第五章：神经网络（Neural Networks）阶段二——学习训练 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -266,7 +274,7 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
             
             
               
-                Numpy 模块总结
+                第五章：神经网络（Neural Networks）阶段二——学习训练
               
             
           </h1>
@@ -278,8 +286,8 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T23:27:46+08:00" content="2016-11-08">
-              2016-11-08
+            <time itemprop="dateCreated" datetime="2017-01-16T22:44:59+08:00" content="2017-01-16">
+              2017-01-16
             </time>
           </span>
 
@@ -292,8 +300,8 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -308,8 +316,8 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/08/Numpy-模块总结/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/Numpy-模块总结/" itemprop="commentsCount"></span>
+                <a href="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -320,7 +328,7 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
 
           
           
-             <span id="/2016/11/08/Numpy-模块总结/" class="leancloud_visitors" data-flag-title="Numpy 模块总结">
+             <span id="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/" class="leancloud_visitors" data-flag-title="第五章：神经网络（Neural Networks）阶段二——学习训练">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -342,17 +350,66 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
       
 
       
-        <p>（不定期更新中。。。。）<br>首先导入模块。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div></pre></td></tr></table></figure>
-<h3 id="zeros"><a href="#zeros" class="headerlink" title="zeros"></a><code>zeros</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">np.zeros((height, width, channels), dtype=<span class="string">"uint8"</span>)</div><div class="line"><span class="comment"># 创建一个 height*width*channels 的矩阵，设定矩阵数值类型为无符号八位整型。</span></div></pre></td></tr></table></figure>
-<h3 id="float32"><a href="#float32" class="headerlink" title="float32"></a><code>float32</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">np.float32([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</div><div class="line"><span class="comment"># 创建浮点型的矩阵数组</span></div></pre></td></tr></table></figure>
+        <blockquote>
+<p>说明：这是我在学习吴恩达老师在 coursera 中 <a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="external">《Machine Learning》课程</a>的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。</p>
+</blockquote>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>与逻辑回归相类似，神经网络的损失函数定义为：</p>
+<p>$$h_{\Theta}(x) \in \mathbb{R}^{K}\ \ \ \ (h_{\Theta}(x))_{i} = i^{th} output$$</p>
+<p>$$J(\Theta)=-\frac{1}{m} \left [\sum_{i=1}^{m}\sum_{k=1}^{K}y_{k}^{i}log((h_{\Theta}(x^{i}))_{k}) + (1-y_{k}^{i})log(1-(h_{\Theta}(x^{i}))_{k}) \right] + \frac{\lambda}{2m} \sum_{l=1}^{L-1} \sum_{i=1}^{s_{l}} \sum_{j=1}^{s_{l+1}} (\Theta_{ji}^{l})^{2}$$</p>
+<p>与逻辑回归不同的是这里的输出 $h_{\Theta}(x)$ 是一个 $K$ 维向量，其中 $K$ 代表类别的数量。并且由于这个式子引进了更多的求和与下标所以看着好像很复杂，但事实上这只是对逻辑回归损失函数的简单扩展。</p>
+<p>可以将 $J(\Theta)$ 分为两大部分来看，第一大部分为：</p>
+<p>$$-\frac{1}{m} \left [\sum_{i=1}^{m}\sum_{k=1}^{K}y_{k}^{i}log((h_{\Theta}(x^{i}))_{k}) + (1-y_{k}^{i})log(1-(h_{\Theta}(x^{i}))_{k}) \right]$$</p>
+<p>这一项是损失函数的主体，这里事实上就是对每个样例的每个输出计算损失并进行统一求和，并且由于每个输出都是一个 $K$ 维向量，因此还需要对向量中的每个元素再进行损失求和。</p>
 <a id="more"></a>
-<h3 id="random-randint"><a href="#random-randint" class="headerlink" title="random.randint()"></a><code>random.randint()</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">np.random.randint(low, high, size=<span class="keyword">None</span>)</div><div class="line"><span class="comment"># 产生随机数</span></div><div class="line"><span class="comment"># e.g</span></div><div class="line"><span class="comment"># np.random.randint(0, 10, size=(3,))</span></div><div class="line"><span class="comment"># 产生一个包含 3 个元素的数组，数组数据位于 [0, 10)</span></div></pre></td></tr></table></figure>
-<h3 id="absolute"><a href="#absolute" class="headerlink" title="absolute()"></a><code>absolute()</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">np.absolute(array)</div><div class="line"><span class="comment"># 将矩阵中的每个值都取绝对值</span></div><div class="line"><span class="comment"># return：返回处理之后的矩阵</span></div></pre></td></tr></table></figure>
-<h3 id="hstack-list"><a href="#hstack-list" class="headerlink" title="hstack(list)"></a><code>hstack(list)</code></h3><p>用于将多个矩阵进行水平方向上的拼接。传入的参数为 <code>list</code> 列表，即将需要拼接的矩阵组装成一个列表，如 <code>[array1, array2, array3]</code></p>
-<h3 id="linspace-start-end-num-50-endpoint-True"><a href="#linspace-start-end-num-50-endpoint-True" class="headerlink" title="linspace(start, end, num=50, endpoint=True)"></a><code>linspace(start, end, num=50, endpoint=True)</code></h3><p>用于创建一维的等差数列， <code>start</code> 为起点，<code>end</code> 是终点， <code>num</code> 是点的个数， <code>endpoint</code> 指定是否包含终点。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, endpoint=<span class="keyword">True</span>)</div><div class="line">array([ <span class="number">0.</span> ,  <span class="number">0.5</span>,  <span class="number">1.</span> ])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>, endpoint=<span class="keyword">False</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>array([ <span class="number">0.</span>,  <span class="number">0.33333333</span>,  <span class="number">0.66666667</span>])</div></pre></td></tr></table></figure>
-<p>注意 <code>endpoint</code> 值将影响最终产生数组的步长</p>
+<p>第二大部分为：</p>
+<p>$$\frac{\lambda}{2m} \sum_{l=1}^{L-1} \sum_{i=1}^{s_{l}} \sum_{j=1}^{s_{l+1}} (\Theta_{ji}^{l})^{2}$$</p>
+<p>与逻辑回归一致，这一项是正则化项，也称为权值衰减项（weight decay term）。值得注意的是，下标 $i$ 是从 1 开始增加的，这是因为正则化项不考虑偏置项（bias term）的权值。</p>
+<h2 id="反向传播算法（Back-propagation-algotithm）"><a href="#反向传播算法（Back-propagation-algotithm）" class="headerlink" title="反向传播算法（Back propagation algotithm）"></a>反向传播算法（Back propagation algotithm）</h2><p>现在了神经网络算法的损失函数，为了能够通过梯度下降法或者其它的高级方法来最小化损失函数求出合适的权值还需要知道损失函数对每个权值的偏导，即：</p>
+<p>$$\frac{\partial}{\partial \Theta_{ij}^{l}} J(\Theta)$$</p>
+<p>直观上来说，反向传播算法的过程就是利用正向传播算法计算所得的预测值（可以是一个实数也可以是一个向量）与真实值之间的差值来表征整个神经网络中权值 $\Theta$ 的错误的程度，这个差值称为误差（error）。然后再将 error 反向传播回每一层分别计算出每个权值的 error 。通过这个 error 就可以分别计算出损失函数在每个权值 $\theta_{ij}^{l}$ 上的偏导。</p>
+<p>为了方便说明，下边以一个具体的神经网络作为例子。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016324301.png" alt="Alt text"></p>
+<p>假设该例子只有一个训练数据 $(x, y)$ 。</p>
+<p>该网络的一个向量化的正向传播计算过程为：</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481016421992.png" alt="Alt text"></p>
+<p>那么对于该网络要如何进行反向传播计算呢？对于每个节点都可以计算 $\delta_{j}^{l}$ ，这表示第 $l$ 层的节点 $j$ 的 error 。</p>
+<p>所以对于第四层的所有节点有 $\delta^{4} = h_{\Theta}(x) - y$ ，其中 $h_{\Theta}(x) = a^{4}$ 。</p>
+<p>然后利用 $\delta^{4}$ 计算 $\delta^{3} = (\Theta^{3})^{T} \delta^{4} .<em> {g}’(z^{3})$ 。其中 $.</em>$ 是一个 element wise multiplication 操作，意思就是只将两个矩阵中对应位置的元素相乘的操作。并且 ${g}’(z) = g(z)(1 - g(z))$</p>
+<p>再利用 $\delta^{3}$ 计算 $\delta^{2} = (\Theta^{2})^{T} \delta^{3} .* {g}’(z^{2})$ 。</p>
+<p>之前已经说明过 $\delta$ 反映的是当前值与实际值之间的 error ，由于第一层是输入层，而输入层的值都是真实值所以也就没有必要计算 $\delta^{1}$ 。</p>
+<p>当计算完所有的 $\delta$ 之后，就可以利用 $\delta$ 求出损失函数对每一个权值的偏导。</p>
+<p>$$\frac{\partial}{\partial \Theta_{ij}^{l}} J(\Theta) = a_{j}^{l} \delta_{i}^{(l+1)}$$</p>
+<p>这里的偏导公式忽略了正则化的部分，后边会给出带正则化项的公式。另外关于这个公式的推导极其复杂此处不做赘述。</p>
+<h3 id="计算流程"><a href="#计算流程" class="headerlink" title="计算流程"></a>计算流程</h3><p>所以完整的偏导求解过程就是：<br>假设当前拥有 m 组训练样本 ${(x^{1}, y^{1}), \cdots, (x^{m}, y^{m})}$</p>
+<ol>
+<li>初始化 $\Delta_{ij}{l} = 0\ \ \ (for\ all\ l, i, j)$ 。</li>
+<li>$For\ i=1\ to\ m$<ul>
+<li>令 $a^{1} = x^{i}$ ，执行前向传播计算（记得给每一层添加偏置项），直到获得输出 $h_{\Theta}(x^{i})$ 。</li>
+<li>执行反向传播计算，计算每层的 $\delta$ 。</li>
+<li>计算 $\Delta^{l} := \Delta^{l} + \delta^{l+1}(a^{l})^{T}$</li>
+</ul>
+</li>
+<li>最终计算偏导，计算公式如下。</li>
+</ol>
+<p>$$\frac{\partial}{\partial \Theta_{ij}^{l}}J(\Theta) = D_{ij}^{l} = \frac {1} {m} \Delta_{ij}^{l}\ \ \ \ for\ j=0$$<br>$$\frac{\partial}{\partial \Theta_{ij}^{l}}J(\Theta) = D_{ij}^{l} = \frac {1} {m} \Delta_{ij}^{l} + \frac {\lambda} {m} \Theta_{ij}^{l}\ \ \ \ for\ j \geq 1$$</p>
+<h2 id="梯度检测（Gradient-checking）"><a href="#梯度检测（Gradient-checking）" class="headerlink" title="梯度检测（Gradient checking）"></a>梯度检测（Gradient checking）</h2><p>由于反向传播的计算过程复杂，在实现过程中容易出错，因此可以通过梯度检测来检验正确性。</p>
+<p>举个简单的例子，在点 $\theta$ 验证损失函数的梯度下降。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1481031077978.png" alt="Alt text"></p>
+<p>蓝色线是 $J(\Theta)$ 在 $\theta$ 点的切线，该切线的梯度就是我们所要求的正确值，在计算的梯度正确值未知的情况下，可以通过将梯度与渐近线的梯度相比较的方法验证梯度计算的正确与否。</p>
+<p>$\epsilon$ 是一个非常小的值，通常取 0.0001 。并且如果梯度计算正确，那么二者将非常接近。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><ul>
+<li>$\Theta_{ij}^{l}$ 采用随机化的方式进行初始化，而不是像线性回归与逻辑回归中将其初始化为 0 ，如果在神经网络算法中将 $\Theta$ 初始化为 0 会导致每一层的激活函数输出为 0 。并且随机初始化的通常策略是令 $\Theta^{l} \in \left [-\epsilon_{init}, \epsilon_{init} \right]$ 。其中 $\epsilon_{init} = \frac {\sqrt {6}} {\sqrt {L_{in} + L_{out}}}$ ，$L_{in} = s_{l}\ \ and\ \ L_{out} = s_{l+1}$ ，$s_{l}$ 与 $s_{l+1}$ 分别是与权值 $\Theta^{l}$ 邻接的左右两层的单元数。</li>
+<li>偏置项的作用请参考<a href="http://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks" target="_blank" rel="external">http://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks</a></li>
+</ul>
+<h2 id="Coding-time"><a href="#Coding-time" class="headerlink" title="Coding time"></a>Coding time</h2><p>本代码是基于吴恩达老师在 coursera 中 《Machine Learning》<a href="httphttps://www.coursera.org/learn/machine-learning/home/week/5" target="_blank" rel="external">第五周课程</a>提供的编程作业数据实现的。</p>
+<p>以下链接附有完整的代码（Python 实现）以及题目和数据。</p>
+<p><a href="https://github.com/un-knight/machine-learning-algorithm" target="_blank" rel="external">ex4_neural_network_learning</a></p>
+<p>测试结果：</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/01/16/2017/1480854187196.png" alt="Alt text"></p>
+<p>由于通过随机的方式初始化 $\theta$ 因此最终的测试结果并不会总是 0.96 ，正确率通常会在一个小范围内波动。</p>
+<blockquote>
+<p>备注：笔记中的例子与数据（除了 Coding time 部分之外）均来自吴恩达老师在 coursera 中 《Machine Learning》课程。</p>
+</blockquote>
 
       
     </div>
@@ -391,9 +448,7 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
       
         <div class="post-tags">
           
-            <a href="/tags/numpy/" rel="tag">#numpy</a>
-          
-            <a href="/tags/总结/" rel="tag">#总结</a>
+            <a href="/tags/Python3/" rel="tag">#Python3</a>
           
         </div>
       
@@ -402,17 +457,13 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/06/Pip-配置使用其它下载源/" rel="next" title="Pip 配置使用其它下载源">
-                <i class="fa fa-chevron-left"></i> Pip 配置使用其它下载源
+              <a href="/2017/01/02/Python3-配置-OpenCV3/" rel="next" title="Python3 配置 OpenCV3">
+                <i class="fa fa-chevron-left"></i> Python3 配置 OpenCV3
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/12/使用-docopt-快速构建命令行解析器/" rel="prev" title="使用 docopt 快速构建命令行解析器">
-                使用 docopt 快速构建命令行解析器 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -438,8 +489,8 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/08/Numpy-模块总结/"
-           data-title="Numpy 模块总结" data-url="http://un-knight.github.io/2016/11/08/Numpy-模块总结/">
+      <div class="ds-thread" data-thread-key="2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/"
+           data-title="第五章：神经网络（Neural Networks）阶段二——学习训练" data-url="http://un-knight.github.io/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/">
       </div>
     
   </div>
@@ -573,7 +624,7 @@ float3212np.float32([[1, 2, 3], [4, 5, 6]])# 创建浮点型的矩">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#zeros"><span class="nav-number">1.</span> <span class="nav-text">zeros</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#float32"><span class="nav-number">2.</span> <span class="nav-text">float32</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#random-randint"><span class="nav-number">3.</span> <span class="nav-text">random.randint()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#absolute"><span class="nav-number">4.</span> <span class="nav-text">absolute()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hstack-list"><span class="nav-number">5.</span> <span class="nav-text">hstack(list)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linspace-start-end-num-50-endpoint-True"><span class="nav-number">6.</span> <span class="nav-text">linspace(start, end, num=50, endpoint=True)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数"><span class="nav-number">1.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播算法（Back-propagation-algotithm）"><span class="nav-number">2.</span> <span class="nav-text">反向传播算法（Back propagation algotithm）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算流程"><span class="nav-number">2.1.</span> <span class="nav-text">计算流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度检测（Gradient-checking）"><span class="nav-number">3.</span> <span class="nav-text">梯度检测（Gradient checking）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coding-time"><span class="nav-number">5.</span> <span class="nav-text">Coding time</span></a></li></ol></div>
             
           </div>
         </section>

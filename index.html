@@ -259,6 +259,147 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/" itemprop="url">
+                  第五章：神经网络（Neural Networks）阶段二——学习训练
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-16T22:44:59+08:00" content="2017-01-16">
+              2017-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/" class="leancloud_visitors" data-flag-title="第五章：神经网络（Neural Networks）阶段二——学习训练">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>说明：这是我在学习吴恩达老师在 coursera 中 <a href="https://www.coursera.org/learn/machine-learning/home/welcome">《Machine Learning》课程</a>的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。</p>
+</blockquote>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p>与逻辑回归相类似，神经网络的损失函数定义为：</p>
+<p>$$h_{\Theta}(x) \in \mathbb{R}^{K}\ \ \ \ (h_{\Theta}(x))_{i} = i^{th} output$$</p>
+<p>$$J(\Theta)=-\frac{1}{m} \left [\sum_{i=1}^{m}\sum_{k=1}^{K}y_{k}^{i}log((h_{\Theta}(x^{i}))_{k}) + (1-y_{k}^{i})log(1-(h_{\Theta}(x^{i}))_{k}) \right] + \frac{\lambda}{2m} \sum_{l=1}^{L-1} \sum_{i=1}^{s_{l}} \sum_{j=1}^{s_{l+1}} (\Theta_{ji}^{l})^{2}$$</p>
+<p>与逻辑回归不同的是这里的输出 $h_{\Theta}(x)$ 是一个 $K$ 维向量，其中 $K$ 代表类别的数量。并且由于这个式子引进了更多的求和与下标所以看着好像很复杂，但事实上这只是对逻辑回归损失函数的简单扩展。</p>
+<p>可以将 $J(\Theta)$ 分为两大部分来看，第一大部分为：</p>
+<p>$$-\frac{1}{m} \left [\sum_{i=1}^{m}\sum_{k=1}^{K}y_{k}^{i}log((h_{\Theta}(x^{i}))_{k}) + (1-y_{k}^{i})log(1-(h_{\Theta}(x^{i}))_{k}) \right]$$</p>
+<p>这一项是损失函数的主体，这里事实上就是对每个样例的每个输出计算损失并进行统一求和，并且由于每个输出都是一个 $K$ 维向量，因此还需要对向量中的每个元素再进行损失求和。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/16/第五章：神经网络（Neural-Networks）阶段二——学习训练/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/02/Python3-配置-OpenCV3/" itemprop="url">
                   Python3 配置 OpenCV3
                 </a>
@@ -803,154 +944,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/21/第三章：Logistic-regression/" itemprop="url">
-                  第三章：Logistic regression
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-21T22:57:32+08:00" content="2016-12-21">
-              2016-12-21
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/21/第三章：Logistic-regression/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/21/第三章：Logistic-regression/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/12/21/第三章：Logistic-regression/" class="leancloud_visitors" data-flag-title="第三章：Logistic regression">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>说明：这是我在学习吴恩达老师在 coursera 中 <a href="https://www.coursera.org/learn/machine-learning/home/welcome">《Machine Learning》课程</a>的过程中所做的笔记与总结，因为能力有限所以笔记中难免有错，欢迎交流指正。</p>
-</blockquote>
-<h2 id="术语说明"><a href="#术语说明" class="headerlink" title="术语说明"></a>术语说明</h2><ul>
-<li>正类（positive class）——属于某一类别</li>
-<li>负类（negative class）——不属于某一类别</li>
-</ul>
-<h2 id="一、引入"><a href="#一、引入" class="headerlink" title="一、引入"></a>一、引入</h2><p>Logistic regression 通常用于处理分类问题，虽然它的名字中带有回归但是它是一个分类算法。从输出结果来看它与线性回归的最大区别就是线性回归的计算结果一个连续值，而 Logistic regression 的结果只能是 0 或者 1（0 表示不属于当前类别，1 表示属于当前类别）。</p>
-<p>为了简单起见，首先从二分类问题（binary class problem）开始，因为多分类问题实际上也只是二分类问题的简单扩展。</p>
-<h2 id="二、假设函数的定义"><a href="#二、假设函数的定义" class="headerlink" title="二、假设函数的定义"></a>二、假设函数的定义</h2><p>在线性回归中我们假设 $h_{\theta}(x)=\theta^{T}x$ ，相似的 Logistic regression 假设</p>
-<p>$$h_{\theta}(x)=g(\theta^{T}x)$$ </p>
-<p>其中，$g(z)$ 函数的定义为:</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/21/第三章：Logistic-regression/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -991,7 +989,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">25</span>
+              <span class="site-state-item-count">26</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
