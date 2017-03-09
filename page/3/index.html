@@ -259,6 +259,169 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/" itemprop="url">
+                  Python3 中的 OpenCV 模块操作简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-09T14:25:30+08:00" content="2016-12-09">
+              2016-12-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/OpenCV-学习记录/" itemprop="url" rel="index">
+                    <span itemprop="name">OpenCV 学习记录</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/09/Python3-中的-OpenCV-模块操作简介/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/09/Python3-中的-OpenCV-模块操作简介/" class="leancloud_visitors" data-flag-title="Python3 中的 OpenCV 模块操作简介">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>注意：OpenCV 中 RGB 图像颜色通道存储的顺序为 BGR 。<br>另外在学习过程中编写了一些实践代码，代码仓库地址为 </p>
+<ul>
+<li><a href="https://github.com/un-knight/code-for-opencv-learning-in-Python3">https://github.com/un-knight/code-for-opencv-learning-in-Python3</a></li>
+</ul>
+</blockquote>
+<h2 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> cv2</div></pre></td></tr></table></figure>
+<h2 id="图像的读写"><a href="#图像的读写" class="headerlink" title="图像的读写"></a>图像的读写</h2><p>模块名 <code>cv2</code></p>
+<h3 id="imread-image-path-mode"><a href="#imread-image-path-mode" class="headerlink" title="imread(image_path, mode)"></a><code>imread(image_path, mode)</code></h3><p>读取图片函数，返回一个 <code>numpy.ndarray</code> 对象。第一个参数指定图像路径，第二个参数（可选）指定打开模式，可选值有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">mode</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>IMREAD_COLOR</code></td>
+<td style="text-align:left">默认值，以彩色图像方式加载忽略透明通道</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IMREAD_GRAYSCALE</code></td>
+<td style="text-align:left">以灰度图像方式加载</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>IMREAD_UNCHANGED</code></td>
+<td style="text-align:left">完整加载，包含透明通道</td>
+</tr>
+</tbody>
+</table>
+<h3 id="imshow-str-image"><a href="#imshow-str-image" class="headerlink" title="imshow(str, image)"></a><code>imshow(str, image)</code></h3><p> 在窗口中显示图片，<code>str</code> 是一个字符串类型参数指定了窗口名，<code>image</code> 为所需展示的图像的矩阵。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/09/Python3-中的-OpenCV-模块操作简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/07/第七章：进程环境/" itemprop="url">
                   第七章：进程环境
                 </a>
@@ -777,145 +940,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/" itemprop="url">
-                  利用 Github Page 搭建 Hexo 静态博客
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-01T13:47:06+08:00" content="2016-12-01">
-              2016-12-01
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">博客搭建</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/" class="leancloud_visitors" data-flag-title="利用 Github Page 搭建 Hexo 静态博客">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一、博客说明"><a href="#一、博客说明" class="headerlink" title="一、博客说明"></a>一、博客说明</h2><p>之前一直想要搭建个个人博客来督促自己记录生活中所想所思，以及分享一些在学习过程中所做的笔记，但是奈何懒癌发作一直拖延，终于在大四上学期保研结束之后难得偷来“半日闲”下定决心开始搞起博客。</p>
-<p>准备之初曾有过三种方案：</p>
-<ol>
-<li>购买服务器，使用 Django 框架编写博客后台，前端使用主题模板</li>
-<li>购买服务器，使用 Ghost 或者 Hexo 等博客框架快速搭建</li>
-<li>利用 Github Page 的特性，上传由 Hexo 渲染之后的静态页面来构建博客</li>
-</ol>
-<p>考虑到自己目前只是想能快速的搭起一个博客以鼓励自己多记录，自然而然地就把方案一否决掉了。另外毕竟自己还只是个无产阶级的学生党，当然希望也能把租借服务器的钱给省下来，因此也否决了方案二。所以最终选定了方案三，而本文也是基于方案三实践过程中的一些琐碎记录。虽然这个博客搭建过程并没有涉及什么高难度的知识，但是坑还是比较多，因此希望这篇博文能对其他人有所帮助。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/01/利用-Github-Page-搭建-Hexo-静态博客/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -961,7 +985,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -978,7 +1002,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

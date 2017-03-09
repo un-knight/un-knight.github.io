@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python,映射解包," />
 
 
 
@@ -84,15 +84,28 @@
 
 
 
-<meta name="description" content="Keep thinking">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小鸡遛狗的博客">
-<meta property="og:url" content="http://un-knight.github.io/tags/梯子/index.html">
+<meta name="description" content="在 Python 中字典对象是很重要的概念，因为 Python 程序运行中的各种变量名与变量值都统一存储于字典中进行管理。该字典的键由程序中变量名组成，而键值则是这些变量相对应的值，有时也被称为名字空间。
+一个 Python 程序中通常存在着多个名字空间，主要分为三大类：
+
+局部名字空间——当前函数或类的名字空间，记录了函数中的参数与函数内定义的变量。
+全局名字空间——模块的名字空间，包括了模块中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="映射解包操作结合 locals() 使用小技巧">
+<meta property="og:url" content="http://un-knight.github.io/2017/03/09/locals-使用小技巧/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="Keep thinking">
+<meta property="og:description" content="在 Python 中字典对象是很重要的概念，因为 Python 程序运行中的各种变量名与变量值都统一存储于字典中进行管理。该字典的键由程序中变量名组成，而键值则是这些变量相对应的值，有时也被称为名字空间。
+一个 Python 程序中通常存在着多个名字空间，主要分为三大类：
+
+局部名字空间——当前函数或类的名字空间，记录了函数中的参数与函数内定义的变量。
+全局名字空间——模块的名字空间，包括了模块中">
+<meta property="og:updated_time" content="2017-03-09T06:02:52.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小鸡遛狗的博客">
-<meta name="twitter:description" content="Keep thinking">
+<meta name="twitter:title" content="映射解包操作结合 locals() 使用小技巧">
+<meta name="twitter:description" content="在 Python 中字典对象是很重要的概念，因为 Python 程序运行中的各种变量名与变量值都统一存储于字典中进行管理。该字典的键由程序中变量名组成，而键值则是这些变量相对应的值，有时也被称为名字空间。
+一个 Python 程序中通常存在着多个名字空间，主要分为三大类：
+
+局部名字空间——当前函数或类的名字空间，记录了函数中的参数与函数内定义的变量。
+全局名字空间——模块的名字空间，包括了模块中">
 
 
 
@@ -113,10 +126,10 @@
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/tags/梯子/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2017/03/09/locals-使用小技巧/"/>
 
 
-  <title> 标签: 梯子 | 小鸡遛狗的博客 </title>
+  <title> 映射解包操作结合 locals() 使用小技巧 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -147,7 +160,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -235,46 +248,193 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        梯子
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                映射解包操作结合 locals() 使用小技巧
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-09T13:57:57+08:00" content="2017-03-09">
+              2017-03-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/09/locals-使用小技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/09/locals-使用小技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2017/03/09/locals-使用小技巧/" class="leancloud_visitors" data-flag-title="映射解包操作结合 locals() 使用小技巧">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>在 Python 中字典对象是很重要的概念，因为 Python 程序运行中的各种变量名与变量值都统一存储于字典中进行管理。该字典的键由程序中变量名组成，而键值则是这些变量相对应的值，有时也被称为名字空间。</p>
+<p>一个 Python 程序中通常存在着多个名字空间，主要分为三大类：</p>
+<ol>
+<li>局部名字空间——当前函数或类的名字空间，记录了函数中的参数与函数内定义的变量。</li>
+<li>全局名字空间——模块的名字空间，包括了模块中定义的函数、类、导入的其它模块、常量和全局变量。</li>
+<li>内置名字空间——存放内置函数和异常，任何模块均可访问。</li>
+</ol>
+<a id="more"></a>
+<p>当需要寻找变量 <code>a</code> 的时候， Python 将会依次到局部名字空间、全局名字空间和内置名字空间中去寻找。如果在这些名字空间中都找不到变量 <code>a</code> 那么就将引发 <code>NameError</code> 异常。</p>
+<p>值得一提的是，在 Python 中可以通过 <code>locals()</code> 函数访问到局部名字空间，而全局名字空间通过 <code>globals()</code> 访问。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(a)</span>:</span></div><div class="line"><span class="meta">... </span>  b = a</div><div class="line"><span class="meta">... </span>  print(locals())</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>func(<span class="number">3</span>)</div><div class="line">&#123;<span class="string">'b'</span>: <span class="number">3</span>, <span class="string">'a'</span>: <span class="number">3</span>&#125;</div></pre></td></tr></table></figure>
+<p>另外利用 <code>locals()</code> 函数结合 <code>string</code> 对象的 <code>format</code> 方法可以用于高效创建格式化字符串，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(a, b)</span>:</span></div><div class="line">  x = <span class="number">20</span></div><div class="line">  y = <span class="number">30</span></div><div class="line">  sum = x + y</div><div class="line">  prod = x * y</div><div class="line">  formatStr = <span class="string">'&#123;x&#125; + &#123;y&#125; = &#123;sum&#125;; &#123;x&#125; * &#123;y&#125; = &#123;prod&#125;.'</span></div><div class="line">  print(formatStr.format(**locals()))</div><div class="line"></div><div class="line"><span class="comment"># print: '20 + 30 = 50; 20 * 30 = 600.'</span></div></pre></td></tr></table></figure>
+<p><code>**locals()</code> 将根据 <code>formatStr</code> 中位于括号内的变量名实现映射解包操作。</p>
+<h2 id="更多资料"><a href="#更多资料" class="headerlink" title="更多资料"></a>更多资料</h2><ul>
+<li><a href="http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/dictionaries.html" target="_blank" rel="external">http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/dictionaries.html</a></li>
+</ul>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/11/28/搭梯上墙搬瓦工/" itemprop="url">
-              
-                <span itemprop="name">搭梯上墙搬瓦工</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://ogiocccg3.bkt.clouddn.com/ali_pay_small.jpg" alt="小鸡遛狗 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-28T15:29:16+08:00"
-              content="2016-11-28" >
-          11-28
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/映射解包/" rel="tag">#映射解包</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/06/Python-中-List-对象的浅拷贝与深拷贝/" rel="next" title="Python 中 List 对象的浅拷贝与深拷贝">
+                <i class="fa fa-chevron-left"></i> Python 中 List 对象的浅拷贝与深拷贝
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -282,6 +442,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/09/locals-使用小技巧/"
+           data-title="映射解包操作结合 locals() 使用小技巧" data-url="http://un-knight.github.io/2017/03/09/locals-使用小技巧/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -301,8 +469,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://avatar.duoshuo.com/avatar-50/409/275680.jpg"
@@ -395,6 +572,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#更多资料"><span class="nav-number">1.</span> <span class="nav-text">更多资料</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -499,6 +687,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
