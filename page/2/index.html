@@ -259,6 +259,142 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/31/Linux-下查看硬件信息常用指令/" itemprop="url">
+                  Linux 下查看硬件信息常用指令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-31T13:39:07+08:00" content="2016-12-31">
+              2016-12-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/31/Linux-下查看硬件信息常用指令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/Linux-下查看硬件信息常用指令/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2016/12/31/Linux-下查看硬件信息常用指令/" class="leancloud_visitors" data-flag-title="Linux 下查看硬件信息常用指令">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="查看主板硬件槽"><a href="#查看主板硬件槽" class="headerlink" title="查看主板硬件槽"></a>查看主板硬件槽</h2><p>查看主板上所有硬件槽的信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ lspci</div><div class="line">00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)</div><div class="line">00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>结合管道命令操作符可以直接获取想要的硬件槽信息，比如以下操作就能获得显卡信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i vga</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GM200 [GeForce GTX TITAN X] (rev a1)</div></pre></td></tr></table></figure>
+<p>添加 <code>-v</code> 选项展示详细信息，比如说想获取 GPU 的具体信息。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/31/Linux-下查看硬件信息常用指令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/26/Cmder-中-ls-命令中文乱码问题解决/" itemprop="url">
                   Cmder 中 ls 命令中文乱码问题解决
                 </a>
@@ -831,140 +967,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" itemprop="url">
-                  Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-11T17:47:09+08:00" content="2016-12-11">
-              2016-12-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术汇/" itemprop="url" rel="index">
-                    <span itemprop="name">技术汇</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/" class="leancloud_visitors" data-flag-title="Anaconda 安装 TensorFlow 提示 “nonexistent” 问题解决">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天在 Anaconda （Windows 环境）中安装 TensorFlow 的时候遇到了一个奇怪的问题。提示说：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Cannot remove entries from nonexistent file e:\anaconda3\lib\site-packages\easy-install.pth</div></pre></td></tr></table></figure>
-<p>根据每个人的 Python 安装路径不同，提示的路径会有所不同，但形式都是 <code>[your python path]\lib\site-packages\easy-install.pth</code> 。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/11/Anaconda-安装-TensorFlow-提示-“nonexistent”-问题解决/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1010,7 +1012,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1027,7 +1029,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

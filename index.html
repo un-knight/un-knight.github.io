@@ -259,6 +259,143 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/28/IPython-使用技巧/" itemprop="url">
+                  IPython 使用技巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-28T14:38:01+08:00" content="2017-03-28">
+              2017-03-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术汇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术汇</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/28/IPython-使用技巧/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/28/IPython-使用技巧/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2017/03/28/IPython-使用技巧/" class="leancloud_visitors" data-flag-title="IPython 使用技巧">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="自动绘制matplotlib图表"><a href="#自动绘制matplotlib图表" class="headerlink" title="自动绘制matplotlib图表"></a>自动绘制matplotlib图表</h2><p>将语句 <code>%matplotlib inline</code> 在 matplotlib 图表绘制语句执行之前添加到程序块中，之后通过 matplotlib 绘制图表就不需要再通过 <code>plt.show()</code> 语句就能自动显示，如下图所示。</p>
+<p><img src="http://ogiocccg3.bkt.clouddn.com/image/03/28/2017/1490628414035.png" alt="Alt text"></p>
+<h2 id="自动重新加载自定义模块"><a href="#自动重新加载自定义模块" class="headerlink" title="自动重新加载自定义模块"></a>自动重新加载自定义模块</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">%load_ext autoreload</div><div class="line">%autoreload <span class="number">2</span></div></pre></td></tr></table></figure>
+<p>只要在 IPython 的程序段中包含以上两行代码，IPython 就能够自动加载最新的自定义模块，那么这个特性有什么用呢？对于 Python 脚本程序这个特性并没有什么帮助，但是在 Python 的交互式编程当中它的用处可就大了。比如，我们编写了一段脚本程序但是决定先将其作为一个模块在交互式 IDE 中进行调试以测试模块中各个单元的逻辑是否正确，那么这一过程我们很可能会发现自定义模块中存在各种各样的问题需要修改，而一旦修改之后这些模块又需要重新导入，这一无意义的步骤将使得测试过程变得繁琐，而以上的语句就可以使得 IPython 自动加载修改后的模块。</p>
+<p>举个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>%load_ext autoreload</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>%autoreload <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> my_modular.func <span class="keyword">as</span> func</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>func()</div><div class="line"><span class="number">12</span></div><div class="line"><span class="comment"># Open my_modular.py and change the `func()` to return 1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>func()</div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/28/IPython-使用技巧/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/09/locals-使用小技巧/" itemprop="url">
                   映射解包操作结合 locals() 使用小技巧
                 </a>
@@ -797,142 +934,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/31/Linux-下查看硬件信息常用指令/" itemprop="url">
-                  Linux 下查看硬件信息常用指令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-31T13:39:07+08:00" content="2016-12-31">
-              2016-12-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/12/31/Linux-下查看硬件信息常用指令/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/31/Linux-下查看硬件信息常用指令/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2016/12/31/Linux-下查看硬件信息常用指令/" class="leancloud_visitors" data-flag-title="Linux 下查看硬件信息常用指令">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="查看主板硬件槽"><a href="#查看主板硬件槽" class="headerlink" title="查看主板硬件槽"></a>查看主板硬件槽</h2><p>查看主板上所有硬件槽的信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ lspci</div><div class="line">00:00.0 Host bridge: Intel Corporation 4th Gen Core Processor DRAM Controller (rev 06)</div><div class="line">00:01.0 PCI bridge: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller (rev 06)</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">00:14.0 USB controller: Intel Corporation 8 Series/C220 Series Chipset Family USB xHCI (rev 05)</div><div class="line">...</div></pre></td></tr></table></figure>
-<p>结合管道命令操作符可以直接获取想要的硬件槽信息，比如以下操作就能获得显卡信息。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ lspci | grep -i vga</div><div class="line">00:02.0 VGA compatible controller: Intel Corporation Xeon E3-1200 v3/4th Gen Core Processor Integrated Graphics Controller (rev 06)</div><div class="line">01:00.0 VGA compatible controller: NVIDIA Corporation GM200 [GeForce GTX TITAN X] (rev a1)</div></pre></td></tr></table></figure>
-<p>添加 <code>-v</code> 选项展示详细信息，比如说想获取 GPU 的具体信息。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/31/Linux-下查看硬件信息常用指令/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -978,7 +979,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -995,7 +996,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
