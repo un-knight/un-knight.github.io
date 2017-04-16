@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="jupyter notebook,服务器," />
 
 
 
@@ -84,31 +84,19 @@
 
 
 
-<meta name="description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
-
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
+<meta name="description" content="Jupyter Notebook 是一款允许使用者创建和分享文档的开源web应用。文档中支持Markdown文本解析、LaTex公式和交互式编程等功能。在数据科学、数值计算和机器学习等领域有着广泛的应用。而且 Jupyter 也非常容易上手，安装使用等基本问题请参考官网。
+本文将介绍的是如何在服务器上部署 Jupyter notebook 并通过更加安全的 SSH 通道访问。这样只要浏览器和网络就">
 <meta property="og:type" content="article">
-<meta property="og:title" content="signal 模块">
-<meta property="og:url" content="http://un-knight.github.io/2016/11/13/signal-模块/index.html">
+<meta property="og:title" content="通过 SSH 端口转发搭建 Jupyter notebook 服务器">
+<meta property="og:url" content="http://un-knight.github.io/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/index.html">
 <meta property="og:site_name" content="小鸡遛狗的博客">
-<meta property="og:description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
-
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
-<meta property="og:updated_time" content="2016-11-13T04:36:04.957Z">
+<meta property="og:description" content="Jupyter Notebook 是一款允许使用者创建和分享文档的开源web应用。文档中支持Markdown文本解析、LaTex公式和交互式编程等功能。在数据科学、数值计算和机器学习等领域有着广泛的应用。而且 Jupyter 也非常容易上手，安装使用等基本问题请参考官网。
+本文将介绍的是如何在服务器上部署 Jupyter notebook 并通过更加安全的 SSH 通道访问。这样只要浏览器和网络就">
+<meta property="og:updated_time" content="2017-04-16T14:42:17.592Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="signal 模块">
-<meta name="twitter:description" content="signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。
-常见信号名
-signal.SIGINT ：Ctrl-C 键盘事件
-signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
-
-预设信号处理函数signal 包的核心是使用 signal.signal() 函数来预设 (register">
+<meta name="twitter:title" content="通过 SSH 端口转发搭建 Jupyter notebook 服务器">
+<meta name="twitter:description" content="Jupyter Notebook 是一款允许使用者创建和分享文档的开源web应用。文档中支持Markdown文本解析、LaTex公式和交互式编程等功能。在数据科学、数值计算和机器学习等领域有着广泛的应用。而且 Jupyter 也非常容易上手，安装使用等基本问题请参考官网。
+本文将介绍的是如何在服务器上部署 Jupyter notebook 并通过更加安全的 SSH 通道访问。这样只要浏览器和网络就">
 
 
 
@@ -129,10 +117,10 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
 
 
 
-  <link rel="canonical" href="http://un-knight.github.io/2016/11/13/signal-模块/"/>
+  <link rel="canonical" href="http://un-knight.github.io/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/"/>
 
 
-  <title> signal 模块 | 小鸡遛狗的博客 </title>
+  <title> 通过 SSH 端口转发搭建 Jupyter notebook 服务器 | 小鸡遛狗的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +260,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
             
             
               
-                signal 模块
+                通过 SSH 端口转发搭建 Jupyter notebook 服务器
               
             
           </h1>
@@ -284,8 +272,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T12:34:26+08:00" content="2016-11-13">
-              2016-11-13
+            <time itemprop="dateCreated" datetime="2017-04-16T22:41:16+08:00" content="2017-04-16">
+              2017-04-16
             </time>
           </span>
 
@@ -298,8 +286,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/技术汇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术汇</span>
                   </a>
                 </span>
 
@@ -314,8 +302,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/13/signal-模块/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/13/signal-模块/" itemprop="commentsCount"></span>
+                <a href="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,7 +314,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
 
           
           
-             <span id="/2016/11/13/signal-模块/" class="leancloud_visitors" data-flag-title="signal 模块">
+             <span id="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/" class="leancloud_visitors" data-flag-title="通过 SSH 端口转发搭建 Jupyter notebook 服务器">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -348,21 +336,40 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
       
 
       
-        <p>signal 模块负责在 Python 程序中处理内部信号，典型的操作包括预设信号处理函数，暂停进程并等待信号，以及定时发出 SIGALRM 等。</p>
-<h3 id="常见信号名"><a href="#常见信号名" class="headerlink" title="常见信号名"></a>常见信号名</h3><ul>
-<li><code>signal.SIGINT</code> ：<code>Ctrl-C</code> 键盘事件</li>
-<li><code>signal.SIGTSTP</code> ：<code>Ctrl-Z</code> 键盘事件，Unix 平台独有</li>
-</ul>
-<h3 id="预设信号处理函数"><a href="#预设信号处理函数" class="headerlink" title="预设信号处理函数"></a>预设信号处理函数</h3><p>signal 包的核心是使用 signal.signal() 函数来预设 (register) 信号处理函数，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">signal.signal(signalnum, handler)</div></pre></td></tr></table></figure>
+        <p><a href="http://jupyter.org/" target="_blank" rel="external">Jupyter Notebook</a> 是一款允许使用者创建和分享文档的开源web应用。文档中支持Markdown文本解析、LaTex公式和交互式编程等功能。在数据科学、数值计算和机器学习等领域有着广泛的应用。而且 Jupyter 也非常容易上手，安装使用等基本问题请参考官网。</p>
+<p>本文将介绍的是如何在服务器上部署 Jupyter notebook 并通过更加安全的 SSH 通道访问。这样只要浏览器和网络就能随时随地开始编程了，简直是我等码农最大利器。</p>
+<h2 id="Jupyter-配置"><a href="#Jupyter-配置" class="headerlink" title="Jupyter 配置"></a>Jupyter 配置</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>进入 IPython 交互IDE，为 Jupyter 创建密钥。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; <span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</div><div class="line">&gt;&gt; passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line"><span class="string">'sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c'</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>signalnum 为某个信号，handler 为该信号的处理函数。当接收到某一特定信号的时候，进程可以无视信号，可以采取默认操作，还可以自定义操作。当 handler 为 <code>signal.SIG_IGN</code> 时，信号被无视(ignore)。当 handler为 <code>singal.SIG_DFL</code>，进程采取默认操作(default)。当handler为一个自定义函数名时，进程采取函数中定义的操作。</p>
-<p>以下给出了一个自定义信号的例子：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> signal</div><div class="line"></div><div class="line"><span class="comment"># 定义自定义信号处理函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">myHandler</span><span class="params">(signum, frame)</span>:</span></div><div class="line">    print(<span class="string">'received: '</span>, signum)</div><div class="line"></div><div class="line"><span class="comment"># 注册信号处理函数，指定触发信号为 'Ctrl-Z'</span></div><div class="line">signal.signal(signal.SIGTSTP, myHandler)</div><div class="line"></div><div class="line"><span class="comment"># 让进程暂停等待信号触发</span></div><div class="line">signal.pause()</div><div class="line">print(<span class="string">'End of Signal Demo.\n'</span>)</div></pre></td></tr></table></figure></p>
-<p>我们首先使用 <code>signal.signal()</code> 函数来注册信号处理函数。然后执行 <code>signal.pause()</code> 来让该进程暂停以等待信号。当信号 <code>SIGTSTP</code> 被传递给该进程时，进程从暂停中恢复，并根据预设，执行 <code>SIGTSTP</code> 的信号处理函数 <code>myHandler()</code>。</p>
-<p>自定义信号处理函数有两个参数，一个用来识别信号 <code>signum</code>，另一个用来获得信号发生时，进程栈的状况 <code>stack frame</code>。这两个参数都是由<code>signal.singnal()</code> 函数来传递的。</p>
-<blockquote>
-<p>参考：  <a href="http://www.cnblogs.com/vamei/archive/2012/10/06/2712683.html" target="_blank" rel="external">http://www.cnblogs.com/vamei/archive/2012/10/06/2712683.html</a></p>
-</blockquote>
+<h3 id="设置配置文件"><a href="#设置配置文件" class="headerlink" title="设置配置文件"></a>设置配置文件</h3><p>看了网上其他人的策略通常是直接修改配置文件 <code>~/.jupyter/jupyter_notebook_config.py</code> ，但是个人不推荐这种做法，因为这样需要改动到默认的配置文件。</p>
+<p>我推荐的做法是自行创建一个配置文件，然后在运行 Jupyter notebook 的时候动态加载配置信息。</p>
+<p>创建配置文件，可以取名为 <code>jupyter_config.py</code> 。</p>
+<p>配置内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">c.NotebookApp.ip = &apos;localhost&apos; # 指定</div><div class="line">c.NotebookApp.open_browser = False # 关闭自动打开浏览器</div><div class="line">c.NotebookApp.port = 8888 # 端口随意指定</div><div class="line">c.NotebookApp.password = u&apos;sha1:d8334*******&apos; # 复制前一步生成的密钥</div></pre></td></tr></table></figure>
+<h3 id="启动-Jupyter-服务器"><a href="#启动-Jupyter-服务器" class="headerlink" title="启动 Jupyter 服务器"></a>启动 Jupyter 服务器</h3><p>接下来运行 Jupyter 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ jupyter notebook --config=jupyter_config.py</div></pre></td></tr></table></figure>
+<p>但是当前这样还存在一个问题，就是一旦关闭终端，Jupyter 程序也就终止了运行。这是因为该 Jupyter 程序作为当前终端的子进程，在用户终端关闭的时候将收到一个 hangup 信号，从而被关闭。</p>
+<p>所以为了让程序能忽视 hangup 信号，可以使用 <code>nohup</code> 命令。同时还要配合 <code>&amp;</code> 来将程序放入后台运行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ nohup jupyter notebook --config=jupyter_config.py &amp;</div></pre></td></tr></table></figure>
+<h2 id="SSH-端口转发"><a href="#SSH-端口转发" class="headerlink" title="SSH 端口转发"></a>SSH 端口转发</h2><p>其实细心的同学之前一定发现了，我们之前将 Jupyter 的运行 IP 设置为 <code>localhost</code> ，这样的话是无法通过公网访问到 Jupyter 的。虽然网上通常的做法都是将 IP 设置为 <code>0.0.0.0</code> ，然后本地端直接通过服务器 IP 进行访问。这样做虽然简便快捷，但是直接将 IP 与端口向外开放的做法也存在风险。因此我更推荐的做法是采用 SSH 端口转发来实现访问，因为 SSH 会自动加密和解密所有 SSH 客户端与服务端之间的网络数据。</p>
+<p>SSH 提供的端口转发，能够将其他 TCP 端口的网络数据通过 SSH 链接来转发，并且自动提供了相应的加密及解密服务。这一过程有时也被叫做“隧道”（tunneling），这是因为 SSH 为其他 TCP 链接提供了一个安全的通道来进行传输而得名。</p>
+<p>因此 SSH 端口转发能提供两大功能：</p>
+<ol>
+<li>加密 SSH 客户端到 SSH 服务器端的通信</li>
+<li>突破防火墙限制，建立一些之前受限的 TCP 连接</li>
+</ol>
+<p>虽然 SSH 端口转发包含有许多内容，但是我们只需要用到其中的本地转发功能。</p>
+<p>本地端口转发的命令格式是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -L &lt;<span class="built_in">local</span> port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt;</div></pre></td></tr></table></figure>
+<p>所以，为了同 Jupyter 服务器建立 TCP 连接，还需要在本地与服务器间建立起 SSH Tunneling。</p>
+<p>具体到本例操作就是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -L 4000:localhost:8888 168.1.xx.xx -p &lt;port&gt; -u &lt;username&gt;</div></pre></td></tr></table></figure>
+<p>之后便能通过 <code>localhost:4000</code> 来访问 Jupyter 服务器了。</p>
+<h2 id="更多参考"><a href="#更多参考" class="headerlink" title="更多参考"></a>更多参考</h2><p>对于如何让Linux 程序在后台运行以及 SSH 端口转发内容感兴趣的同学请继续阅读以下内容：</p>
+<ol>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-nohup/index.html" target="_blank" rel="external">Linux 程序后台运行</a></li>
+<li><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html" target="_blank" rel="external">SSH 端口转发</a></li>
+</ol>
 
       
     </div>
@@ -399,22 +406,26 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/jupyter-notebook/" rel="tag">#jupyter notebook</a>
+          
+            <a href="/tags/服务器/" rel="tag">#服务器</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/12/使用-docopt-快速构建命令行解析器/" rel="next" title="使用 docopt 快速构建命令行解析器">
-                <i class="fa fa-chevron-left"></i> 使用 docopt 快速构建命令行解析器
+              <a href="/2017/03/28/IPython-使用技巧/" rel="next" title="IPython 使用技巧">
+                <i class="fa fa-chevron-left"></i> IPython 使用技巧
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/13/第一章：简介/" rel="prev" title="第一章：简介">
-                第一章：简介 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -440,8 +451,8 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/13/signal-模块/"
-           data-title="signal 模块" data-url="http://un-knight.github.io/2016/11/13/signal-模块/">
+      <div class="ds-thread" data-thread-key="2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/"
+           data-title="通过 SSH 端口转发搭建 Jupyter notebook 服务器" data-url="http://un-knight.github.io/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/">
       </div>
     
   </div>
@@ -575,7 +586,7 @@ signal.SIGTSTP ：Ctrl-Z 键盘事件，Unix 平台独有
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见信号名"><span class="nav-number">1.</span> <span class="nav-text">常见信号名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预设信号处理函数"><span class="nav-number">2.</span> <span class="nav-text">预设信号处理函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Jupyter-配置"><span class="nav-number">1.</span> <span class="nav-text">Jupyter 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生成密钥"><span class="nav-number">1.1.</span> <span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">设置配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动-Jupyter-服务器"><span class="nav-number">1.3.</span> <span class="nav-text">启动 Jupyter 服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH-端口转发"><span class="nav-number">2.</span> <span class="nav-text">SSH 端口转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多参考"><span class="nav-number">3.</span> <span class="nav-text">更多参考</span></a></li></ol></div>
             
           </div>
         </section>

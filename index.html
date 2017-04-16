@@ -259,6 +259,141 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/" itemprop="url">
+                  通过 SSH 端口转发搭建 Jupyter notebook 服务器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-16T22:41:16+08:00" content="2017-04-16">
+              2017-04-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术汇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术汇</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+
+          
+          
+             <span id="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/" class="leancloud_visitors" data-flag-title="通过 SSH 端口转发搭建 Jupyter notebook 服务器">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="http://jupyter.org/">Jupyter Notebook</a> 是一款允许使用者创建和分享文档的开源web应用。文档中支持Markdown文本解析、LaTex公式和交互式编程等功能。在数据科学、数值计算和机器学习等领域有着广泛的应用。而且 Jupyter 也非常容易上手，安装使用等基本问题请参考官网。</p>
+<p>本文将介绍的是如何在服务器上部署 Jupyter notebook 并通过更加安全的 SSH 通道访问。这样只要浏览器和网络就能随时随地开始编程了，简直是我等码农最大利器。</p>
+<h2 id="Jupyter-配置"><a href="#Jupyter-配置" class="headerlink" title="Jupyter 配置"></a>Jupyter 配置</h2><h3 id="生成密钥"><a href="#生成密钥" class="headerlink" title="生成密钥"></a>生成密钥</h3><p>进入 IPython 交互IDE，为 Jupyter 创建密钥。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt; <span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd</div><div class="line">&gt;&gt; passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line"><span class="string">'sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c'</span></div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/16/通过-SSH-端口转发搭建-Jupyter-notebook-服务器/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/28/IPython-使用技巧/" itemprop="url">
                   IPython 使用技巧
                 </a>
@@ -789,151 +924,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/02/Python3-配置-OpenCV3/" itemprop="url">
-                  Python3 配置 OpenCV3
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-02T22:51:09+08:00" content="2017-01-02">
-              2017-01-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/OpenCV-学习记录/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenCV 学习记录</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/02/Python3-配置-OpenCV3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/02/Python3-配置-OpenCV3/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-
-          
-          
-             <span id="/2017/01/02/Python3-配置-OpenCV3/" class="leancloud_visitors" data-flag-title="Python3 配置 OpenCV3">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>说明：更新于 2017/01/02 ，添加了 Linux 中编译安装 OpenCV 的内容。</p>
-</blockquote>
-<h2 id="windows-下安装-opencv"><a href="#windows-下安装-opencv" class="headerlink" title="windows 下安装 opencv"></a>windows 下安装 opencv</h2><p>从 opencv 3.x 开始，opencv 其实就已经可以支持 python 3 了，但是官方给出的编译版本还只支持 python 2.7 ，所以如果想要给 python 3 安装 opencv 模块，我们就得自己编译源码，但是这个过程相对繁琐，还容易出错。</p>
-<p>这里提供一个非官方的下载地址：</p>
-<p><a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv">http://www.lfd.uci.edu/~gohlke/pythonlibs/#opencv</a></p>
-<p>该网站提供了众多在 windows 平台下的第三方已编译 python 包扩展下载。</p>
-<p>进入网页，选择一个合适自己的版本 <code>opencv_python-xxx.whl</code> 下载。</p>
-<p>比如，我使用 python 3.5 ，所以选择下载 ：</p>
-<p><code>opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> </p>
-<p><code>amd64</code> 适用所有 <code>64-bit</code> 的操作系统。</p>
-<p>下载好之后，使用 CMD 进入 <code>.whl</code> 文件所在目录，执行（以 <code>opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> 为例）：</p>
-<p><code>pip install opencv_python-3.1.0+contrib_opencl-cp35-cp35m-win_amd64.whl</code> </p>
-<p>进行安装。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/02/Python3-配置-OpenCV3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -979,7 +969,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -996,7 +986,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
